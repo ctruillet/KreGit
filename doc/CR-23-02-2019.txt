@@ -1,0 +1,47 @@
+main (Clement)
+
+affichage (Clement)
+    compte
+    espace_client
+    connexion
+    
+titulaire_compte (Valentin)
+    struct -> fichier json par compte 
+        isAdmin
+        char * photo
+        char * nom
+        char * prenom
+    
+    char * creerID
+    bool verifPwd
+    int connect
+    int deconnect
+    int charger_struct
+    int decharger_struct
+    int creer_compte
+        -> creer_compte
+            -> infos
+
+compte (Valentin)
+    struct
+        ID 
+        type_compte (livret A, CB, ...)
+        fichier cvs
+    deposer
+    retirer
+    transferer
+    creer_compte
+    supprimer_compte
+    getters
+    consulter    
+
+cryptage (Clement)
+    pwd -> crypter
+    fichiers 
+        -> crypter
+        -> decrypter
+
+log (Clement)
+    w_log
+    crea_log
+    assert_l
