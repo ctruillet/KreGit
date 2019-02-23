@@ -1,24 +1,30 @@
-GCC=gcc
-LDFLAGS=-lm
-LIB=./lib
-INCLUDE=./include
-CFLAGS=-Wall -g
-SRC=./src/main.c ./src/Complexe.c
-OBJ=$(SRC:.c=.o)
-EXEC=out
+MAKE = make
+GCC = gcc
+INCLUDE = include/
+SRC = $(wildcard src/*.c)
+MOVE = mv
+EXC = ./bin/main
+LIB = lib/
+GIT = git
+ADD = add .
+COMMIT = commit -m
+PUSH = push
+REBASE = rebase
+READ = @read -p
+BIN = bin/*
 
-all:$(EXEC)
-
-$(EXEC): $(OBJ) $(INCLUDE)/*.h
-	$(GCC) $(CFLAGS) -o $(EXEC) $(OBJ) -I$(INCLUDE) $(LDFLAGS)
-	mv src/*.o lib
-
-main.o: main.c 
-	$(GCC) $(CFLAGS) -o main.o -c ./src/main.c $(LDFLAGS)
+all : 
+	$(MAKE) compile -s
 	
-Complexe.o: Complexe.c $(INCLUDE)/Complexe.h
-	$(GCC) $(CFLAGS) -o Complexe.o -c ./src/Complexe.c $(LDFLAGS)
-	
-clean:
-	rm $(EXEC)
-	rm lib/*.o
+compile :
+	$(GCC) -I $(INCLUDE) -c $(SRC)
+	$(MOVE) *.o $(LIB)
+	$(GCC) -o $(EXC) $(LIB)*.o
+
+git :
+	$(READ) "Enter the message to set up the commit : " message; \
+        $(GIT) $(ADD) && $(GIT) $(COMMIT) "$$message";
+		$(GIT) $(REBASE) && $(GIT) $(PUSH);
+
+clean :
+	rm $(BIN) $(LIB)*
