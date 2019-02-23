@@ -17,7 +17,7 @@ void crea_log(char * FICHIER){
   date=*localtime(&temps);
 
   // Remplissage de la chaîne avec en date_heure
-  strftime(FICHIER, 128, "../log/%m-%d-%Y_%H.%M.%S.log", &date);
+  strftime(FICHIER, 128, "./log/%m-%d-%Y_%H.%M.%S.log", &date);
   
   // Ouverture et création du fichier .log
   FILE* fichier = NULL;

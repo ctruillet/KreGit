@@ -3,7 +3,7 @@ GCC = gcc
 INCLUDE = include/
 SRC = $(wildcard src/*.c)
 MOVE = mv
-EXC = ./bin/main
+EXC = ./bin/kregit
 LIB = lib/
 GIT = git
 ADD = add .
@@ -12,6 +12,7 @@ PUSH = push
 REBASE = rebase
 READ = @read -p
 BIN = bin/*
+LOG = log/*
 
 all : 
 	$(MAKE) compile -s
@@ -21,6 +22,9 @@ compile :
 	$(MOVE) *.o $(LIB)
 	$(GCC) -o $(EXC) $(LIB)*.o
 
+run :
+	$(EXC)
+
 git :
 	$(READ) "Enter the message to set up the commit : " message; \
         $(GIT) $(ADD) && $(GIT) $(COMMIT) "$$message";
@@ -28,3 +32,6 @@ git :
 
 clean :
 	rm $(BIN) $(LIB)*
+
+log :
+	rm $(LOG)
