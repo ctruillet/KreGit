@@ -1,10 +1,9 @@
-## Welcome on KreGit website
+## Welcome on KreGit bank
 
-We are very happy to see you in your website because you're our favorite costumer !
-So, you win a free download link to our github, because it's poor students who had develop this project.
-You can use the [editor on GitHub](https://github.com/ClementTruillet/KreGit/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
-
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+We are very happy to see you in your website because you're our favorite customer !  
+So, you win a free download link to our github, because it's poor students who had develop this project.   
+  
+Well, I think you don't have finish our project yet, come back soon !
 
 ### Markdown
 

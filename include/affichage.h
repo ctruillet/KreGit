@@ -9,3 +9,6 @@
 
 //Display title
 void title();
+
+//Say Goodbye
+void end();
