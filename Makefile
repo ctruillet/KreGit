@@ -35,5 +35,5 @@ git :
 clean :
 	rm $(BIN) $(LIB)*
 
-log :
+cleanlog :
 	rm $(LOG)

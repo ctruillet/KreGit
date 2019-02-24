@@ -33,32 +33,32 @@ int main(int argc, char *argv[]){
     while(FSM != 6){
         scanf("%d",&FSM);
         switch (FSM){
-            case 0:         //Welcome
+            case TITLE:                             //Welcome
                 w_log(LOG,"Welcome page - FSM = 0");
                 title();
                 break;
 
-            case 1:         //1 - ADMIN - Show, create, edit and remove accounts
+            case ADMIN_ACCOUNT:                     //1 - ADMIN - Show, create, edit and remove accounts
                 w_log(LOG,"ADMIN - FSM = 1");
                 break;
 
-            case 2:         //2 - ADMIN - Add, edit and show customers
+            case ADMIN_CUSTOMER:                    //2 - ADMIN - Add, edit and show customers
                 w_log(LOG,"ADMIN - FSM = 2");
                 break;
 
-            case 3:         //3 - ADMIN - Change password
+            case ADMIN:                             //3 - ADMIN - Change password
                 w_log(LOG,"ADMIN - FSM = 3");
                 break;
 
-            case 4:         //4 - CUSTOMER - Consult account
+            case CUSTOMER_ACCOUNT:                  //4 - CUSTOMER - Consult account
                 w_log(LOG,"CUSTOMER - FSM = 4");
                 break;
 
-            case 5:         //5 - CUSTOMER - Change password or add/remove account
+            case CUSTOMER:                          //5 - CUSTOMER - Change password or add/remove account
                 w_log(LOG,"CUSTOMER - FSM = 5");
                 break;
         
-            case 6:         //6 - Goodbye !
+            case END:                               //6 - Goodbye !
                 w_log(LOG,"This is the end - FSM = 6");
                 end();
                 break;
