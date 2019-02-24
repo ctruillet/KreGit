@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
+
 #include "../include/log.h"
+#include "../include/affichage.h"
 
 /*
 * Clement Truillet 
@@ -13,6 +15,7 @@ int main(int argc, char *argv[]){
     crea_log(LOG);
 
     //Execution
+    title();
     w_log(LOG,"La fonction main s'est bien executée.");
 
 

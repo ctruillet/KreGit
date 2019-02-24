@@ -1,5 +1,7 @@
 MAKE = make
 GCC = gcc
+LIBFLAGS = -lm
+CFLAGS = -Wall -g
 INCLUDE = include/
 SRC = $(wildcard src/*.c)
 MOVE = mv
@@ -18,9 +20,9 @@ all :
 	$(MAKE) compile -s
 	
 compile :
-	$(GCC) -I $(INCLUDE) -c $(SRC)
+	$(GCC) $(CFLAGS) -I $(INCLUDE) -c $(SRC) $(LIBFLAGS)
 	$(MOVE) *.o $(LIB)
-	$(GCC) -o $(EXC) $(LIB)*.o
+	$(GCC) $(CFLAGS) -o $(EXC) $(LIB)*.o $(LIBFLAGS)
 
 run :
 	$(EXC)
