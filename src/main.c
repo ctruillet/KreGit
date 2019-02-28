@@ -4,6 +4,8 @@
 #include "../include/log.h"
 #include "../include/display.h"
 
+#define CLEAR_STDIN { int c; while((c = getchar()) != '\n' && c != EOF); }
+
 //FSM
 enum{
     TITLE,              //0 - Welcome
@@ -17,7 +19,7 @@ enum{
 
 /*
 * Clement Truillet 
-* Derniere modification : 24/02/2019
+* Derniere modification : 28/02/2019
 */
 
 int main(int argc, char *argv[]){
@@ -32,6 +34,7 @@ int main(int argc, char *argv[]){
     //Execution
     while(FSM != 6){
         scanf("%d",&FSM);
+        CLEAR_STDIN                                 //Clear buffer
         switch (FSM){
             case TITLE:                             //Welcome
                 w_log(LOG,"Welcome page - FSM = 0");
