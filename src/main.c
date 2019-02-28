@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 #include "../include/log.h"
-#include "../include/affichage.h"
+#include "../include/display.h"
 
 //FSM
 enum{

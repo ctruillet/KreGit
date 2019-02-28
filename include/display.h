@@ -12,3 +12,6 @@ void title();
 
 //Say Goodbye
 void end();
+
+//Connect
+//connect();

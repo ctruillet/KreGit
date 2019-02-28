@@ -9,6 +9,7 @@
 */
 
 void crea_log(char * FICHIER){
+   
   time_t temps;
   struct tm date;
 
