@@ -1,6 +1,12 @@
 {
     "files.associations": {
         "stdio.h": "c",
-        "stdlib.h": "c"
+        "stdlib.h": "c",
+        "account.h": "c",
+        "account.h\u0000count.h": "c",
+        "account.h\u0000ount.h": "c",
+        "users_account.h\u0000_account.h": "c",
+        "users_account.h\u0000count.h": "c",
+        "users_account.h\u0000ount.h": "c"
     }
 }

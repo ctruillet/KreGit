@@ -3,6 +3,9 @@
 
 #include "../include/log.h"
 #include "../include/display.h"
+#include "../include/users_account.h"
+#include "../include/account.h"
+#include "../include/encrypt.h"
 
 #define CLEAR_STDIN { int c; while((c = getchar()) != '\n' && c != EOF); }
 

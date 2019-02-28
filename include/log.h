@@ -1,6 +1,8 @@
 /*
  * librairie log.h
  */
+#define __LOG_H__
+
 
 /*
 Derniere modification : 2018-12-02 17:44:02

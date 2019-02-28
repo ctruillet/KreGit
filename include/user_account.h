@@ -2,5 +2,6 @@
 * Valentin Frydrychowski 
 * Derniere modification : 28/02/2019
 */
+#define __USER_ACCOUNT_H__
 
-typedef user_acount *user_account_ptr;
+typedef struct user_account *user_account;

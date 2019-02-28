@@ -1,10 +1,15 @@
 /*
- * librairie affichage.h
+ * librairie display.h
  */
+#define __DISPLAY_H__
+
+#ifndef __USER_ACCOUNT_H__
+	#include "../include/users_account.h"
+#endif
 
 /*
 * Clement Truillet 
-* Derniere modification : 24/02/2019
+* Derniere modification : 28/02/2019
 */
 
 //Display title
@@ -14,4 +19,4 @@ void title();
 void end();
 
 //Connect
-//connect();
+int connect(user_account ua);
