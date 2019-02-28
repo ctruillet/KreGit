@@ -16,7 +16,10 @@ READ = @read -p
 BIN = bin/*
 LOG = log/*
 
+
 all : 
+	mkdir -p bin
+	mkdir -p lib
 	$(MAKE) compile -s
 	
 compile :
