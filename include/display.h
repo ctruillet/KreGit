@@ -4,7 +4,7 @@
 #define __DISPLAY_H__
 
 #ifndef __USER_ACCOUNT_H__
-	#include "../include/users_account.h"
+	#include "../include/user_account.h"
 #endif
 
 /*
@@ -20,3 +20,6 @@ void end();
 
 //Connect
 int connect(user_account ua);
+
+//Error
+void error();

@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "../include/user_account.h"
 
 /*
 * Clement Truillet 
@@ -24,4 +25,22 @@ void title(){
 //Say Goodbye
 void end(){
     printf("\nGoodbye!\n");
+}
+
+//Connect
+int connect(user_account ua){
+    /*Demande user_name
+    *   Charger la structure
+    * Demande pwd
+    * Verification pwd
+    *   passwordIsGood()
+    */
+    return 0;
+}
+
+//Display an error
+void error(){
+    /*Affiche une erreur
+    * ? Incremente le compteur d'erreur -> bloquer l'accès au compte
+    */
 }

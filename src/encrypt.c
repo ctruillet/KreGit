@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "../include/users_account.h"
+#include "../include/user_account.h"
 
 /*
 * Clement Truillet 
@@ -9,11 +9,22 @@
 
 //Check if the password is good
 int passwordIsGood(char * password, user_account ua){
-    //use strcmp
+    /*
+    * Recupere la struct de l'user entré
+    * encyryptPassword(password)
+    * strcmp
+    *   -> == 0 OK
+    *   -> != 0 Pas Ok -> error
+    */
     return 0;
 }
 
 //Encrypt password
 char * encryptPassword(char * string){
+    /*
+    * Recupere string
+    * md5
+    * renvoit md5(string)
+    */
     return 'c';
 }
