@@ -4,7 +4,7 @@
 #define __ENCRYPT_H__
 
 #ifndef __USER_ACCOUNT_H__
-	#include "../include/users_account.h"
+	#include "../include/user_account.h"
 #endif
 
 /*
@@ -13,6 +13,8 @@
 */
 
 //Check if the password is good
+//	Return 1 if password is good
+//	Return 0 if ... well.. is false ?
 int passwordIsGood(char * password, user_account ua);
 
 //Encrypt password
