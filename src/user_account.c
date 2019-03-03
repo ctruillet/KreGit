@@ -13,9 +13,9 @@
 //structure from a user account
 typedef struct user_account_s{
     bool admin;     //account with admin rights
-    char name;     //name of user
-    char firstname;        //first name of user
-    char pwd;      //password link to the account
+    char *name;     //name of user
+    char *firstname;        //first name of user
+    char *pwd;      //password link to the account
     list_account list; //list of account own by user
 } user_account;
 
