@@ -14,6 +14,7 @@ typedef struct account_s
     char *ID;           //Identification 
     char *owners[2];     //owners list of account 
     char *type_account; //type of account
+    char *history;      //history of the account
 
 } account;
 

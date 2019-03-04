@@ -12,6 +12,7 @@
 
 //structure from a user account
 typedef struct user_account_s{
+    char *u_ID;     //ID of .json file
     bool admin;     //account with admin rights
     char *name;     //name of user
     char *firstname;        //first name of user
