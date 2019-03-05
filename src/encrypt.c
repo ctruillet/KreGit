@@ -9,9 +9,8 @@
 */
 
 //Check if the password is good
-int passwordIsGood(char * password, user_account ua){
-    char * user_pwd = get_pwd(ua);
-    return (strcmp(password,user_pwd)==0 ? 1 : 0);
+int passwordIsGood(char * password, User_account ua){
+    return (strcmp(password,get_pwd(ua))==0 ? 1 : 0);
 }
 
 //Encrypt password

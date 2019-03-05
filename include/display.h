@@ -19,7 +19,13 @@ void title();
 void end();
 
 //Connect
-int connect(user_account ua);
+int connect(User_account ua);
+
+//Deconnect
+void deconnect();
+
+//Nav_bar
+void nav(User_account ua);
 
 //Error
 void error();
