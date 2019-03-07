@@ -1,6 +1,6 @@
 /*
 * Valentin Frydrychowski 
-* Derniere modification : 03/03/2019
+* Derniere modification : 07/03/2019
 */
 #define __USER_ACCOUNT_H__
 
@@ -17,12 +17,12 @@ char *get_u_ID(User_account uacc);
 char *get_name(User_account uacc);
 char *get_firstname(User_account uacc);
 char *get_pwd(User_account uacc);
-char **get_account_list(User_account uacc);     //return a board of accont link to the user
+char **get_account_list(User_account uacc);     //return a board of account linked to the user
 
-bool *set_admin(User_account uacc);
-char *set_name(User_account uacc);
-char *set_firstname(User_account uacc);
-char *set_pwd(User_account uacc);
+void set_admin(User_account uacc, bool admin);
+void set_name(User_account uacc, char name);
+void set_firstname(User_account uacc, char firstname);
+void set_pwd(User_account uacc, char pwd);
 
 void add_Ulist(User_account uacc, Account acc);      //add an account to the user
 void remoove_Ulist(User_account uacc, Account acc);      //remoove an acont to the user

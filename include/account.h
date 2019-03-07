@@ -1,6 +1,6 @@
 /*
 * Valentin Frydrychowski 
-* Derniere modification : 03/03/2019
+* Derniere modification : 07/03/2019
 */
 #define __ACCOUNT_H__
 
@@ -18,15 +18,15 @@ void add_list(List_account l, Account acc);      //add this account to the list
 void remoove_list(List_account l, Account acc);     //remoove this account to the list
 
 char *get_id(Account acc);
-char **get_owners(Account acc);
+char **get_owners(Account acc);     //return a table of strings
 char *get_type_account(Account acc);
 float get_balance(Account acc);
 char **get_history(Account acc, char date1, char date2); //get the history ofthe account between two dates
 
 void add_history(Account acc, char *operation);     //add an operation to the history
-char **set_owners(Account acc);
-char *set_ID(Account acc);
-char *set_type_account();
+void set_owners(Account acc, char **owners);
+void set_ID(Account acc, char ID);
+void set_type_account(char type);
 
 char withdraw(Account acc, float ammount);      //make a whithdraw in the account
 char deposit(Account acc, float ammount);       //make a deposit in the account
