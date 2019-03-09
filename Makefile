@@ -20,6 +20,8 @@ LOG = log/*
 all : 
 	mkdir -p bin
 	mkdir -p lib
+	mkdir -p data
+	mkdir -p data/account; mkdir -p data/user_account
 	$(MAKE) compile -s
 	
 compile :
@@ -31,6 +33,7 @@ run :
 	$(EXC)
 
 git :
+	chmod 755 *
 	$(READ) "Enter the message to set up the commit : " message; \
         $(GIT) $(ADD) && $(GIT) $(COMMIT) "$$message";
 		$(GIT) $(REBASE) && $(GIT) $(PUSH);

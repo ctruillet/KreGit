@@ -17,7 +17,7 @@ int passwordIsGood(char * password, User_account ua){
 char * encryptPassword(char * string){
     FILE *fp;
     char path[1035];
-    char password[64]; //for the encryp password
+    char password[32]; //for the encryp password
     char chaine[128] = "echo "; 
     char end_chaine[128] = " | openssl md5 | cut -d\" \" -f2"; 
     //Create the command
