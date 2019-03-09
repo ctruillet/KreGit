@@ -74,3 +74,16 @@ void add_Ulist(User_account uacc, Account acc){
     }
     add_list(uacc->list, Account acc);
 }b 
+
+//file management
+
+create_user_account(bool admin, char *name, char *firstname, char *pwd, List_account list){
+    char U_id=create_user_ID(name);
+    //creation and opening of json
+    FILE *json = fopen(U_id, w+);
+    //filing of json with the json structure
+    fprintf(json, "{\n\t\"user_account\": {\n\t\t\"ID\": \"%s\",\n\t\t\"admin\": \"%s\",\n\t\t\"firtname\": \"%s\",\n\t\t\"pwd\": \"%s\",\n\t\t\"List_account\": \"%s\"\n\t}\n}",U_id,admin,firstname,pwd,List_accountToString(list));
+    User_account uacc=malloc(sizeof(User_account));
+    charge_user_account(uacc, U_id);
+    return U_id;
+}

@@ -6,11 +6,10 @@
 
 typedef  struct user_account_s *User_account;
 
-User_account create_user_account(bool admin, char *name, char *firstname, char *pwd, list_account list);     //create the json, fill it and return it
+User_account create_user_account(bool admin, char *name, char *firstname, char *pwd, List_account list);     //create the json, fill it and return it
 char *create_user_ID(char *name);     //create ID whit name and time of creation
-void create_user_json(char *ID);      //create a .json with generic user structure
 void delete_user_account(Account uacc);
-void charge_user_account(Account uacc, char ID);
+void charge_user_account(Account uacc, char U_id);
 
 bool is_admin(User_account uacc);
 char *get_u_ID(User_account uacc);

@@ -16,6 +16,7 @@ void discharge_account(Account acc);        //save the .json and .csv, crypt it 
 
 void add_list(List_account l, Account acc);      //add this account to the list
 void remoove_list(List_account l, Account acc);     //remoove this account to the list
+char *List_accountToString();       //convert List_account format to String format
 
 char *get_id(Account acc);
 char **get_owners(Account acc);     //return a table of strings
