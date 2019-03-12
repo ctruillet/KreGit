@@ -17,7 +17,7 @@ int passwordIsGood(char * password, User_account ua){
 char * encryptPassword(char * string){
     FILE *fp;
     char path[1035];
-    char password[32]; //for the encryp password
+    char * password = NULL; //for the encryp password
     char chaine[128] = "echo "; 
     char end_chaine[128] = " | openssl md5 | cut -d\" \" -f2"; 
     //Create the command
@@ -29,8 +29,9 @@ char * encryptPassword(char * string){
     fgets(path, sizeof(path)-1, fp);
     pclose(fp);
     //To remove the caracter '\n'
+    password = (char *)malloc((strlen(path)*sizeof(char)));
     strncpy(password,path,strlen(path)-1);
 
     //OK IT'S FINISH !
-    return password;
+    return (password);
 }
