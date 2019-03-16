@@ -101,23 +101,56 @@ int Liste_accountSize(List_account l)
 
 char *List_accountToString(List_account l)
 {
-    List_account l2 = l;  //to avoid modification on the pointeur
+    List_account l2 = l; //to avoid modification on the pointeur
     int size = Liste_accountSize(l);
     int stringSize = (IDACCSIZE + 1) * size + 3;
     char str[stringSize];
     str[0] = '[';
-    for (int i = 1; i < stringSize-2; i = i + IDACCSIZE)  
+    for (int i = 1; i < stringSize - 2; i = i + IDACCSIZE)
     {
-        str[i] = ' ';       //insert a space between each accounts
+        str[i] = ' '; //insert a space between each accounts
         i++;
         for (int j = 0; j < IDACCSIZE; j++)
         {
-            str[i + j] = l2->current->ID[j];  // insert the ID account
+            str[i + j] = l2->current->ID[j]; // insert the ID account
         }
-        l2=l2->next;
+        l2 = l2->next;
     }
-    str[i+1]=' ';
-    str[i+2]=']';
+    str[i + 1] = ' ';
+    str[i + 2] = ']';
     return str;
-    
+}
+
+//file management
+
+void create_account_json(char *ID, char **owners, char *type_account)
+{
+    char fileName[2 * IDACCSIZE + 19]; 
+    char path[] = "data/account/.json"; 
+    for (int i = 0; i < 13; i++)
+        if (i < 13)
+        {
+            fileName[i] = path[i];
+        }
+        else if (i<13+IDACCSIZE)
+        {
+            fileName[i]= ID[i-13];
+        }
+        else if (i==13+IDACCSIZE)
+        {
+            fileName[i]='/'
+        }
+        else if (i<13+2*IDACCSIZE)
+        {
+            fileName[i]=ID[i-(14+IDACCSIZE)]
+        }
+        else
+        {
+            fileName[i]=path[i-(2*IDACCSIZE+1)]
+        }
+        
+        FILE *json = fopen(filename, "w+");
+        fprintf("{\n\t\"account\": {\n\t\t\"ID\": \"%s\",\n\t\t\"owners\": \"%s;%s\",\n\t\t\"type_account\": \"%s\"\n\t}\n}",ID,owners[0],owners[1],type_account);
+        fclose(json);
+    }
 }

@@ -83,8 +83,27 @@ void add_Ulist(User_account uacc, Account acc)
 User_account create_user_account(bool admin, char *name, char *firstname, char *pwd, List_account list)
 {
     char *U_id = create_user_ID(name);
+    char *fileName[UIDSIZE + 23];
+    char *path="data/user_account/.json"
+    for(int i = 0; i < UIDSIZE + 23; i++)
+    {
+        if (i<18)
+        {
+            fileName[i]=path[i];
+        }
+        else if (i<18+UIDSIZE)
+        {
+            filename[i]=U_id[i-18];
+        }
+        else
+        {
+            fileName[i]=path[i-UIDSIZE];
+        }
+        
+    }
+    
     //creation and opening of json
-    FILE *json = fopen(U_id, "w+");
+    FILE *json = fopen(filename, "w+");
     //filing of json with the json structure
     fprintf(json, "{\n\t\"user_account\": {\n\t\t\"ID\": \"%s\",\n\t\t\"admin\": \"%s\",\n\t\t\"firstname\": \"%s\",\n\t\t\"name\": \"%s\",\n\t\t\"pwd\": \"%s\",\n\t\t\"List_account\": \"%s\"\n\t}\n}", U_id, admin, firstname, name, pwd, List_accountToString(list));
     fclose(json);
