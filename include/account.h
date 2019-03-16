@@ -6,6 +6,7 @@
 #ifndef __USER_ACCOUNT_H__
     #include "user_account.h"
 #endif
+#define IDACCSIZE 16 //size in char of an id account
 
 typedef struct account_s *Account;
 typedef struct list_account_s *List_account;
@@ -19,7 +20,8 @@ void discharge_account(Account acc);        //save the .json and .csv, crypt it 
 
 void add_list(List_account l, Account acc);      //add this account to the list
 void remoove_list(List_account l, Account acc);     //remoove this account to the list
-char *List_accountToString();       //convert List_account format to String format
+int Liste_accountSize(List_account l);      //return the size of a list of accounts
+char *List_accountToString(List_account l);       //convert List_account format to String format
 
 char *get_id(Account acc);
 char **get_owners(Account acc);     //return a table of strings
