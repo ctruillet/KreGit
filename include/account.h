@@ -3,6 +3,9 @@
 * Derniere modification : 07/03/2019
 */
 #define __ACCOUNT_H__
+#ifndef __USER_ACCOUNT_H__
+    #include "user_account.h"
+#endif
 
 typedef struct account_s *Account;
 typedef struct list_account_s *List_account;
@@ -25,9 +28,9 @@ float get_balance(Account acc);
 char **get_history(Account acc, char date1, char date2); //get the history ofthe account between two dates
 
 void add_history(Account acc, char *operation);     //add an operation to the history
-void set_owners(Account acc, char **owners);
-void set_ID(Account acc, char ID);
-void set_type_account(Account acc, char type);
+void set_owners(Account acc, char **own);
+void set_ID(Account acc, char *ID);
+void set_type_account(Account acc, char *type);
 
 char withdraw(Account acc, float ammount);      //make a whithdraw in the account
 char deposit(Account acc, float ammount);       //make a deposit in the account
