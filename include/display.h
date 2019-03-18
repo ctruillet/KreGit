@@ -24,8 +24,17 @@ int connect(User_account ua);
 //Deconnect
 void deconnect();
 
-//Nav_bar
-void nav(User_account ua);
+//Create a new account
+void newAccount_form();
+
+//Create a new user
+void newUser_form();
+
+//Nav_bar - Display all accounts of user with theirs types
+int nav(User_account ua);
+
+//Display Account
+void displayAccount(Account a);
 
 //Error
 void error();
