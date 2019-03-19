@@ -4,7 +4,7 @@
 
 /*
 * Clement Truillet 
-* Derniere modification : 24/02/2019
+* Derniere modification : 19/03/2019
 */
 
 //Display title
@@ -24,11 +24,18 @@ void title(){
 
 //Say Goodbye
 void end(){
-    printf("\nGoodbye!\n");
+    printf("\n");
+    printf("  ____                 _ ____               _ \n");
+    printf(" / ___| ___   ___   __| | __ ) _   _  ___  | |\n");
+    printf("| |  _ / _ \\ / _ \\ / _` |  _ \\| | | |/ _ \\ | |\n");
+    printf("| |_| | (_) | (_) | (_| | |_) | |_| |  __/ |_|\n");
+    printf(" \\____|\\___/ \\___/ \\__,_|____/ \\__, |\\___| (_)\n");
+    printf("                               |___/          \n");
+    printf("\n");
 }
 
 //Connect
-int connect(user_account ua){
+int connect(User_account ua){
     /*Demande user_name
     *   Charger la structure
     * Demande pwd
@@ -36,6 +43,47 @@ int connect(user_account ua){
     *   passwordIsGood()
     */
     return 0;
+}
+
+//Deconnect
+void deconnect(){
+
+}
+
+//Create a new account
+void newAccount_form(){
+    /*
+    * Demande Type de Compte (Livret A, PEL, compte joint, ...)
+    * Demande confirmtation par mot de passe
+    * 
+    */
+}
+
+//Create a new user
+void newUser_form(){
+    /*
+    * Demande Nom/Prenom
+    * Demande Password
+    * Demande confirmation Password
+    */
+}
+
+//Nav_bar - Display all accounts of user with theirs types
+int nav(User_account ua){
+    /*
+    * Affichage des comptes avec leurs types + Solde
+    * Bouton "Nouvelle Opération" 
+    */
+    return 0;
+}
+
+//Display Account
+void displayAccount(Account a){
+    /*
+    * Demande date à partir de laquelle afficher le compte
+    * Affichage
+    */
+
 }
 
 //Display an error
