@@ -25,10 +25,10 @@ int connect(User_account ua);
 void deconnect();
 
 //Create a new account
-void newAccount_form();
+User_account newAccount_form();
 
 //Create a new user
-void newUser_form();
+void newUser_form(User_account ua);
 
 //Nav_bar - Display all accounts of user with theirs types
 int nav(User_account ua);
@@ -38,3 +38,6 @@ void displayAccount(Account a);
 
 //Error
 void error();
+
+//Generate a random quote of Percaval (or Karadoc)
+void kaamelott();

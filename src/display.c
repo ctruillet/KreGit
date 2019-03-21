@@ -2,9 +2,14 @@
 #include <stdlib.h>
 #include "../include/user_account.h"
 
+#ifndef CLEAR_STDIN
+    #define CLEAR_STDIN { int c; while((c = getchar()) != '\n' && c != EOF); }
+#endif
+
+
 /*
 * Clement Truillet 
-* Derniere modification : 19/03/2019
+* Derniere modification : 21/03/2019
 */
 
 //Display title
@@ -51,7 +56,7 @@ void deconnect(){
 }
 
 //Create a new account
-void newAccount_form(){
+void newAccount_form(User_account ua){
     /*
     * Demande Type de Compte (Livret A, PEL, compte joint, ...)
     * Demande confirmtation par mot de passe
@@ -60,7 +65,7 @@ void newAccount_form(){
 }
 
 //Create a new user
-void newUser_form(){
+User_account newUser_form(){
     /*
     * Demande Nom/Prenom
     * Demande Password
@@ -91,4 +96,9 @@ void error(){
     /*Affiche une erreur
     * ? Incremente le compteur d'erreur -> bloquer l'accès au compte
     */
+}
+
+//Generate a random quote of Percaval (or Karadoc)
+void kaamelott(){
+    system("cat data/quotes.txt | head -n `expr $[($RANDOM % (11)) +2] \* 2` | tail -n 2");
 }

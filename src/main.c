@@ -12,12 +12,15 @@
 //FSM
 enum{
     TITLE,              //0 - Welcome
-    ADMIN_ACCOUNT,      //1 - ADMIN - Show, create, edit and remove accounts
-    ADMIN_CUSTOMER,     //2 - ADMIN - Add, edit and show customers
-    ADMIN,              //3 - ADMIN - Change password
-    CUSTOMER_ACCOUNT,   //4 - CUSTOMER - Consult account
-    CUSTOMER,           //5 - CUSTOMER - Change password or add/remove account
-    END                 //6 - Goodbye !
+    CONNECT,            //1 - Connect Page
+    ADMIN_ACCOUNT,      //2 - ADMIN - Show, create, edit and remove accounts
+    ADMIN_CUSTOMER,     //3 - ADMIN - Add, edit and show customers
+    ADMIN,              //4 - ADMIN - Change password
+    CUSTOMER_NAV,       //5 - CUSTOMER - Display accounts (and theirs types) + link toward CUSTOMER_SETTING
+    CUSTOMER_ACCOUNT,   //6 - CUSTOMER - Consult account
+    CUSTOMER_SETTING,   //7 - CUSTOMER - Change password or add/remove account
+    END,                //8 - Goodbye !
+    KAAMELOT = 42       //9 - Kaamelot
 }FSM;
 
 /*
@@ -35,7 +38,7 @@ int main(int argc, char *argv[]){
 
 
     //Execution
-    while(FSM != 6){
+    while(FSM != 8){
         scanf("%d",&FSM);
         CLEAR_STDIN                                 //Clear buffer
         switch (FSM){
@@ -43,32 +46,37 @@ int main(int argc, char *argv[]){
                 w_log(LOG,"Welcome page - FSM = 0");
                 title();
                 break;
-
-            case ADMIN_ACCOUNT:                     //1 - ADMIN - Show, create, edit and remove accounts
-                w_log(LOG,"ADMIN - FSM = 1");
+            case CONNECT:
+                w_log(LOG,"Connect Page - FSM = 1");//1 - Connect
                 break;
-
-            case ADMIN_CUSTOMER:                    //2 - ADMIN - Add, edit and show customers
+            case ADMIN_ACCOUNT:                     //2 - ADMIN - Show, create, edit and remove accounts
                 w_log(LOG,"ADMIN - FSM = 2");
                 break;
-
-            case ADMIN:                             //3 - ADMIN - Change password
+            case ADMIN_CUSTOMER:                    //3 - ADMIN - Add, edit and show customers
                 w_log(LOG,"ADMIN - FSM = 3");
                 break;
-
-            case CUSTOMER_ACCOUNT:                  //4 - CUSTOMER - Consult account
-                w_log(LOG,"CUSTOMER - FSM = 4");
+            case ADMIN:                             //4 - ADMIN - Change password
+                w_log(LOG,"ADMIN - FSM = 4");
+                break;
+            case CUSTOMER_NAV:
+                w_log(LOG,"CUSTOMER - FSM = 5");    //5 - CUSTOMER - Navigation bar
+                break;
+            case CUSTOMER_ACCOUNT:                  //6 - CUSTOMER - Consult account
+                w_log(LOG,"CUSTOMER - FSM = 6");
                 break;
 
-            case CUSTOMER:                          //5 - CUSTOMER - Change password or add/remove account
-                w_log(LOG,"CUSTOMER - FSM = 5");
+            case CUSTOMER_SETTING:                  //7 - CUSTOMER - Change password or add/remove account
+                w_log(LOG,"CUSTOMER - FSM = 7");
                 break;
         
-            case END:                               //6 - Goodbye !
-                w_log(LOG,"This is the end - FSM = 6");
+            case END:                               //8 - Goodbye !
+                w_log(LOG,"This is the end - FSM = 8");
                 end();
                 break;
-                    
+            case KAAMELOT:
+                w_log(LOG,"Ouais, c'est pas faux");
+                kaamelot();
+                break;  
             default:
                 break;
         }
