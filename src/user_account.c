@@ -1,13 +1,18 @@
 /*
 * Valentin Frydrychowski 
-* Derniere modification : 03/03/2019
+* Derniere modification : 22/03/2019
 */
+
+//finir chargement list account
 #include <time.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
 #include "../include/user_account.h"
 #include "../include/account.h"
+#define UIDSIZE 16   //size in char of an user_account id
+#define NAMESIZE 32
+#define FNAMESIZE 32
 
 //structure from a user account
 typedef struct user_account_s
@@ -83,8 +88,8 @@ void add_Ulist(User_account uacc, Account acc)
 User_account create_user_account(bool admin, char *name, char *firstname, char *pwd, List_account list)
 {
     char *U_id = create_user_ID(name);
-    char *fileName[UIDSIZE + 23];
-    char *path="data/user_account/.json"
+    char fileName[UIDSIZE + 23];
+    char *path="data/user_account/.json";
     for(int i = 0; i < UIDSIZE + 23; i++)
     {
         if (i<18)
@@ -105,9 +110,54 @@ User_account create_user_account(bool admin, char *name, char *firstname, char *
     //creation and opening of json
     FILE *json = fopen(filename, "w+");
     //filing of json with the json structure
-    fprintf(json, "{\n\t\"user_account\": {\n\t\t\"ID\": \"%s\",\n\t\t\"admin\": \"%s\",\n\t\t\"firstname\": \"%s\",\n\t\t\"name\": \"%s\",\n\t\t\"pwd\": \"%s\",\n\t\t\"List_account\": \"%s\"\n\t}\n}", U_id, admin, firstname, name, pwd, List_accountToString(list));
-    fclose(json);
+    if (json!=NULL){
+        fprintf(json, "{\n\t\"user_account\": {\n\t\t\"ID\": \"%s\",\n\t\t\"admin\": \"%s\",\n\t\t\"firstname\": \"%s\",\n\t\t\"name\": \"%s\",\n\t\t\"pwd\": \"%s\",\n\t\t\"List_account\": \"%s\"\n\t}\n}", U_id, admin, firstname, name, pwd, List_accountToString(list));
+        fclose(json);
+    }
     User_account uacc = NULL;
     charge_user_account(uacc, U_id);
     return uacc;
+}
+
+//charge the infos of the json into the user_account struct
+void charge_user_account(User_account uacc, char *U_id){
+
+    //size attribution for the struct
+    uacc = malloc(sizeof(bool)+(NAMESIZE+UIDSIZE+FNAMESIZE)*sizeof(char)+size(List_account));
+    
+    char fileName[UIDSIZE + 23];         
+    char *path="data/user_account/.json";
+    for(int i = 0; i < UIDSIZE + 23; i++)
+    {
+        if (i<18)
+        {
+            fileName[i]=path[i];
+        }
+        else if (i<18+UIDSIZE)
+        {
+            filename[i]=U_id[i-18];
+        }
+        else
+        {
+            fileName[i]=path[i-UIDSIZE];
+        }
+    }
+
+    char*list;
+    FILE *json = fopen(filename, "r");
+    if (json!=NULL){
+        fscanf(json, "{\n\t\"user_account\": {\n\t\t\"ID\": \"%s\",\n\t\t\"admin\": \"%s\",\n\t\t\"firstname\": \"%s\",\n\t\t\"name\": \"%s\",\n\t\t\"pwd\": \"%s\",\n\t\t\"List_account\": \"[ %s]\"\n\t}\n}", uacc->u_ID, uacc->admin, uacc->firstname, uacc->name, uacc->pwd, list);
+        fclose(json);
+        uacc->list=Null
+    }
+    //else assert
+    int strSize = 0;
+    while(list[strSize]!='\0'){
+        strSize++;
+    }
+    for(int i = 0; (strSize-1)/i>=1; i++)
+    {
+        /* code */
+    }
+    
 }

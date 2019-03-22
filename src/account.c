@@ -1,12 +1,14 @@
 
 /*
 * Valentin Frydrychowski 
-* Derniere modification : 03/03/2019
+* Derniere modification : 22/03/2019
 */
-
+//mauvaise utilisation liste chainée
 #include <stdio.h>
 #include <stdlib.h>
 #include "../include/account.h"
+#define IDACCSIZE 16 //size in char of an account id
+
 
 //structure of account
 typedef struct account_s
@@ -41,7 +43,7 @@ char *get_type_account(Account acc)
     return acc->type_account;
 }
 
-float get_balance(Account acc)
+/*float get_balance(Account acc)
 {
     //TODO
 }
@@ -57,7 +59,7 @@ char **get_history(Account acc, char date1, char date2)
 void add_history(Account acc, char *operation)
 {
     //TODO
-}
+}*/
 
 void set_owners(Account acc, char **own)
 {
@@ -77,11 +79,12 @@ void set_type_account(Account acc, char *type)
 
 void add_list(List_account l, Account acc)
 {
+    List_account l2=malloc(sizeof(account)+sizeof(List_account));
+    l2=l;
     while (l != NULL)
     {
-        l = l->next;
+        l2 = l2->next;
     }
-    List_account l2;
     l2->current = acc;
     l2->next = NULL;
     l = l2;
@@ -128,6 +131,7 @@ void create_account_json(char *ID, char **owners, char *type_account)
     char fileName[2 * IDACCSIZE + 19]; 
     char path[] = "data/account/.json"; 
     for (int i = 0; i < 13; i++)
+    {
         if (i < 13)
         {
             fileName[i] = path[i];
@@ -138,19 +142,22 @@ void create_account_json(char *ID, char **owners, char *type_account)
         }
         else if (i==13+IDACCSIZE)
         {
-            fileName[i]='/'
+            fileName[i]='/';
         }
         else if (i<13+2*IDACCSIZE)
         {
-            fileName[i]=ID[i-(14+IDACCSIZE)]
+            fileName[i]=ID[i-(14+IDACCSIZE)];
         }
         else
         {
-            fileName[i]=path[i-(2*IDACCSIZE+1)]
+            fileName[i]=path[i-(2*IDACCSIZE+1)];
         }
-        
-        FILE *json = fopen(filename, "w+");
+    }
+
+    FILE *json = fopen(filename, "w+");
+    if (json!=NULL){
         fprintf("{\n\t\"account\": {\n\t\t\"ID\": \"%s\",\n\t\t\"owners\": \"%s;%s\",\n\t\t\"type_account\": \"%s\"\n\t}\n}",ID,owners[0],owners[1],type_account);
         fclose(json);
     }
+    
 }

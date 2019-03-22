@@ -7,7 +7,7 @@
 #define __USER_ACCOUNT_H__
 
 #include "account.h"
-#define UIDSIZE 16   //size in char of an user_account id
+
 
 
 typedef  struct user_account_s *User_account;
@@ -16,6 +16,7 @@ User_account create_user_account(bool admin, char *name, char *firstname, char *
 char *create_user_ID(char *name);         //create ID whit name and time of creation
 void delete_user_account(User_account uacc);
 void charge_user_account(User_account uacc, char *U_id);
+void discharge_user_account(User_account uacc);
 
 bool is_admin(User_account uacc);
 char *get_u_ID(User_account uacc);

@@ -6,7 +6,6 @@
 #ifndef __USER_ACCOUNT_H__
     #include "user_account.h"
 #endif
-#define IDACCSIZE 16 //size in char of an account id
 
 typedef struct account_s *Account;
 typedef struct list_account_s *List_account;
