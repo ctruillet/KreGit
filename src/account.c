@@ -3,11 +3,11 @@
 * Valentin Frydrychowski 
 * Derniere modification : 22/03/2019
 */
-//mauvaise utilisation liste chainée
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "../include/account.h"
-#define IDACCSIZE 16 //size in char of an account id
+
 
 
 //structure of account
@@ -87,7 +87,6 @@ void add_list(List_account l, Account acc)
     }
     l2->current = acc;
     l2->next = NULL;
-    l = l2;
 }
 
 int Liste_accountSize(List_account l)
@@ -119,8 +118,8 @@ char *List_accountToString(List_account l)
         }
         l2 = l2->next;
     }
-    str[i + 1] = ' ';
-    str[i + 2] = ']';
+    str[stringSize - 2] = ' ';
+    str[stringSize - 1] = ']';
     return str;
 }
 
@@ -154,9 +153,9 @@ void create_account_json(char *ID, char **owners, char *type_account)
         }
     }
 
-    FILE *json = fopen(filename, "w+");
+    FILE *json = fopen(fileName, "w+");
     if (json!=NULL){
-        fprintf("{\n\t\"account\": {\n\t\t\"ID\": \"%s\",\n\t\t\"owners\": \"%s;%s\",\n\t\t\"type_account\": \"%s\"\n\t}\n}",ID,owners[0],owners[1],type_account);
+        fprintf(json,"{\n\t\"account\": {\n\t\t\"ID\": \"%s\",\n\t\t\"owners\": \"%s;%s\",\n\t\t\"type_account\": \"%s\"\n\t}\n}",ID,owners[0],owners[1],type_account);
         fclose(json);
     }
     
