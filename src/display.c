@@ -40,7 +40,7 @@ void end(){
 }
 
 //Connect
-int connect(User_account ua){
+int connect(User_account ua, int * isConnect){
     /*Demande user_name
     *   Charger la structure
     * Demande pwd
@@ -51,7 +51,7 @@ int connect(User_account ua){
 }
 
 //Deconnect
-void deconnect(){
+void deconnect(int * isConnect){
 
 }
 
