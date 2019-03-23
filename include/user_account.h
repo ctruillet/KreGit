@@ -7,7 +7,7 @@
 #define __USER_ACCOUNT_H__
 
 #include "account.h"
-
+#define UIDSIZE 16 //size in char of an user_account id
 
 
 typedef  struct user_account_s *User_account;

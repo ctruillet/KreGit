@@ -16,7 +16,7 @@ typedef struct account_s
     char *ID;           //Identification
     char *owners[2];    //owners list of account
     char *type_account; //type of account
-    char *history;      //history of the account
+    //char *history;      //history of the account
 
 } account;
 
@@ -125,11 +125,45 @@ char *List_accountToString(List_account l)
 
 //file management
 
+void create_account_csv(char *ID){
+    char fileName[2 * IDACCSIZE + 18]; 
+    char path[] = "data/account/.csv"; 
+    for (int i = 0; i < 2 * IDACCSIZE + 19; i++)
+    {
+        if (i < 13)
+        {
+            fileName[i] = path[i];
+        }
+        else if (i<13+IDACCSIZE)
+        {
+            fileName[i]= ID[i-13];
+        }
+        else if (i==13+IDACCSIZE)
+        {
+            fileName[i]='/';
+        }
+        else if (i<14+2*IDACCSIZE)
+        {
+            fileName[i]=ID[i-(14+IDACCSIZE)];
+        }
+        else
+        {
+            fileName[i]=path[i-(2*IDACCSIZE+1)];
+        }
+    }
+
+    FILE *csv = fopen(fileName, "r");
+    if (csv!=NULL){
+        fprintf(csv,"date;operation;balance;comments");
+        fclose(csv);
+    }
+}
+
 void create_account_json(char *ID, char **owners, char *type_account)
 {
-    char fileName[2 * IDACCSIZE + 19]; 
+    char fileName[2 * IDACCSIZE + 20]; 
     char path[] = "data/account/.json"; 
-    for (int i = 0; i < 13; i++)
+    for (int i = 0; i < 2 * IDACCSIZE + 20; i++)
     {
         if (i < 13)
         {

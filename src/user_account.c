@@ -10,7 +10,7 @@
 #include <stdbool.h>
 #include "../include/user_account.h"
 #include "../include/account.h"
-#define UIDSIZE 16 //size in char of an user_account id
+
 #define NAMESIZE 32
 #define FNAMESIZE 32
 
