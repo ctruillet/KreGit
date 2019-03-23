@@ -40,7 +40,7 @@ void end(){
 }
 
 //Connect
-int connect(User_account ua){
+int connect(User_account ua, int * isConnect){
     /*Demande user_name
     *   Charger la structure
     * Demande pwd
@@ -51,7 +51,7 @@ int connect(User_account ua){
 }
 
 //Deconnect
-void deconnect(){
+void deconnect(int * isConnect){
 
 }
 
@@ -100,5 +100,5 @@ void error(){
 
 //Generate a random quote of Percaval (or Karadoc)
 void kaamelott(){
-    system("cat data/quotes.txt | head -n `expr $[($RANDOM % (11)) +2] \* 2` | tail -n 2");
+    system("cat data/quotes.txt | head -n `expr $[($RANDOM % (15)) +2] \* 2` | tail -n 2");
 }

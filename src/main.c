@@ -75,7 +75,7 @@ int main(int argc, char *argv[]){
                 break;
             case KAAMELOT:
                 w_log(LOG,"Ouais, c'est pas faux");
-                kaamelot();
+                kaamelott();
                 break;  
             default:
                 break;

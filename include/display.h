@@ -19,10 +19,10 @@ void title();
 void end();
 
 //Connect
-int connect(User_account ua);
+int connect(User_account ua, int * isConnect);
 
 //Deconnect
-void deconnect();
+void deconnect(int * isConnect);
 
 //Create a new account
 User_account newAccount_form();
