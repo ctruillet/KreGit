@@ -52,7 +52,7 @@ int connect(User_account ua, int * isConnect){
 
 //Deconnect
 void deconnect(int * isConnect){
-
+    *isConnect = 0;
 }
 
 //Create a new account
@@ -93,9 +93,10 @@ void displayAccount(Account a){
 
 //Display an error
 void error(){
-    /*Affiche une erreur
-    * ? Incremente le compteur d'erreur -> bloquer l'accès au compte
-    */
+    printf("ERREUR 410\n
+    \n
+    Nos serveurs DNS stockés sur la Lune ne sont actuellement pas en phase avec nos 15 satelites ultraperformants.\n
+    Nos équipes entrainées par deep-IP-learning sont en train de resoudre ce probleme.n");
 }
 
 //Generate a random quote of Percaval (or Karadoc)
