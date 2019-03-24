@@ -5,12 +5,12 @@
 
 /*
 * Clement Truillet 
-* Derniere modification : 28/02/2019
+* Derniere modification : 24/03/2019
 */
 
 //Check if the password is good
 int passwordIsGood(char * password, User_account ua){
-    return (strcmp(password,get_pwd(ua))==0 ? 1 : 0);
+    return (strcmp(encryptPassword(password),get_pwd(ua))==0 ? 1 : 0);
 }
 
 //Encrypt password
@@ -34,4 +34,23 @@ char * encryptPassword(char * string){
 
     //OK IT'S FINISH !
     return (password);
+}
+
+
+int main(int argc, char *argv[]){
+
+    printf("Avant pwd : -admin-\n");
+    printf("Après pwd : -%s-\n",encryptPassword("admin"));
+
+    printf("\nAvant pwd : -admin123-\n");
+    printf("Après pwd : -%s-\n",encryptPassword("admin123"));
+
+    printf("\nAvant pwd : -abc-\n");
+    printf("Après pwd : -%s-\n",encryptPassword("abc"));
+
+    printf("\nAvant pwd : -a-\n");
+    printf("Après pwd : -%s-\n",encryptPassword("a"));
+
+    printf("\nAvant pwd : -azerty-\n");
+    printf("Après pwd : -%s-\n",encryptPassword("azerty"));
 }

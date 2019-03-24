@@ -20,16 +20,17 @@ enum{
     CUSTOMER_ACCOUNT,   //6 - CUSTOMER - Consult account
     CUSTOMER_SETTING,   //7 - CUSTOMER - Change password or add/remove account
     END,                //8 - Goodbye !
-    KAAMELOT = 42       //9 - Kaamelot
+    KAAMELOT = 42       //42 - Kaamelot
 }FSM;
 
 /*
 * Clement Truillet 
-* Derniere modification : 28/02/2019
+* Derniere modification : 24/03/2019
 */
 
 int main(int argc, char *argv[]){
     //Init
+    srand(time(NULL));
     char LOG[128]; 
     crea_log(LOG);
     int FSM = 0;
@@ -78,6 +79,7 @@ int main(int argc, char *argv[]){
                 kaamelott();
                 break;  
             default:
+                error();
                 break;
         }
     }

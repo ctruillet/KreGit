@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <time.h>
 #include "../include/user_account.h"
 
 #ifndef CLEAR_STDIN
@@ -9,7 +11,7 @@
 
 /*
 * Clement Truillet 
-* Derniere modification : 21/03/2019
+* Derniere modification : 24/03/2019
 */
 
 //Display title
@@ -93,13 +95,24 @@ void displayAccount(Account a){
 
 //Display an error
 void error(){
-    printf("ERREUR 410\n
-    \n
-    Nos serveurs DNS stockés sur la Lune ne sont actuellement pas en phase avec nos 15 satelites ultraperformants.\n
-    Nos équipes entrainées par deep-IP-learning sont en train de resoudre ce probleme.n");
+    printf("ERREUR 410\n\n");
+    printf("Nos serveurs DNS stockés sur la Lune ne sont actuellement pas en phase avec nos 15 satelites ultraperformants.\n");
+    printf("Nos équipes entrainées par deep-IP-learning sont en train de resoudre ce probleme.n");
 }
 
 //Generate a random quote of Percaval (or Karadoc)
 void kaamelott(){
-    system("cat data/quotes.txt | head -n `expr $[($RANDOM % (15)) +2] \* 2` | tail -n 2");
+    char command[64]="cat ../data/quotes.txt | head -n ";
+    int n = (((rand() % 15) +2 ) * 2);
+    char n_s[12];
+    sprintf(n_s,"%d",n);
+    strcat(command,n_s);
+    strcat(command," | tail -n 2");
+    system(command);
 }
+
+/*
+int main(int argc, char *argv[]){
+    srand(time(NULL));
+    kaamelott();
+}*/
