@@ -3,7 +3,7 @@
 * Valentin Frydrychowski 
 * Derniere modification : 22/03/2019
 */
-
+#include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include "../include/account.h"
@@ -13,7 +13,7 @@
 //structure of account
 typedef struct account_s
 {
-    char *ID;           //Identification
+    char ID[IDACCSIZE];           //Identification
     char *owners[2];    //owners list of account
     char *type_account; //type of account
     //char *history;      //history of the account
@@ -193,4 +193,19 @@ void create_account_json(char *ID, char **owners, char *type_account)
         fclose(json);
     }
     
+}
+
+Account create_account(char **owners, char *type_account){
+    
+    Account acc = NULL;
+    char *ID = create_account_ID();
+    char*path[12+IDACCSIZE]= "data/account";
+    strcat(path, ID);
+    char*commande[18+IDACCSIZE] ="mkdir ";
+    strcat(commande, path);
+    system(commande);
+    create_account_csv(ID);
+    create_account_json(ID, owners, type_account);
+    charge_account(acc, ID);
+    return acc;
 }
