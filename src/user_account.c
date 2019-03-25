@@ -111,7 +111,7 @@ User_account create_user_account(bool admin, char *name, char *firstname, char *
     //filing of json with the json structure
     if (json != NULL)
     {
-        fprintf(json, "{\n\t\"user_account\": {\n\t\t\"ID\": \"%s\",\n\t\t\"admin\": \"%s\",\n\t\t\"firstname\": \"%s\",\n\t\t\"name\": \"%s\",\n\t\t\"pwd\": \"%s\",\n\t\t\"List_account\": \"%s\"\n\t}\n}", U_id, admin, firstname, name, pwd, List_accountToString(list));
+        fprintf(json, "{\n\t\"user_account\": {\n\t\t\"ID\": \"%s\",\n\t\t\"admin\": \"%d\",\n\t\t\"firstname\": \"%s\",\n\t\t\"name\": \"%s\",\n\t\t\"pwd\": \"%s\",\n\t\t\"List_account\": \"%s\"\n\t}\n}", U_id, admin, firstname, name, pwd, List_accountToString(list));
         fclose(json);
     }
     User_account uacc = NULL;
@@ -149,7 +149,7 @@ void charge_user_account(User_account uacc, char *U_id)
     FILE *json = fopen(fileName, "r");
     if (json != NULL)
     {
-        fscanf(json, "{\n\t\"user_account\": {\n\t\t\"ID\": \"%s\",\n\t\t\"admin\": \"%s\",\n\t\t\"firstname\": \"%s\",\n\t\t\"name\": \"%s\",\n\t\t\"pwd\": \"%s\",\n\t\t\"List_account\": \"[ %s]\"\n\t}\n}", uacc->u_ID, uacc->admin, uacc->firstname, uacc->name, uacc->pwd, list);
+        fscanf(json, "{\n\t\"user_account\": {\n\t\t\"ID\": \"%s\",\n\t\t\"admin\": \"%d\",\n\t\t\"firstname\": \"%s\",\n\t\t\"name\": \"%s\",\n\t\t\"pwd\": \"%s\",\n\t\t\"List_account\": \"[ %s]\"\n\t}\n}", uacc->u_ID, &(uacc->admin), uacc->firstname, uacc->name, uacc->pwd, list);
         fclose(json);
         uacc->list = NULL;
     }

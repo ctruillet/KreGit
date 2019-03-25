@@ -8,14 +8,12 @@
 #include <stdlib.h>
 #include "../include/account.h"
 
-
-
 //structure of account
 typedef struct account_s
 {
-    char ID[IDACCSIZE];           //Identification
-    char *owners[2];    //owners list of account
-    char *type_account; //type of account
+    char *ID;      //Identification
+    char **owners; //owners list of account
+    char *type_account;      //type of account
     //char *history;      //history of the account
 
 } account;
@@ -79,8 +77,8 @@ void set_type_account(Account acc, char *type)
 
 void add_list(List_account l, Account acc)
 {
-    List_account l2=malloc(sizeof(account)+sizeof(List_account));
-    l2=l;
+    List_account l2 = malloc(sizeof(account) + sizeof(List_account));
+    l2 = l;
     while (l != NULL)
     {
         l2 = l2->next;
@@ -125,83 +123,101 @@ char *List_accountToString(List_account l)
 
 //file management
 
-void create_account_csv(char *ID){
-    char fileName[2 * IDACCSIZE + 18]; 
-    char path[] = "data/account/.csv"; 
+char *create_account_ID()
+{
+    return ("temp123456789aze");
+}
+
+void charge_account(Account acc, char ID[IDACCSIZE])
+{
+    set_ID(acc, ID);
+    char *tab[2];
+    tab[0] = "owners1";
+    tab[1] = "owners2";
+    set_owners(acc, tab);
+    set_type_account(acc, "bidon");
+}
+
+void create_account_csv(char *ID)
+{
+    char fileName[2 * IDACCSIZE + 18];
+    char path[] = "data/account/.csv";
     for (int i = 0; i < 2 * IDACCSIZE + 19; i++)
     {
         if (i < 13)
         {
             fileName[i] = path[i];
         }
-        else if (i<13+IDACCSIZE)
+        else if (i < 13 + IDACCSIZE)
         {
-            fileName[i]= ID[i-13];
+            fileName[i] = ID[i - 13];
         }
-        else if (i==13+IDACCSIZE)
+        else if (i == 13 + IDACCSIZE)
         {
-            fileName[i]='/';
+            fileName[i] = '/';
         }
-        else if (i<14+2*IDACCSIZE)
+        else if (i < 14 + 2 * IDACCSIZE)
         {
-            fileName[i]=ID[i-(14+IDACCSIZE)];
+            fileName[i] = ID[i - (14 + IDACCSIZE)];
         }
         else
         {
-            fileName[i]=path[i-(2*IDACCSIZE+1)];
+            fileName[i] = path[i - (2 * IDACCSIZE + 1)];
         }
     }
 
     FILE *csv = fopen(fileName, "r");
-    if (csv!=NULL){
-        fprintf(csv,"date;operation;balance;comments");
+    if (csv != NULL)
+    {
+        fprintf(csv, "date;operation;balance;comments");
         fclose(csv);
     }
 }
 
 void create_account_json(char *ID, char **owners, char *type_account)
 {
-    char fileName[2 * IDACCSIZE + 20]; 
-    char path[] = "data/account/.json"; 
+    char fileName[2 * IDACCSIZE + 20];
+    char path[] = "data/account/.json";
     for (int i = 0; i < 2 * IDACCSIZE + 20; i++)
     {
         if (i < 13)
         {
             fileName[i] = path[i];
         }
-        else if (i<13+IDACCSIZE)
+        else if (i < 13 + IDACCSIZE)
         {
-            fileName[i]= ID[i-13];
+            fileName[i] = ID[i - 13];
         }
-        else if (i==13+IDACCSIZE)
+        else if (i == 13 + IDACCSIZE)
         {
-            fileName[i]='/';
+            fileName[i] = '/';
         }
-        else if (i<13+2*IDACCSIZE)
+        else if (i < 13 + 2 * IDACCSIZE)
         {
-            fileName[i]=ID[i-(14+IDACCSIZE)];
+            fileName[i] = ID[i - (14 + IDACCSIZE)];
         }
         else
         {
-            fileName[i]=path[i-(2*IDACCSIZE+1)];
+            fileName[i] = path[i - (2 * IDACCSIZE + 1)];
         }
     }
 
     FILE *json = fopen(fileName, "w+");
-    if (json!=NULL){
-        fprintf(json,"{\n\t\"account\": {\n\t\t\"ID\": \"%s\",\n\t\t\"owners\": \"%s;%s\",\n\t\t\"type_account\": \"%s\"\n\t}\n}",ID,owners[0],owners[1],type_account);
+    if (json != NULL)
+    {
+        fprintf(json, "{\n\t\"account\": {\n\t\t\"ID\": \"%s\",\n\t\t\"owners\": \"%s;%s\",\n\t\t\"type_account\": \"%s\"\n\t}\n}", ID, owners[0], owners[1], type_account);
         fclose(json);
     }
-    
 }
 
-Account create_account(char **owners, char *type_account){
-    
+Account create_account(char **owners, char *type_account)
+{
+
     Account acc = NULL;
     char *ID = create_account_ID();
-    char path[12+IDACCSIZE]= "data/account";
+    char path[12 + IDACCSIZE] = "data/account";
     strcat(path, ID);
-    char commande[18+IDACCSIZE] ="mkdir ";
+    char commande[18 + IDACCSIZE] = "mkdir ";
     strcat(commande, path);
     system(commande);
     create_account_csv(ID);
