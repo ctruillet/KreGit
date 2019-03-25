@@ -199,9 +199,9 @@ Account create_account(char **owners, char *type_account){
     
     Account acc = NULL;
     char *ID = create_account_ID();
-    char*path[12+IDACCSIZE]= "data/account";
+    char path[12+IDACCSIZE]= "data/account";
     strcat(path, ID);
-    char*commande[18+IDACCSIZE] ="mkdir ";
+    char commande[18+IDACCSIZE] ="mkdir ";
     strcat(commande, path);
     system(commande);
     create_account_csv(ID);
@@ -209,3 +209,7 @@ Account create_account(char **owners, char *type_account){
     charge_account(acc, ID);
     return acc;
 }
+
+/*void charge_account(Account acc, char *ID){
+
+}*/
