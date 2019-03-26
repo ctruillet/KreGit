@@ -87,7 +87,7 @@ void add_Ulist(User_account uacc, Account acc)
 
 User_account create_user_account(bool admin, char *name, char *firstname, char *pwd, List_account list)
 {
-    char *U_id = create_user_ID(name);
+    char *U_id = create_ID;//to replace by create_user_ID(name);
     char fileName[UIDSIZE + 23];
     char *path = "data/user_account/.json";
     for (int i = 0; i < UIDSIZE + 23; i++)
