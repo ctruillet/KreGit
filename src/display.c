@@ -3,6 +3,7 @@
 #include <string.h>
 #include <time.h>
 #include "../include/user_account.h"
+#include "../include/display.h"
 
 #ifndef CLEAR_STDIN
     #define CLEAR_STDIN { int c; while((c = getchar()) != '\n' && c != EOF); }
@@ -69,11 +70,13 @@ void newAccount_form(User_account ua){
 
 //Create a new user
 User_account newUser_form(){
+    User_account ua;
     /*
     * Demande Nom/Prenom
     * Demande Password
     * Demande confirmation Password
     */
+   return ua;
 }
 
 //Nav_bar - Display all accounts of user with theirs types

@@ -25,10 +25,10 @@ int connect(User_account ua, int * isConnect);
 void deconnect(int * isConnect, User_account ua);
 
 //Create a new account
-User_account newAccount_form();
+void newAccount_form(User_account ua);
 
 //Create a new user
-void newUser_form(User_account ua);
+User_account newUser_form();
 
 //Nav_bar - Display all accounts of user with theirs types
 int nav(User_account ua);

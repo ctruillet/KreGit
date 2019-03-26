@@ -2,16 +2,12 @@
 #include <stdlib.h>
 #include <string.h>
 #include "../include/user_account.h"
+#include "../include/encrypt.h"
 
 /*
 * Clement Truillet 
 * Derniere modification : 24/03/2019
 */
-
-//Check if the password is good
-int passwordIsGood(char * password, User_account ua){
-    return (strcmp(encryptPassword(password),get_pwd(ua))==0 ? 1 : 0);
-}
 
 //Encrypt password
 char * encryptPassword(char * string){
@@ -35,6 +31,14 @@ char * encryptPassword(char * string){
     //OK IT'S FINISH !
     return (password);
 }
+
+
+//Check if the password is good
+int passwordIsGood(char * password, User_account ua){
+    return (strcmp(encryptPassword(password),get_pwd(ua))==0 ? 1 : 0);
+}
+
+
 
 
 int main(int argc, char *argv[]){
