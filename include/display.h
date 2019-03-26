@@ -9,7 +9,7 @@
 
 /*
 * Clement Truillet 
-* Derniere modification : 28/02/2019
+* Derniere modification : 26/03/2019
 */
 
 //Display title
@@ -28,10 +28,13 @@ void deconnect(int * isConnect, User_account ua);
 void newAccount_form(User_account ua);
 
 //Create a new user
-User_account newUser_form();
+User_account newUser_form(User_account ua, int * isConnect);
 
 //Nav_bar - Display all accounts of user with theirs types
-int nav(User_account ua);
+int displayListAccount(User_account ua, int FSM);
+
+//Nav bar
+int nav(int FSM, int * isConnect);
 
 //Display Account
 void displayAccount(Account a);

@@ -40,7 +40,7 @@ int passwordIsGood(char * password, User_account ua){
 
 
 
-
+/*
 int main(int argc, char *argv[]){
 
     printf("Avant pwd : -admin-\n");
@@ -57,4 +57,4 @@ int main(int argc, char *argv[]){
 
     printf("\nAvant pwd : -azerty-\n");
     printf("Après pwd : -%s-\n",encryptPassword("azerty"));
-}
+}*/
