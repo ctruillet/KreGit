@@ -22,7 +22,7 @@ void end();
 int connect(User_account ua, int * isConnect);
 
 //Deconnect
-void deconnect(int * isConnect);
+void deconnect(int * isConnect, User_account ua);
 
 //Create a new account
 User_account newAccount_form();

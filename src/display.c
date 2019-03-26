@@ -53,8 +53,9 @@ int connect(User_account ua, int * isConnect){
 }
 
 //Deconnect
-void deconnect(int * isConnect){
+void deconnect(int * isConnect, User_account ua){
     *isConnect = 0;
+    free(ua);
 }
 
 //Create a new account
