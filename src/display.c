@@ -46,6 +46,7 @@ void title(){
 
 //Say Goodbye
 void end(){
+    fprintf(stderr,"End\n");
     printf("\n");
     printf("  ____                 _ ____               _ \n");
     printf(" / ___| ___   ___   __| | __ ) _   _  ___  | |\n");
@@ -125,12 +126,11 @@ User_account newUser_form(User_account ua, int * isConnect){
         }
             
       }
-      printf("\nNous vous souhaitons la bienvenue !\n");
-    List_account l;
-    l=(List_account)malloc(sizeof(List_account));
-    ua=create_user_account(false, name, firstname, encryptPassword(pwd), l);
-
-   return ua;
+    
+    ua=create_user_account(false, name, firstname, encryptPassword(pwd), NULL);
+    printf("\nNous vous souhaitons la bienvenue !\n\n");
+    (*isConnect)=1;
+    return ua;
 }
 
 //Nav_bar - Display all accounts of user with theirs types
@@ -183,7 +183,7 @@ void error(){
 //Generate a random quote of Percaval (or Karadoc)
 void kaamelott(){
     color("35");
-    char command[64]="cat data/quotes.txt | head -n ";
+    char command[64]="cat ../data/quotes.txt | head -n ";
     int n = (((rand() % 15) +2 ) * 2);
     char n_s[12];
     sprintf(n_s,"%d",n);

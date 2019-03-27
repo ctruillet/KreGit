@@ -48,9 +48,7 @@ int main(int argc, char *argv[]){
     int FSM = 0;
     int isConnect = 0;
 
-    User_account ua;
-    ua=(User_account)malloc(sizeof(User_account));
-    
+    User_account ua;    
 
     title();
 
@@ -58,7 +56,8 @@ int main(int argc, char *argv[]){
     //Execution
 
     // Ne pas oublier de faire une verification isConnect
-    while(FSM != 8){
+    while(FSM != 9){
+        printf("Menu\n");
         scanf("%d",&FSM);
         CLEAR_STDIN                                 //Clear buffer
         switch (FSM){
@@ -67,8 +66,8 @@ int main(int argc, char *argv[]){
                 title();
                 break;
 
-            case CONNECT:
-                w_log(LOG,"Connect Page - FSM = 1");//1 - Connect
+            case CONNECT:                           //1 - Connect
+                w_log(LOG,"Connect Page - FSM = 1");
                 break;
 
             case ADMIN_ACCOUNT:                     //2 - ADMIN - Show, create, edit and remove accounts
@@ -97,7 +96,7 @@ int main(int argc, char *argv[]){
 
             case CREATE_USER:                       //8 - Create a new account
                 w_log(LOG,"Create a new user - FSM = 8");
-                newUser_form(ua, &isConnect);
+                ua = newUser_form(ua, &isConnect);
                 break;
 
             case END:                               //9 - Goodbye !
