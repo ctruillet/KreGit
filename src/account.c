@@ -99,25 +99,15 @@ int Liste_accountSize(List_account l)
     return size;
 }
 
-char *List_accountToString(List_account l)
-{
+char *List_accountToString(List_account l){
     List_account l2 = l; //to avoid modification on the pointeur
-    int size = Liste_accountSize(l);
-    int stringSize = (IDACCSIZE + 1) * size + 3;
-    char str[stringSize];
-    str[0] = '[';
-    for (int i = 1; i < stringSize - 2; i = i + IDACCSIZE)
-    {
-        str[i] = ' '; //insert a space between each accounts
-        i++;
-        for (int j = 0; j < IDACCSIZE; j++)
-        {
-            str[i + j] = l2->current->ID[j]; // insert the ID account
-        }
+    char str[128] = "[";
+    while(l2!=NULL){
+        strcat(str,l2->current->ID);
+        strcat(str,",");
         l2 = l2->next;
     }
-    str[stringSize - 2] = ' ';
-    str[stringSize - 1] = ']';
+    strcat(str,"]");
     return str;
 }
 

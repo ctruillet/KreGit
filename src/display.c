@@ -46,6 +46,7 @@ void title(){
 
 //Say Goodbye
 void end(){
+    fprintf(stderr,"End\n");
     printf("\n");
     printf("  ____                 _ ____               _ \n");
     printf(" / ___| ___   ___   __| | __ ) _   _  ___  | |\n");
@@ -125,12 +126,11 @@ User_account newUser_form(User_account ua, int * isConnect){
         }
             
       }
-      printf("\nNous vous souhaitons la bienvenue !\n");
-    List_account l;
-    l=(List_account)malloc(sizeof(List_account));
-    ua=create_user_account(false, name, firstname, encryptPassword(pwd), l);
-
-   return ua;
+    
+    ua=create_user_account(false, name, firstname, encryptPassword(pwd), NULL);
+    printf("\nNous vous souhaitons la bienvenue !\n\n");
+    (*isConnect)=1;
+    return ua;
 }
 
 //Nav_bar - Display all accounts of user with theirs types
