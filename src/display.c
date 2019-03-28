@@ -183,7 +183,7 @@ void error(){
 //Generate a random quote of Percaval (or Karadoc)
 void kaamelott(){
     color("35");
-    char command[64]="cat ../data/quotes.txt | head -n ";
+    char command[64]="cat data/quotes.txt | head -n ";
     int n = (((rand() % 15) +2 ) * 2);
     char n_s[12];
     sprintf(n_s,"%d",n);
