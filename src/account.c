@@ -1,11 +1,12 @@
 
 /*
 * Valentin Frydrychowski 
-* Derniere modification : 22/03/2019
+* Derniere modification : 28/03/2019
 */
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include "../include/account.h"
 
 //structure of account
@@ -79,8 +80,7 @@ void add_list(List_account l, Account acc)
 {
     List_account l2 = malloc(sizeof(account) + sizeof(List_account));
     l2 = l;
-    while (l != NULL)
-    {
+    while (l2 != NULL){
         l2 = l2->next;
     }
     l2->current = acc;
@@ -113,9 +113,18 @@ char *List_accountToString(List_account l){
 
 //file management
 
-char *create_account_ID()
-{
-    return ("temp123456789aze");
+char *create_account_ID(){
+    char *ID = (char*)malloc(32);
+    time_t temps;
+    struct tm date;
+
+    // Recuperation de la date et l'heure actuelle.
+    time(&temps);
+    date=*localtime(&temps);
+
+    // Remplissage de la chaîne avec en date_heure
+    strftime(ID, 128, "%m%d%Y%H%M%S", &date);
+    return ID;
 }
 
 void charge_account(Account acc, char ID[IDACCSIZE])

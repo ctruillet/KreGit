@@ -30,7 +30,7 @@ typedef struct user_account_s
 //getters
 bool is_admin(User_account uacc)
 {
-    return uacc->admin;
+    return (uacc->admin?1:0);
 }
 
 char *get_u_ID(User_account uacc)

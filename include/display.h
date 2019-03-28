@@ -18,6 +18,9 @@ void title();
 //Say Goodbye
 void end();
 
+//Informations
+void info();
+
 //Connect
 int connect(User_account ua, int * isConnect);
 
@@ -34,7 +37,7 @@ User_account newUser_form(User_account ua, int * isConnect);
 int displayListAccount(User_account ua, int FSM);
 
 //Nav bar
-int nav(int FSM, int * isConnect);
+int nav(int FSM, int * isConnect, int * isAdmin);
 
 //Display Account
 void displayAccount(Account a);
