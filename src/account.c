@@ -1,7 +1,7 @@
 
 /*
 * Valentin Frydrychowski 
-* Derniere modification : 22/03/2019
+* Derniere modification : 28/03/2019
 */
 #include <string.h>
 #include <stdio.h>
@@ -106,18 +106,12 @@ char *List_accountToString(List_account l)
     int stringSize = (IDACCSIZE + 1) * size + 3;
     char str[stringSize];
     str[0] = '[';
-    for (int i = 1; i < stringSize - 2; i = i + IDACCSIZE)
-    {
-        str[i] = ' '; //insert a space between each accounts
-        i++;
-        for (int j = 0; j < IDACCSIZE; j++)
-        {
-            str[i + j] = l2->current->ID[j]; // insert the ID account
-        }
+    while(l2!=NULL){
+        strcat(str,l2->current->ID);
+        strcat(str,",");
         l2 = l2->next;
     }
-    str[stringSize - 2] = ' ';
-    str[stringSize - 1] = ']';
+    strcat(str,"]");
     return str;
 }
 
@@ -225,7 +219,3 @@ Account create_account(char **owners, char *type_account)
     charge_account(acc, ID);
     return acc;
 }
-
-/*void charge_account(Account acc, char *ID){
-
-}*/

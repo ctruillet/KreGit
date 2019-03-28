@@ -1,6 +1,6 @@
 /*
 * Valentin Frydrychowski 
-* Derniere modification : 22/03/2019
+* Derniere modification : 28/03/2019
 */
 
 //finir chargement list account
@@ -58,6 +58,19 @@ char *get_pwd(User_account uacc)
 
 //Setters
 
+User_account setUser(char * ID, bool admin, char *name, char *firstname, char *pwd){
+    User_account ua;
+    ua = (User_account)malloc(sizeof(bool) + (NAMESIZE + UIDSIZE + FNAMESIZE) * sizeof(char) + sizeof(List_account));
+    set_admin(ua, admin);
+    set_firstname(ua,firstname);
+    set_UID(ua,ID);
+    set_name(ua,name);
+    set_firstname(ua,firstname);
+    set_pwd(ua,pwd);
+ 
+    return ua;
+}
+
 void set_admin(User_account uacc, bool admin)
 {
     uacc->admin = admin;
@@ -78,6 +91,10 @@ void set_pwd(User_account uacc, char *pwd)
     uacc->pwd = pwd;
 }
 
+void set_UID(User_account uacc, char *ID){
+    uacc->u_ID = ID;
+}
+
 void add_Ulist(User_account uacc, Account acc)
 {
     add_list(uacc->list, acc);
@@ -87,24 +104,11 @@ void add_Ulist(User_account uacc, Account acc)
 
 User_account create_user_account(bool admin, char *name, char *firstname, char *pwd, List_account list)
 {
-    char *U_id = create_ID;//to replace by create_user_ID(name);
+    char *U_id = create_account_ID(); //to replace by create_user_ID(name);
     char fileName[UIDSIZE + 23];
-    char *path = "data/user_account/.json";
-    for (int i = 0; i < UIDSIZE + 23; i++)
-    {
-        if (i < 18)
-        {
-            fileName[i] = path[i];
-        }
-        else if (i < 18 + UIDSIZE)
-        {
-            fileName[i] = U_id[i - 18];
-        }
-        else
-        {
-            fileName[i] = path[i - UIDSIZE];
-        }
-    }
+    char *path = "data/user_account/";
+    strcat(path,U_id);
+    strcat(path,".json");
 
     //creation and opening of json
     FILE *json = fopen(fileName, "w+");
@@ -127,25 +131,12 @@ void charge_user_account(User_account uacc, char *U_id)
     uacc = malloc(sizeof(bool) + (NAMESIZE + UIDSIZE + FNAMESIZE) * sizeof(char) + sizeof(List_account));
 
     char fileName[UIDSIZE + 23];
-    char *path = "data/user_account/.json";
-    for (int i = 0; i < UIDSIZE + 23; i++)
-    {
-        if (i < 18)
-        {
-            fileName[i] = path[i];
-        }
-        else if (i < 18 + UIDSIZE)
-        {
-            fileName[i] = U_id[i - 18];
-        }
-        else
-        {
-            fileName[i] = path[i - UIDSIZE];
-        }
-    }
+    char *path = "data/user_account/";
+    strcat(path,U_id);
+    strcat(path,".json");
 
     //filling all infos needed
-    char *list = NULL;
+    char *list;
     FILE *json = fopen(fileName, "r");
     if (json != NULL)
     {
