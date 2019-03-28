@@ -9,6 +9,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
+#include <time.h>
 #include "../include/user_account.h"
 #include "../include/account.h"
 
@@ -103,11 +104,25 @@ void add_Ulist(User_account uacc, Account acc)
 
 //file management
 
+char * createUser_ID(){
+    char *ID = (char*)malloc(32);
+    time_t temps;
+    struct tm date;
+
+    // Recuperation de la date et l'heure actuelle.
+    time(&temps);
+    date=*localtime(&temps);
+
+    // Remplissage de la chaîne avec en date_heure
+    strftime(ID, 128, "%m%d%Y%H%M%S", &date);
+    return ID;
+}
+
 User_account create_user_account(bool admin, char *name, char *firstname, char *pwd, List_account list){
-    char * U_id = "123";            //ToDo
+    char * U_id = createUser_ID();            //ToDo
     char path[32] = "data/user_account/";
 
-    strcat(path,create_account_ID());
+    strcat(path,createUser_ID());
     strcat(path,".json");
     //creation and opening of json
     FILE *json = NULL;
@@ -127,7 +142,7 @@ User_account create_user_account(bool admin, char *name, char *firstname, char *
         fprintf(json, "}\n"); 
         fclose(json);
 
-        listUser = fopen("data/user_account/listUser.dat","w+");
+        listUser = fopen("data/user_account/listUser.dat","a");
         fprintf(listUser,"%s %s %s %s\n",name,firstname,pwd,path);
         fclose(listUser);
     }

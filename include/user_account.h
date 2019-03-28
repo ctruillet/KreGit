@@ -25,6 +25,7 @@ char *get_firstname(User_account uacc);
 char *get_pwd(User_account uacc);
 char **get_account_list(User_account uacc);     //return a board of account linked to the user
 
+char * createUser_ID();
 User_account setUser(char * ID, bool admin, char *name, char *firstname, char *pwd);
 void set_admin(User_account uacc, bool admin);
 void set_name(User_account uacc, char *name);

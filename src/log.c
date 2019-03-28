@@ -44,14 +44,11 @@ int w_log(char * FICHIER, char * str){
   // Ouveture du fichier
   fichier = fopen(FICHIER,"a"); 
 
-  if (fichier != NULL) // Ecriture dans le fichier
-    {
+  if (fichier != NULL){ // Ecriture dans le fichier
         fprintf(fichier, "%s %s\n", heure, str);
         fclose(fichier);
         return 0;
-    }
-    else // Si echec de l'ouverture, on affiche un message d'erreur
-    {
+    }else{ // Si echec de l'ouverture, on affiche un message d'erreur
         printf("Impossible d'ouvrir le fichier %s\n",FICHIER);
         return 1;
     }
