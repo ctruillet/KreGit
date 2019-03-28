@@ -101,6 +101,7 @@ int Liste_accountSize(List_account l)
 
 char *List_accountToString(List_account l){
     List_account l2 = l; //to avoid modification on the pointeur
+    char * strR = (char *)malloc(sizeof(char)*128);
     char str[128] = "[";
     while(l2!=NULL){
         strcat(str,l2->current->ID);
@@ -108,7 +109,10 @@ char *List_accountToString(List_account l){
         l2 = l2->next;
     }
     strcat(str,"]");
-    return str;
+    printf("3\n");
+    strcpy(strR,str);
+    printf("4\n");
+    return strR;
 }
 
 //file management
