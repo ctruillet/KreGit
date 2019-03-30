@@ -58,16 +58,82 @@ void end(){
 
 //Connect
 int connect(User_account ua, int * isConnect){
+    char name[16];
+    char firstname[16];
+    char pwd[16];
+    int isEquals=0; //0 - Cherche encore / 1 - Recherche / 2 - Trouvé !  
+
+    printf("\nNom : ");
+    scanf("%s",name);
+    CLEAR_STDIN
+    printf("Prénom : ");
+    scanf("%s",firstname);
+    CLEAR_STDIN
+    printf("Mot de passe : ");
+    scanf("%s",pwd);
+    CLEAR_STDIN
+    
+    //Read file listUser.dat
+    FILE* fichier = NULL;
+    char chaine[128] = "";
+    char * nameF;
+    char * firstnameF;
+    char * pwdF;
+    char * jsonF;
+    fichier = fopen("data/user_account/listUser.dat", "r");
+    if (fichier != NULL){
+        while ((isEquals!=2) && (fgets(chaine, 128, fichier) != NULL)){   
+          isEquals=0;
+          nameF = strtok(chaine, " ");
+          if(strcmp(name,nameF)==0){
+            isEquals=1;
+          }
+
+          for(int i=0; ((i<=2) && (isEquals!=0)); i++){
+            switch(i){
+              case 0:
+                firstnameF=strtok(NULL, " ");
+                if(strcmp(firstname,firstnameF)!=0){
+                  isEquals=0;
+                }
+                break;
+              case 1:
+                pwdF = strtok(NULL, " ");
+                if(strcmp(encryptPassword(pwd),pwdF)==0){
+                  isEquals=2;
+                }else{
+                  isEquals=0;
+                }
+                break;
+              case 2:
+                jsonF = strtok(NULL, " ");
+                isEquals=2;
+
+                break;
+            }            
+          }
+        }
+    }
+    fclose(fichier);
+
+    if(isEquals==2){
+      printf("\n\nName : -%s-\nFisrtname : -%s-\nPassword : -%s-\nJSON : -%s-",nameF, firstnameF, pwdF, jsonF);
+      (*isConnect)=1;
+      return 5;
+    }else{
+      printf("ERREUR");
+    }
+ 
+    return 0;
     /*Demande user_name
-    *   Charger la structure
     * Demande pwd
     * Verification pwd
     *   passwordIsGood()
+    * Charger la structure
     * Return 4 si le compte est admin
     * return 5 si le compte existe
     * return 0 sinon
     */
-    return 0;
 }
 
 //Deconnect

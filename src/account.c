@@ -10,18 +10,15 @@
 #include "../include/account.h"
 
 //structure of account
-typedef struct account_s
-{
-    char *ID;      //Identification
-    char **owners; //owners list of account
+typedef struct account_s{
+    char *ID;                //Identification
     char *type_account;      //type of account
-    //char *history;      //history of the account
-
+    Account next;            //Next Account
+    //char **owners; //owners list of account
 } account;
 
 //structure of an account list
-typedef struct list_account_s
-{
+typedef struct list_account_s{
     Account current;   //current element of the list
     List_account next; //next element of the list
 } list_account;
@@ -31,11 +28,11 @@ char *get_id(Account acc)
 {
     return acc->ID;
 }
-
+/*
 char **get_owners(Account acc)
 {
     return acc->owners;
-}
+}*/
 
 char *get_type_account(Account acc)
 {
@@ -59,12 +56,12 @@ void add_history(Account acc, char *operation)
 {
     //TODO
 }*/
-
+/*
 void set_owners(Account acc, char **own)
 {
     acc->owners[0] = own[0];
     acc->owners[1] = own[1];
-}
+}*/
 
 void set_ID(Account acc, char *ID)
 {
@@ -109,9 +106,7 @@ char *List_accountToString(List_account l){
         l2 = l2->next;
     }
     strcat(str,"]");
-    printf("3\n");
     strcpy(strR,str);
-    printf("4\n");
     return strR;
 }
 
