@@ -46,7 +46,9 @@ int main(int argc, char *argv[]){
     //Init
     srand(time(NULL));
     char LOG[128]; 
-    crea_log(LOG);
+    
+    FILE* logF = crea_log(LOG);;
+
     int FSM = 0;
     int isConnect = 0;
     int isAdmin = 0;
@@ -61,59 +63,59 @@ int main(int argc, char *argv[]){
 
         switch (FSM){
             case TITLE:                             //Welcome
-                w_log(LOG,"Welcome page - FSM = 0");
+                w_log(logF,"Welcome page - FSM = 0");
                 break;
 
             case CONNECT:                       
-                w_log(LOG,"Connect Page - FSM = 1");
+                w_log(logF,"Connect Page - FSM = 1");
                 FSM = connect(ua,&isConnect);
                 break;
 
             case CREATE_USER:                     
-                w_log(LOG,"Create a new User - FSM = 2");
+                w_log(logF,"Create a new User - FSM = 2");
                 ua = newUser_form(ua, &isConnect);
                 break;
 
             case CREATE_ACCOUNT:                  
-                w_log(LOG,"Create a new Account - FSM = 3");
+                w_log(logF,"Create a new Account - FSM = 3");
                 break;
 
             case ADMIN:                             
-                w_log(LOG,"ADMIN - FSM = 4");
+                w_log(logF,"ADMIN - FSM = 4");
                 break;
 
             case CUSTOMER:                    
-                w_log(LOG,"CUSTOMER - FSM = 5");    
+                w_log(logF,"CUSTOMER - FSM = 5");    
                 break;
 
             case SHOW_LISTACCOUNT:                  
-                w_log(LOG,"Show the list of accounts - FSM = 6");
+                w_log(logF,"Show the list of accounts - FSM = 6");
                 break;
             
             case SHOW_ACCOUNT:                  
-                w_log(LOG,"Show one account - FSM = 7");
+                w_log(logF,"Show one account - FSM = 7");
                 break;
             
             case TRANSFER:
-                w_log(LOG,"Transfer - FSM = 8");
+                w_log(logF,"Transfer - FSM = 8");
                 break;
 
             case CHANGE_PWD:
-                w_log(LOG,"Change password - FSM = 9");
+                w_log(logF,"Change password - FSM = 9");
                 break;
 
             case INFO:
-                w_log(LOG,"Display Informations - FSM = 10");
+                w_log(logF,"Display Informations - FSM = 10");
                 info();
                 break;
 
             case END:
-                w_log(LOG,"This is the end - FSM = 11");
+                w_log(logF,"This is the end - FSM = 11");
                 end();
                 break;
 
             case KAAMELOT:
-                w_log(LOG,"Ouais, c'est pas faux");
+                w_log(logF,"Ouais, c'est pas faux");
                 kaamelott();
                 break;  
 
@@ -123,9 +125,7 @@ int main(int argc, char *argv[]){
         }
     }
 
-
-    w_log(LOG,"La fonction main s'est bien executée.");
-
+    close_log(logF); 
 
     return 0;
 }

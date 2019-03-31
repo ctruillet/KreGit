@@ -12,7 +12,7 @@
 
 typedef  struct user_account_s *User_account;
 
-User_account create_user_account(bool admin, char *name, char *firstname, char *pwd, List_account list);     //create the json, fill it and return it
+User_account create_user_account(bool admin, char *name, char *firstname, char *pwd, Account a);     //create the json, fill it and return it
 char *create_user_ID(char *name);         //create ID whit name and time of creation
 void delete_user_account(User_account uacc);
 User_account charge_user_account(char * json);

@@ -11,10 +11,10 @@
 
 //structure of account
 typedef struct account_s{
-    char *ID;                //Identification
-    char *type_account;      //type of account
-    Account next;            //Next Account
-    //char **owners; //owners list of account
+    char ID[32];                //Identification
+    char type_account[32];      //type of account
+    Account next;               //Next Account
+
 } account;
 
 //structure of an account list
@@ -62,7 +62,7 @@ void set_owners(Account acc, char **own)
     acc->owners[0] = own[0];
     acc->owners[1] = own[1];
 }*/
-
+/*
 void set_ID(Account acc, char *ID)
 {
     acc->ID = ID;
@@ -72,7 +72,7 @@ void set_type_account(Account acc, char *type)
 {
     acc->type_account = type;
 }
-
+*/
 void add_list(List_account l, Account acc)
 {
     List_account l2 = malloc(sizeof(account) + sizeof(List_account));
@@ -96,14 +96,14 @@ int Liste_accountSize(List_account l)
     return size;
 }
 
-char *List_accountToString(List_account l){
-    List_account l2 = l; //to avoid modification on the pointeur
+char *List_accountToString(Account a){
+    Account a2 = a; //to avoid modification on the pointeur
     char * strR = (char *)malloc(sizeof(char)*128);
     char str[128] = "[";
-    while(l2!=NULL){
-        strcat(str,l2->current->ID);
+    while(a2!=NULL){
+        strcat(str,a2->ID);
         strcat(str,",");
-        l2 = l2->next;
+        a2 = a2->next;
     }
     strcat(str,"]");
     strcpy(strR,str);
@@ -125,7 +125,7 @@ char *create_account_ID(){
     strftime(ID, 128, "%m%d%Y%H%M%S", &date);
     return ID;
 }
-
+/*
 void charge_account(Account acc, char ID[IDACCSIZE])
 {
     set_ID(acc, ID);
@@ -134,7 +134,7 @@ void charge_account(Account acc, char ID[IDACCSIZE])
     tab[1] = "owners2";
     set_owners(acc, tab);
     set_type_account(acc, "bidon");
-}
+}*/
 
 void create_account_csv(char *ID)
 {
@@ -207,7 +207,7 @@ void create_account_json(char *ID, char **owners, char *type_account)
         fclose(json);
     }
 }
-
+/*
 Account create_account(char **owners, char *type_account)
 {
 
@@ -223,7 +223,7 @@ Account create_account(char **owners, char *type_account)
     charge_account(acc, ID);
     return acc;
 }
-
+*/
 /*void charge_account(Account acc, char *ID){
 
 }*/

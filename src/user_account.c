@@ -12,6 +12,7 @@
 #include <time.h>
 #include "../include/user_account.h"
 #include "../include/account.h"
+#include "../include/parson.h"
 
 #define NAMESIZE 32
 #define FNAMESIZE 32
@@ -19,12 +20,12 @@
 //structure from a user account
 typedef struct user_account_s
 {
-    char *u_ID;        //ID of .json file
-    int admin;        //account with admin rights
-    char *name;        //name of user
-    char *firstname;   //first name of user
-    char *pwd;         //password link to the account
-    Account first;     //list of account own by user
+    char u_ID[32];         //ID of .json file
+    int admin;             //account with admin rights
+    char name[32];         //name of user
+    char firstname[32];    //first name of user
+    char pwd[32];          //password link to the account
+    Account first;         //list of account own by user
 } user_account;
 
 //getters
@@ -62,7 +63,7 @@ char *get_pwd(User_account uacc)
 
 User_account setUser(char * ID, bool admin, char *name, char *firstname, char *pwd){
     User_account ua;
-    ua = (User_account)malloc(sizeof(bool) + (NAMESIZE + UIDSIZE + FNAMESIZE) * sizeof(char) + sizeof(List_account));
+    ua = (User_account)malloc(sizeof(User_account)); 
     set_admin(ua, admin);
     set_firstname(ua,firstname);
     set_UID(ua,ID);
@@ -73,28 +74,24 @@ User_account setUser(char * ID, bool admin, char *name, char *firstname, char *p
     return ua;
 }
 
-void set_admin(User_account uacc, bool admin)
-{
+void set_admin(User_account uacc, bool admin){
     uacc->admin = admin;
 }
 
-void set_name(User_account uacc, char *name)
-{
-    uacc->name = name;
+void set_name(User_account uacc, char * name){
+    strcpy(uacc->name,name);
 }
 
-void set_firstname(User_account uacc, char *firstname)
-{
-    uacc->firstname = firstname;
+void set_firstname(User_account uacc, char *firstname){
+    strcpy(uacc->firstname,firstname);
 }
 
-void set_pwd(User_account uacc, char *pwd)
-{
-    uacc->pwd = pwd;
+void set_pwd(User_account uacc, char *pwd){
+    strcpy(uacc->pwd,pwd);
 }
 
 void set_UID(User_account uacc, char *ID){
-    uacc->u_ID = ID;
+    strcpy(uacc->u_ID,ID);
 }
 /*
 void add_Ulist(User_account uacc, Account acc)
@@ -118,55 +115,69 @@ char * createUser_ID(){
     return ID;
 }
 
-User_account create_user_account(bool admin, char *name, char *firstname, char *pwd, List_account list){
+User_account create_user_account(bool admin, char *name, char *firstname, char *pwd, Account a){
     char * U_id = createUser_ID();            //ToDo
     char path[32] = "data/user_account/";
 
     strcat(path,createUser_ID());
     strcat(path,".json");
-    //creation and opening of json
-    FILE *json = NULL;
+    //Remplissage du json
+    JSON_Value *root_value = json_value_init_object();
+    JSON_Object *root_object = json_value_get_object(root_value);
+    char *serialized_string = NULL;
+    FILE *jsonF = NULL;
     FILE *listUser = NULL;
-    json = fopen(path, "w+");
-    //filing of json with the json structure
-    if (json != NULL){
-        fprintf(json, "{\n");
-            fprintf(json, "\t\"user_account\": {\n");
-                fprintf(json, "\t\t\"ID\": \"%s\",\n",U_id);
-                fprintf(json, "\t\t\"admin\": \"%d\",\n",(admin?1:0));
-                fprintf(json, "\t\t\"firstname\": \"%s\",\n",firstname);
-                fprintf(json, "\t\t\"name\": \"%s\",\n",name);
-                fprintf(json, "\t\t\"pwd\": \"%s\",\n",pwd);
-                fprintf(json, "\t\t\"List_account\": \"%s\"\n",List_accountToString(list));
-            fprintf(json, "\t}\n");
-        fprintf(json, "}\n"); 
-        fclose(json);
+    jsonF = fopen(path, "w+");
+    json_object_dotset_string(root_object, "user_account.ID", U_id);
+    json_object_dotset_number(root_object, "user_account.admin", (admin?1:0));
+    json_object_dotset_string(root_object, "user_account.firstname", firstname);
+    json_object_dotset_string(root_object, "user_account.name", name);
+    json_object_dotset_string(root_object, "user_account.pwd", pwd);
+    json_object_dotset_string(root_object, "user_account.List_account",List_accountToString(a));
+    serialized_string = json_serialize_to_string_pretty(root_value);
 
-        listUser = fopen("data/user_account/listUser.dat","a");
-        fprintf(listUser,"%s %s %s %s \n",name,firstname,pwd,path);
-        fclose(listUser);
-    }
+    fprintf(jsonF,"%s",serialized_string);
+    fclose(jsonF);
+    json_free_serialized_string(serialized_string);
+    json_value_free(root_value);
+    printf("%s %s %s %s \n",name,firstname,pwd,path);
+    //Ajout du compte dans la liste des users
+    listUser = fopen("data/user_account/listUser.dat","a");
+    fprintf(listUser,"%s %s %s %s \n",name,firstname,pwd,path);
+    fclose(listUser);
+
     User_account uacc = setUser(U_id, admin, name, firstname, pwd);
 
     return uacc;
 }
 
 //charge the infos of the json into the user_account struct
-User_account charge_user_account(char * json){
+User_account charge_user_account(char * file){
 
     //size attribution for the struct
-    User_account uacc;
-    uacc->first=(Account)malloc(sizeof(char)*64);
-    uacc = (User_account)malloc(sizeof(int) + (NAMESIZE + UIDSIZE + FNAMESIZE) * sizeof(char) + sizeof(uacc->first));   
-
+    User_account uacc = NULL;
+    uacc = (User_account)malloc(sizeof(User_account)); 
+    uacc->first=(Account)malloc(sizeof(Account));
+/*
+    int t;
+    char ID_F[32];
+    char firstname_F[32];
+    char name_F[32];
+    char pwd_F[32];
     //filling all infos needed
-    char *list = NULL;
-    FILE *json = fopen(json, "r");
+    char *list = NULL;*/
+
+    /*FILE *json = fopen(file, "r");
     if (json != NULL){
-        fscanf(json, "{\n\t\"user_account\": {\n\t\t\"ID\": \"%s\",\n\t\t\"admin\": \"%d\",\n\t\t\"firstname\": \"%s\",\n\t\t\"name\": \"%s\",\n\t\t\"pwd\": \"%s\",\n\t\t\"List_account\": \"[%s]\"\n\t}\n}", &(uacc->u_ID), &(uacc->admin), &(uacc->firstname), &(uacc->name), &(uacc->pwd), &list);
-        
+        fscanf(json, "{\n\t\"user_account\": {\n\t\t\"ID\": \"%s\",\n\t\t\"admin\": \"%d\",\n\t\t\"firstname\": \"%s\",\n\t\t\"name\": \"%s\",\n\t\t\"pwd\": \"%s\",\n\t\t\"List_account\": \"[%s]\"\n\t}\n}", ID_F, &t, firstname_F, name_F, pwd_F, list);
+        printf("\nID : -%s-\n",ID_F);
+        printf("isAdmin : -%d-\n",t);
+        printf("Firstname : -%s-\n",firstname_F);
+        printf("Name : -%s-\n",name_F);
+        printf("Password : -%s-\n",pwd_F);
     }
     fclose(json);
+    printf("%s\n",list);*/
     /*
     int strSize = 0;
 

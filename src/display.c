@@ -117,8 +117,9 @@ int connect(User_account ua, int * isConnect){
     fclose(fichier);
 
     if(isEquals==2){
-      printf("\n\nName : -%s-\nFisrtname : -%s-\nPassword : -%s-\nJSON : -%s-",nameF, firstnameF, pwdF, jsonF);
+      printf("\n\nName : -%s-\nFisrtname : -%s-\nPassword : -%s-\nJSON : -%s-\n",nameF, firstnameF, pwdF, jsonF);
       (*isConnect)=1;
+      //User_account ua = charge_user_account(jsonF);
       return 5;
     }else{
       printf("ERREUR");
@@ -159,7 +160,7 @@ User_account newUser_form(User_account ua, int * isConnect){
     char confirm_pwd[16];
     int isPasswordGood = 0;
     color("32");
-    printf("Bienvenue sur l'interace de création de compte");
+    printf("Bienvenue sur l'interface de création de compte");
     color("0");
     printf("\nNom : ");
     scanf("%s",name);
@@ -212,6 +213,7 @@ int displayListAccount(User_account ua, int FSM){
 
 //Nav bar
 int nav(int FSM, int * isConnect, int * isAdmin){
+    printf("FSM = %d\n",FSM);
     int i;
 
     switch (FSM){
@@ -223,31 +225,31 @@ int nav(int FSM, int * isConnect, int * isAdmin){
 
             scanf("%d",&i);
             CLEAR_STDIN 
-            if(i==1 || i==2 || i==3 || i==4 || i==42){
-                switch(i){
-                    case 1:
-                        return 1;
-                        break;
-                    case 2:
-                        return 2;
-                        break;
-                    case 3:
-                        return 10;
-                        break;
-                    case 4:
-                        return 11;
-                        break;
-                    case 42:
-                        return 42;
-                }
-            }else{
-                return 0;
+
+            switch(i){
+                case 1:
+                    return 1;
+                    break;
+                case 2:
+                    return 2;
+                    break;
+                case 3:
+                    return 10;
+                    break;
+                case 4:
+                    return 11;
+                    break;
+                case 42:
+                    return 42;
+                default:
+                    return(0);         
             }
+
             break;
         case 1:
-            
             break;
         case 2:
+            printf("Coucou\n");
             return 5;
             break;
         case 3:

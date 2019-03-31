@@ -10,7 +10,10 @@ Par : Clement
 */
 
 // Création du fichier .log 
-void crea_log(char * FICHIER);
+FILE * crea_log(char * FICHIER);
 
 // Ecriture dans le fichier .log
-int w_log(char * FICHIER, char * str);
+int w_log(FILE * fichier, char * str);
+
+// Fermer le fichier .log
+int close_log(FILE * fichier);
