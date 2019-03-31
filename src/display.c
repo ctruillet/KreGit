@@ -119,7 +119,7 @@ int connect(User_account ua, int * isConnect){
     fclose(fichier);
 
     if(isEquals==2){
-      printf("\n\nName : -%s-\nFisrtname : -%s-\nPassword : -%s-\nJSON : -%s-\n",nameF, firstnameF, pwdF, jsonF);
+      //printf("\n\nName : -%s-\nFisrtname : -%s-\nPassword : -%s-\nJSON : -%s-\n",nameF, firstnameF, pwdF, jsonF);
       (*isConnect)=1;
       ua = charge_user_account(jsonF);
       return 5;
@@ -197,8 +197,8 @@ User_account newUser_form(User_account ua, int * isConnect){
         }
             
       }
-    printf("Create USER : %s %s -%s- -> -%s-\n",name,firstname,pwd,encryptPassword(pwd));
-    ua=create_user_account(false, name, firstname, encryptPassword(pwd), NULL);
+
+    ua=create_user_account(0, name, firstname, encryptPassword(pwd), NULL);
     printf("\nNous vous souhaitons la bienvenue !\n\n");
     (*isConnect)=1;
     return ua;
