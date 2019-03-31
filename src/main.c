@@ -46,8 +46,15 @@ int main(int argc, char *argv[]){
     //Init
     srand(time(NULL));
     char LOG[128]; 
-    
-    FILE* logF = crea_log(LOG);;
+    crea_log(LOG);
+    printf("log : %s\n",LOG);
+      
+    // Ouverture et création du fichier .log
+    FILE* logF = NULL;
+    logF = fopen(LOG,"a+");
+  
+    //Ecriture dans log
+    w_log(logF,"Création du fichier .log");
 
     int FSM = 0;
     int isConnect = 0;
@@ -125,7 +132,9 @@ int main(int argc, char *argv[]){
         }
     }
 
-    close_log(logF); 
+    w_log(logF,"La fonction main s'est bien executée.");
+    //free(logF);
+    //fclose(logF); 
 
     return 0;
 }

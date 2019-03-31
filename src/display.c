@@ -213,7 +213,6 @@ int displayListAccount(User_account ua, int FSM){
 
 //Nav bar
 int nav(int FSM, int * isConnect, int * isAdmin){
-    printf("FSM = %d\n",FSM);
     int i;
 
     switch (FSM){
@@ -249,7 +248,6 @@ int nav(int FSM, int * isConnect, int * isAdmin){
         case 1:
             break;
         case 2:
-            printf("Coucou\n");
             return 5;
             break;
         case 3:
