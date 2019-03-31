@@ -21,6 +21,7 @@ all :
 	mkdir -p bin
 	mkdir -p lib
 	mkdir -p data
+	mkdir -p log
 	mkdir -p data/account; mkdir -p data/user_account
 	$(MAKE) compile -s
 	

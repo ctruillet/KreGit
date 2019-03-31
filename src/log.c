@@ -9,7 +9,6 @@
 */
 
 void crea_log(char * FICHIER){
-  system("if [ `ls -l|grep ^d | grep -c ' log$'` -ne 1 ]; then mkdir log; fi"); //If log repertory doesn't exist
   time_t temps;
   struct tm date;
 

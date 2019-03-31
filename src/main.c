@@ -133,8 +133,6 @@ int main(int argc, char *argv[]){
     }
 
     w_log(logF,"La fonction main s'est bien executée.");
-    //free(logF);
-    //fclose(logF); 
 
     return 0;
 }
