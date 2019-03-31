@@ -83,43 +83,45 @@ int connect(User_account ua, int * isConnect){
     fichier = fopen("data/user_account/listUser.dat", "r");
     if (fichier != NULL){
         while ((isEquals!=2) && (fgets(chaine, 128, fichier) != NULL)){   
-          isEquals=0;
-          nameF = strtok(chaine, " ");
-          if(strcmp(name,nameF)==0){
-            isEquals=1;
-          }
+            isEquals=0;
+            nameF = strtok(chaine, " ");
+            if(strcmp(name,nameF)==0){
+                isEquals=1;
+            }
 
-          for(int i=0; ((i<=2) && (isEquals!=0)); i++){
-            switch(i){
-              case 0:
-                firstnameF=strtok(NULL, " ");
-                if(strcmp(firstname,firstnameF)!=0){
-                  isEquals=0;
-                }
-                break;
-              case 1:
-                pwdF = strtok(NULL, " ");
-                if(strcmp(encryptPassword(pwd),pwdF)==0){
-                  isEquals=2;
-                }else{
-                  isEquals=0;
-                }
-                break;
-              case 2:
-                jsonF = strtok(NULL, " ");
-                isEquals=2;
+            for(int i=0; ((i<=2) && (isEquals!=0)); i++){
+                switch(i){
+                    case 0:
+                        firstnameF=strtok(NULL, " ");
+                        if(strcmp(firstname,firstnameF)!=0){
+                            isEquals=0;
+                        }
+                        break;
+                    case 2:
+                        pwdF = strtok(NULL, " ");
+                        if(strcmp(encryptPassword(pwd),pwdF)==0){
+                            isEquals=2;
+                        }else{
+                            isEquals=0;
+                        }
+                        break;
+                    case 1:
+                        jsonF = strtok(NULL, " ");
+                        isEquals=2;
 
-                break;
-            }            
-          }
+                        break;
+                }            
+            }
         }
+    }else{
+        printf("Impossible d'ouvrir le fichier\n");
     }
     fclose(fichier);
 
     if(isEquals==2){
       printf("\n\nName : -%s-\nFisrtname : -%s-\nPassword : -%s-\nJSON : -%s-\n",nameF, firstnameF, pwdF, jsonF);
       (*isConnect)=1;
-      //User_account ua = charge_user_account(jsonF);
+      ua = charge_user_account(jsonF);
       return 5;
     }else{
       printf("ERREUR");
@@ -195,7 +197,7 @@ User_account newUser_form(User_account ua, int * isConnect){
         }
             
       }
-    
+    printf("Create USER : %s %s -%s- -> -%s-\n",name,firstname,pwd,encryptPassword(pwd));
     ua=create_user_account(false, name, firstname, encryptPassword(pwd), NULL);
     printf("\nNous vous souhaitons la bienvenue !\n\n");
     (*isConnect)=1;

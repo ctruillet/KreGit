@@ -87,7 +87,7 @@ void set_firstname(User_account uacc, char *firstname){
 }
 
 void set_pwd(User_account uacc, char *pwd){
-    strcpy(uacc->pwd,pwd);
+    sprintf(uacc->pwd,"%32s",pwd);
 }
 
 void set_UID(User_account uacc, char *ID){
@@ -118,7 +118,7 @@ char * createUser_ID(){
 User_account create_user_account(bool admin, char *name, char *firstname, char *pwd, Account a){
     char * U_id = createUser_ID();            //ToDo
     char path[32] = "data/user_account/";
-
+    printf("%s %s %s %s \n",name,firstname,pwd,path); //TEST
     strcat(path,createUser_ID());
     strcat(path,".json");
     //Remplissage du json
@@ -140,11 +140,13 @@ User_account create_user_account(bool admin, char *name, char *firstname, char *
     fclose(jsonF);
     json_free_serialized_string(serialized_string);
     json_value_free(root_value);
-    printf("%s %s %s %s \n",name,firstname,pwd,path);
+    printf("%s %s %s %s \n",name,firstname,pwd,path); //TEST
     //Ajout du compte dans la liste des users
     listUser = fopen("data/user_account/listUser.dat","a");
-    fprintf(listUser,"%s %s %s %s \n",name,firstname,pwd,path);
-    fclose(listUser);
+    fprintf(listUser,"%s %s %s %s \n",name,firstname,path,pwd);
+    if(fclose(listUser)==0){
+        printf("ListUser est bien fermé\n");
+    }
 
     User_account uacc = setUser(U_id, admin, name, firstname, pwd);
 
@@ -153,11 +155,31 @@ User_account create_user_account(bool admin, char *name, char *firstname, char *
 
 //charge the infos of the json into the user_account struct
 User_account charge_user_account(char * file){
-
     //size attribution for the struct
     User_account uacc = NULL;
     uacc = (User_account)malloc(sizeof(User_account)); 
     uacc->first=(Account)malloc(sizeof(Account));
+
+    JSON_Value *root_value;
+    JSON_Object *root_object;
+    JSON_Array *list;
+
+    /* parsing json */
+    printf("Parse\n");
+    root_value = json_parse_file(file);
+
+    root_object = json_value_get_object(root_value);
+    list = json_object_dotget_array(root_object, "user_account.List_account");
+    printf("%s %s %s %s %s\n", "ID", "Prenom", "Nom", "Password", "Liste");
+        printf("%s %s %s %s %s\n",
+               json_object_dotget_string(root_object, "user_account.ID"),
+               json_object_dotget_string(root_object, "user_account.firstname"),
+               json_object_dotget_string(root_object, "user_account.name"),
+               json_object_dotget_string(root_object, "user_account.pwd"),
+               json_object_dotget_string(root_object, "user_account.List_account"));
+    
+    /* cleanup code */
+    json_value_free(root_value);
 /*
     int t;
     char ID_F[32];

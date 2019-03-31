@@ -13,7 +13,9 @@
 char * encryptPassword(char * string){
     FILE *fp;
     char path[1035];
-    char * password = NULL; //for the encryp password
+    char * password = NULL; //for the encrypt password
+    password = (char *)malloc(33*sizeof(char));
+    char * result;
     char chaine[128] = "echo "; 
     char end_chaine[128] = " | openssl md5 | cut -d\" \" -f2"; 
     //Create the command
@@ -21,15 +23,17 @@ char * encryptPassword(char * string){
     strcat(chaine,end_chaine); 
     //Execute
     fp = popen(chaine, "r");
-    //Reclaim the encrypt password
+    //Reclaim the encrypted password
     fgets(path, sizeof(path)-1, fp);
     pclose(fp);
-    //To remove the caracter '\n'
-    password = (char *)malloc((strlen(path)*sizeof(char)));
-    strncpy(password,path,strlen(path)-1);
-
+    //To remove the character '\n'
+    
+    //strncpy(password,path,strlen(path)-1);
+    //fscanf(password,"%s",path);
+    sprintf(password,"%32s",path);
+    result = strtok(password,"\n");
     //OK IT'S FINISH !
-    return (password);
+    return (result);
 }
 
 
