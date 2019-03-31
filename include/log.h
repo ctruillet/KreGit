@@ -3,9 +3,10 @@
  */
 #define __LOG_H__
 
+#include <stdio.h>
 
 /*
-Derniere modification : 2018-12-02 17:44:02
+Derniere modification : 31/03/2019
 Par : Clement
 */
 

@@ -1,6 +1,6 @@
 /*
 * Valentin Frydrychowski 
-* Derniere modification : 27/03/2019
+* Derniere modification : 31/03/2019
 */
 
 //finir chargement list account
@@ -160,13 +160,11 @@ User_account charge_user_account(char * file){
 
     JSON_Value *root_value;
     JSON_Object *root_object;
-    JSON_Array *list;
 
     /* parsing json */
     root_value = json_parse_file(file);
 
     root_object = json_value_get_object(root_value);
-    list = json_object_dotget_array(root_object, "user_account.List_account");
     printf("%s %s %s %s %s %s\n", "ID", "ADMIN", "Prenom", "Nom", "Password", "Liste");
         printf("%s %d %s %s %s %s\n",
                json_object_dotget_string(root_object, "user_account.ID"),

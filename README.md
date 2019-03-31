@@ -5,7 +5,7 @@ So, you win a free download link to our github, because it's poor students who h
   
 Well, I think you don't have finish our project yet, come back soon !
 
-
+![Percival, the best man the earth has ever had](https://raw.githubusercontent.com/ClementTruillet/KreGit/master/doc/Perceval.png)
 Add here a picture of Perceval
 ### Markdown
 

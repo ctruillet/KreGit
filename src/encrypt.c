@@ -6,7 +6,7 @@
 
 /*
 * Clement Truillet 
-* Derniere modification : 24/03/2019
+* Derniere modification : 31/03/2019
 */
 
 //Encrypt password
@@ -28,8 +28,6 @@ char * encryptPassword(char * string){
     pclose(fp);
     //To remove the character '\n'
     
-    //strncpy(password,path,strlen(path)-1);
-    //fscanf(password,"%s",path);
     sprintf(password,"%32s",path);
     result = strtok(password,"\n");
     //OK IT'S FINISH !

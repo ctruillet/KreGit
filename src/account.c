@@ -1,7 +1,7 @@
 
 /*
 * Valentin Frydrychowski 
-* Derniere modification : 28/03/2019
+* Derniere modification : 31/03/2019
 */
 #include <string.h>
 #include <stdio.h>
@@ -112,8 +112,9 @@ char *List_accountToString(Account a){
 
 //file management
 
-char *create_account_ID(){
+char *create_account_ID(char * type){
     char *ID = (char*)malloc(32);
+    char *timeS = (char*)malloc(32);
     time_t temps;
     struct tm date;
 
@@ -122,7 +123,9 @@ char *create_account_ID(){
     date=*localtime(&temps);
 
     // Remplissage de la chaîne avec en date_heure
-    strftime(ID, 128, "%m%d%Y%H%M%S", &date);
+    strftime(timeS, 128, "%m%d%Y%H%M%S", &date);
+    sprintf(ID,"%s-%s",type,timeS);
+    
     return ID;
 }
 /*

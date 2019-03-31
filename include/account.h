@@ -1,6 +1,6 @@
 /*
 * Valentin Frydrychowski 
-* Derniere modification : 07/03/2019
+* Derniere modification : 31/03/2019
 */
 #define __ACCOUNT_H__
 #ifndef __USER_ACCOUNT_H__
@@ -14,7 +14,7 @@ typedef struct list_account_s *List_account;
 Account create_account(char **owners, char *type_account); /* Create a directory with .json and history.csv in it, fill the .json */
 void create_account_json(char *ID, char **owners, char *type_account);      //create a .json with generic account structure
 void create_account_csv(char *ID);
-char *create_account_ID();        //create an ID whith the date of creation
+char *create_account_ID(char*type);        //create an ID whith the date of creation
 void delete_account(Account acc);
 void charge_account(Account acc, char *ID);  //decrypte the account an charge it in the struct
 void discharge_account(Account acc);        //save the .json and .csv, crypt it and free pointeur
