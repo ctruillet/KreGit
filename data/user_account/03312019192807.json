@@ -5,6 +5,6 @@
         "firstname": "admin",
         "name": "admin",
         "pwd": "456b7016a916a4b178dd72b947c152b7",
-        "List_account": "[]"
+        "List_account": []
     }
 }

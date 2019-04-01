@@ -9,7 +9,7 @@
 
 /*
 * Clement Truillet 
-* Derniere modification : 26/03/2019
+* Derniere modification : 31/03/2019
 */
 
 //Display title
@@ -22,10 +22,10 @@ void end();
 void info();
 
 //Connect
-int connect(User_account ua, int * isConnect);
+int connect(User_account ua, int * isConnect, int * isAdmin);
 
 //Deconnect
-void deconnect(int * isConnect, User_account ua);
+void deconnect(int * isConnect, int * isAdmin, User_account ua);
 
 //Create a new account
 void newAccount_form(User_account ua);

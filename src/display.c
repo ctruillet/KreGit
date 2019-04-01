@@ -24,7 +24,7 @@
 
 /*
 * Clement Truillet 
-* Derniere modification : 28/03/2019
+* Derniere modification : 31/03/2019
 */
 
 //Display title
@@ -57,7 +57,7 @@ void end(){
 }
 
 //Connect
-int connect(User_account ua, int * isConnect){
+int connect(User_account ua, int * isConnect, int * isAdmin){
     char name[16];
     char firstname[16];
     char pwd[16];
@@ -84,7 +84,7 @@ int connect(User_account ua, int * isConnect){
     if (fichier != NULL){
         while ((isEquals!=2) && (fgets(chaine, 128, fichier) != NULL)){   
             isEquals=0;
-            nameF = strtok(chaine, " ");
+            nameF = strtok(chaine, ",");
             if(strcmp(name,nameF)==0){
                 isEquals=1;
             }
@@ -92,7 +92,7 @@ int connect(User_account ua, int * isConnect){
             for(int i=0; ((i<=2) && (isEquals!=0)); i++){
                 switch(i){
                     case 0:
-                        firstnameF=strtok(NULL, " ");
+                        firstnameF=strtok(NULL, ",");
                         if(strcmp(firstname,firstnameF)!=0){
                             isEquals=0;
                         }
@@ -106,7 +106,7 @@ int connect(User_account ua, int * isConnect){
                         }
                         break;
                     case 1:
-                        jsonF = strtok(NULL, " ");
+                        jsonF = strtok(NULL, ",");
                         isEquals=2;
 
                         break;
@@ -121,7 +121,7 @@ int connect(User_account ua, int * isConnect){
     if(isEquals==2){
       //printf("\n\nName : -%s-\nFisrtname : -%s-\nPassword : -%s-\nJSON : -%s-\n",nameF, firstnameF, pwdF, jsonF);
       (*isConnect)=1;
-      ua = charge_user_account(jsonF);
+      ua = charge_user_account(jsonF, isAdmin);
       return 5;
     }else{
       printf("ERREUR");
@@ -140,8 +140,9 @@ int connect(User_account ua, int * isConnect){
 }
 
 //Deconnect
-void deconnect(int * isConnect, User_account ua){
+void deconnect(int * isConnect, int * isAdmin, User_account ua){
     (*isConnect) = 0;
+    (*isAdmin) = 0;
     free(ua);
 }
 

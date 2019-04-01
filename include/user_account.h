@@ -1,6 +1,6 @@
 /*
 * Valentin Frydrychowski 
-* Derniere modification : 07/03/2019
+* Derniere modification : 31/03/2019
 */
 
 #include <stdbool.h>
@@ -15,7 +15,7 @@ typedef  struct user_account_s *User_account;
 User_account create_user_account(int admin, char *name, char *firstname, char *pwd, Account a);     //create the json, fill it and return it
 char *create_user_ID(char *name);         //create ID whit name and time of creation
 void delete_user_account(User_account uacc);
-User_account charge_user_account(char * json);
+User_account charge_user_account(char * json, int * isAdmin);
 void discharge_user_account(User_account uacc);
 
 bool is_admin(User_account uacc);

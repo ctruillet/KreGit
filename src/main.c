@@ -39,7 +39,7 @@ enum{
 
 /*
 * Clement Truillet 
-* Derniere modification : 28/03/2019
+* Derniere modification : 31/03/2019
 */
 
 int main(int argc, char *argv[]){
@@ -75,7 +75,7 @@ int main(int argc, char *argv[]){
 
             case CONNECT:                       
                 w_log(logF,"Connect Page - FSM = 1");
-                FSM = connect(ua,&isConnect);
+                FSM = connect(ua,&isConnect,&isAdmin);
                 break;
 
             case CREATE_USER:                     

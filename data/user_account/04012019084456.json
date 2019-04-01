@@ -1,0 +1,13 @@
+{
+    "user_account": {
+        "ID": "04012019084456",
+        "admin": 0,
+        "firstname": "azerty",
+        "name": "azerty",
+        "pwd": "35dfcb74b0217ac005c3a209e05e7f25",
+        "List_account": [
+            "email@example.com",
+            "email2@example.com"
+        ]
+    }
+}
