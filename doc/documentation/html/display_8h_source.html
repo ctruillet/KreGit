@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.15"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kregit:  Fichier source de include/display.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(initResizable);
+/* @license-end */</script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="Perceval.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Kregit
+   &#160;<span id="projectnumber">0.6</span>
+   </div>
+   <div id="projectbrief">La nouvelle banque of digital innovation à base de blockchain et de IA-deep-machine learning alimenté en IPv12</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.15 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('display_8h_source.html','');});
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">display.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="display_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div><div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="display_8h.html#aa3266a59a09efee8267e2df891518555">   11</a></span>&#160;<span class="preprocessor">#define __DISPLAY_H__</span></div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#ifndef __USER_ACCOUNT_H__</span></div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">    #include &quot;../include/user_account.h&quot;</span></div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#endif</span></div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keywordtype">void</span> <a class="code" href="display_8h.html#a55528ce3502c1ba485e04f6cf3a4a968">title</a>();</div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keywordtype">void</span> <a class="code" href="display_8h.html#aaf81d3fdaf258088d7692fa70cece087">end</a>();</div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keywordtype">void</span> <a class="code" href="display_8h.html#ac1b66fe77173de9e5e8542b2823d6071">info</a>();</div><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="keywordtype">int</span> <a class="code" href="display_8h.html#a389477df7e5766ebe5daa2c7c66239da">connect</a>(<a class="code" href="structuser__account__s.html">User_account</a> ua, <span class="keywordtype">int</span> * isConnect, <span class="keywordtype">int</span> * isAdmin);</div><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="keywordtype">void</span> <a class="code" href="display_8h.html#a9377f3676854dcac5a8c3a9ab000635a">deconnect</a>(<span class="keywordtype">int</span> * isConnect, <span class="keywordtype">int</span> * isAdmin, <a class="code" href="structuser__account__s.html">User_account</a> ua);</div><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="keywordtype">void</span> <a class="code" href="display_8h.html#a862a8851b46dd811d3c51947403bd942">newAccount_form</a>(<a class="code" href="structuser__account__s.html">User_account</a> ua);</div><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div><div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<a class="code" href="structuser__account__s.html">User_account</a> <a class="code" href="display_8h.html#aaa99ddfc0582720fd4dc2692793c3b8a">newUser_form</a>(<a class="code" href="structuser__account__s.html">User_account</a> ua, <span class="keywordtype">int</span> * isConnect);</div><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div><div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="keywordtype">int</span> <a class="code" href="display_8h.html#a7b149749acdce7a3608e4dc00eabd483">displayListAccount</a>(<a class="code" href="structuser__account__s.html">User_account</a> ua, <span class="keywordtype">int</span> <a class="code" href="main_8c.html#a19969595b0fd3fb650197a21ee5be556">FSM</a>);</div><div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div><div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="keywordtype">int</span> <a class="code" href="display_8h.html#a67fbe5e336ff5977f725d8f2e75a4851">nav</a>(<span class="keywordtype">int</span> <a class="code" href="main_8c.html#a19969595b0fd3fb650197a21ee5be556">FSM</a>, <span class="keywordtype">int</span> * isConnect, <span class="keywordtype">int</span> * isAdmin);</div><div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div><div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="keywordtype">void</span> <a class="code" href="display_8h.html#af7f427282c9faedb9d975de1f08aafc3">displayAccount</a>(<a class="code" href="structaccount__s.html">Account</a> a);</div><div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;</div><div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="keywordtype">void</span> <a class="code" href="display_8h.html#a7e15c8e2885871839fc2b820dfbdb4ce">error</a>();</div><div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;</div><div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="keywordtype">void</span> <a class="code" href="display_8h.html#a0fc2aa6e611b55f1615c7cb77b0d9c53">kaamelott</a>();</div><div class="ttc" id="display_8h_html_aaa99ddfc0582720fd4dc2692793c3b8a"><div class="ttname"><a href="display_8h.html#aaa99ddfc0582720fd4dc2692793c3b8a">newUser_form</a></div><div class="ttdeci">User_account newUser_form(User_account ua, int *isConnect)</div><div class="ttdoc">Lance le formulaire de création de nouvel utilisateur et le connecte.</div><div class="ttdef"><b>Definition:</b> <a href="display_8c_source.html#l00170">display.c:170</a></div></div>
+<div class="ttc" id="main_8c_html_a19969595b0fd3fb650197a21ee5be556"><div class="ttname"><a href="main_8c.html#a19969595b0fd3fb650197a21ee5be556">FSM</a></div><div class="ttdeci">enum @0 FSM</div><div class="ttdoc">Machine a état.</div></div>
+<div class="ttc" id="display_8h_html_a9377f3676854dcac5a8c3a9ab000635a"><div class="ttname"><a href="display_8h.html#a9377f3676854dcac5a8c3a9ab000635a">deconnect</a></div><div class="ttdeci">void deconnect(int *isConnect, int *isAdmin, User_account ua)</div><div class="ttdoc">Deconnecte l'utilisateur.</div><div class="ttdef"><b>Definition:</b> <a href="display_8c_source.html#l00154">display.c:154</a></div></div>
+<div class="ttc" id="display_8h_html_ac1b66fe77173de9e5e8542b2823d6071"><div class="ttname"><a href="display_8h.html#ac1b66fe77173de9e5e8542b2823d6071">info</a></div><div class="ttdeci">void info()</div><div class="ttdoc">Ecrit les informations sur KreGit, la banque multimondiale MarkDeepDownLearning.</div><div class="ttdef"><b>Definition:</b> <a href="display_8c_source.html#l00397">display.c:397</a></div></div>
+<div class="ttc" id="display_8h_html_a67fbe5e336ff5977f725d8f2e75a4851"><div class="ttname"><a href="display_8h.html#a67fbe5e336ff5977f725d8f2e75a4851">nav</a></div><div class="ttdeci">int nav(int FSM, int *isConnect, int *isAdmin)</div><div class="ttdoc">Gere la navigation entre les pages de KreGit la nouvelle banque amélioré par réseau de neurone 4G.</div><div class="ttdef"><b>Definition:</b> <a href="display_8c_source.html#l00229">display.c:229</a></div></div>
+<div class="ttc" id="structuser__account__s_html"><div class="ttname"><a href="structuser__account__s.html">user_account_s</a></div><div class="ttdoc">Structure user_account.</div><div class="ttdef"><b>Definition:</b> <a href="user__account_8c_source.html#l00035">user_account.c:35</a></div></div>
+<div class="ttc" id="display_8h_html_af7f427282c9faedb9d975de1f08aafc3"><div class="ttname"><a href="display_8h.html#af7f427282c9faedb9d975de1f08aafc3">displayAccount</a></div><div class="ttdeci">void displayAccount(Account a)</div><div class="ttdoc">Affiche un compte.</div><div class="ttdef"><b>Definition:</b> <a href="display_8c_source.html#l00379">display.c:379</a></div></div>
+<div class="ttc" id="display_8h_html_a7e15c8e2885871839fc2b820dfbdb4ce"><div class="ttname"><a href="display_8h.html#a7e15c8e2885871839fc2b820dfbdb4ce">error</a></div><div class="ttdeci">void error()</div><div class="ttdoc">Affiche une erreur.</div><div class="ttdef"><b>Definition:</b> <a href="display_8c_source.html#l00388">display.c:388</a></div></div>
+<div class="ttc" id="display_8h_html_a55528ce3502c1ba485e04f6cf3a4a968"><div class="ttname"><a href="display_8h.html#a55528ce3502c1ba485e04f6cf3a4a968">title</a></div><div class="ttdeci">void title()</div><div class="ttdoc">Ecrit &quot;KreGit&quot; (en ascii-art)</div><div class="ttdef"><b>Definition:</b> <a href="display_8c_source.html#l00042">display.c:42</a></div></div>
+<div class="ttc" id="display_8h_html_a389477df7e5766ebe5daa2c7c66239da"><div class="ttname"><a href="display_8h.html#a389477df7e5766ebe5daa2c7c66239da">connect</a></div><div class="ttdeci">int connect(User_account ua, int *isConnect, int *isAdmin)</div><div class="ttdoc">Lance le formulaire de connection.</div><div class="ttdef"><b>Definition:</b> <a href="display_8c_source.html#l00071">display.c:71</a></div></div>
+<div class="ttc" id="display_8h_html_aaf81d3fdaf258088d7692fa70cece087"><div class="ttname"><a href="display_8h.html#aaf81d3fdaf258088d7692fa70cece087">end</a></div><div class="ttdeci">void end()</div><div class="ttdoc">Ecrit &quot;Goodbye&quot; (en ascii-art)</div><div class="ttdef"><b>Definition:</b> <a href="display_8c_source.html#l00059">display.c:59</a></div></div>
+<div class="ttc" id="structaccount__s_html"><div class="ttname"><a href="structaccount__s.html">account_s</a></div><div class="ttdoc">Structure account_s.</div><div class="ttdef"><b>Definition:</b> <a href="account_8c_source.html#l00027">account.c:27</a></div></div>
+<div class="ttc" id="display_8h_html_a862a8851b46dd811d3c51947403bd942"><div class="ttname"><a href="display_8h.html#a862a8851b46dd811d3c51947403bd942">newAccount_form</a></div><div class="ttdeci">void newAccount_form(User_account ua)</div><div class="ttdoc">Lance le formulaire de création de compte.</div><div class="ttdef"><b>Definition:</b> <a href="display_8c_source.html#l00161">display.c:161</a></div></div>
+<div class="ttc" id="display_8h_html_a0fc2aa6e611b55f1615c7cb77b0d9c53"><div class="ttname"><a href="display_8h.html#a0fc2aa6e611b55f1615c7cb77b0d9c53">kaamelott</a></div><div class="ttdeci">void kaamelott()</div><div class="ttdoc">Genere et affiche une citation de Kaamelott.</div><div class="ttdef"><b>Definition:</b> <a href="display_8c_source.html#l00416">display.c:416</a></div></div>
+<div class="ttc" id="display_8h_html_a7b149749acdce7a3608e4dc00eabd483"><div class="ttname"><a href="display_8h.html#a7b149749acdce7a3608e4dc00eabd483">displayListAccount</a></div><div class="ttdeci">int displayListAccount(User_account ua, int FSM)</div><div class="ttdoc">Affiche tout les comptes d'un utilisateur.</div><div class="ttdef"><b>Definition:</b> <a href="display_8c_source.html#l00220">display.c:220</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="display_8h.html">display.h</a></li>
+    <li class="footer">Généré par
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.15 </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,301 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.15"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kregit: Référence du fichier src/main.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(initResizable);
+/* @license-end */</script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="Perceval.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Kregit
+   &#160;<span id="projectnumber">0.6</span>
+   </div>
+   <div id="projectbrief">La nouvelle banque of digital innovation à base de blockchain et de IA-deep-machine learning alimenté en IPv12</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.15 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('main_8c.html','');});
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#define-members">Macros</a> &#124;
+<a href="#enum-members">Énumérations</a> &#124;
+<a href="#func-members">Fonctions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
+  <div class="headertitle">
+<div class="title">Référence du fichier main.c</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Fichier principal.  
+<a href="#details">Plus de détails...</a></p>
+<div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;time.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="log_8h_source.html">../include/log.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="display_8h_source.html">../include/display.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="user__account_8h_source.html">../include/user_account.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="account_8h_source.html">../include/account.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="encrypt_8h_source.html">../include/encrypt.h</a>&quot;</code><br />
+</div>
+<p><a href="main_8c_source.html">Aller au code source de ce fichier.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:af56c9199d291aba7cb1a5433fb44ecd5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#af56c9199d291aba7cb1a5433fb44ecd5">CLEAR_STDIN</a>&#160;&#160;&#160;{ int c; while((c = getchar()) != '\n' &amp;&amp; c != EOF); }</td></tr>
+<tr class="memdesc:af56c9199d291aba7cb1a5433fb44ecd5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vide le buffer stdin.  <a href="#af56c9199d291aba7cb1a5433fb44ecd5">Plus de détails...</a><br /></td></tr>
+<tr class="separator:af56c9199d291aba7cb1a5433fb44ecd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e3662e10fcd0bb440a524366d7fbc27"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a7e3662e10fcd0bb440a524366d7fbc27">color</a>(param)&#160;&#160;&#160;printf(&quot;\033[%sm&quot;,param)</td></tr>
+<tr class="memdesc:a7e3662e10fcd0bb440a524366d7fbc27"><td class="mdescLeft">&#160;</td><td class="mdescRight">Change la couleur d'ecriture sur stdout.  <a href="#a7e3662e10fcd0bb440a524366d7fbc27">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a7e3662e10fcd0bb440a524366d7fbc27"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Énumérations</h2></td></tr>
+<tr class="memitem:a06fc87d81c62e9abb8790b6e5713c55b"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
+&#160;&#160;<a class="el" href="main_8c.html#a06fc87d81c62e9abb8790b6e5713c55ba0a041e18d712f7b239eac5375daf4a05">TITLE</a>, 
+<a class="el" href="main_8c.html#a06fc87d81c62e9abb8790b6e5713c55ba20391dd2915a0e64343d24c2f2e40b95">CONNECT</a>, 
+<a class="el" href="main_8c.html#a06fc87d81c62e9abb8790b6e5713c55baa3f37c7f7b5e86d18ef2c916274bbe82">CREATE_USER</a>, 
+<a class="el" href="main_8c.html#a06fc87d81c62e9abb8790b6e5713c55baecb7078aa5dcb5fd4dcc5e827c240d62">CREATE_ACCOUNT</a>, 
+<br />
+&#160;&#160;<a class="el" href="main_8c.html#a06fc87d81c62e9abb8790b6e5713c55ba3228e792244f936584abc6e3d7542d2c">ADMIN</a>, 
+<a class="el" href="main_8c.html#a06fc87d81c62e9abb8790b6e5713c55ba50aa59cff9478ba0494e81fee66da287">CUSTOMER</a>, 
+<a class="el" href="main_8c.html#a06fc87d81c62e9abb8790b6e5713c55ba5208019a9eb85844cfbb55be38939361">SHOW_LISTACCOUNT</a>, 
+<a class="el" href="main_8c.html#a06fc87d81c62e9abb8790b6e5713c55ba3a3768db6d2b793945b4f859a45b0957">SHOW_ACCOUNT</a>, 
+<br />
+&#160;&#160;<a class="el" href="main_8c.html#a06fc87d81c62e9abb8790b6e5713c55bac1bee29cc4915cda4b613b8b95330663">TRANSFER</a>, 
+<a class="el" href="main_8c.html#a06fc87d81c62e9abb8790b6e5713c55ba4a0c839fca002eb2b7b930fefeef657b">CHANGE_PWD</a>, 
+<a class="el" href="main_8c.html#a06fc87d81c62e9abb8790b6e5713c55ba748005382152808a72b1a9177d9dc806">INFO</a>, 
+<a class="el" href="main_8c.html#a06fc87d81c62e9abb8790b6e5713c55badc6f24fd6915a3f2786a1b7045406924">END</a>, 
+<br />
+&#160;&#160;<a class="el" href="main_8c.html#a06fc87d81c62e9abb8790b6e5713c55baf2fe61cb21743cafa90b1f38d189912a">KAAMELOT</a> = 42
+<br />
+ }</td></tr>
+<tr class="memdesc:a06fc87d81c62e9abb8790b6e5713c55b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Machine a état.  <a href="main_8c.html#a06fc87d81c62e9abb8790b6e5713c55b">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a06fc87d81c62e9abb8790b6e5713c55b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Fonctions</h2></td></tr>
+<tr class="memitem:a0ddf1224851353fc92bfbff6f499fa97"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a0ddf1224851353fc92bfbff6f499fa97">main</a> (int argc, char *argv[])</td></tr>
+<tr class="separator:a0ddf1224851353fc92bfbff6f499fa97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a19969595b0fd3fb650197a21ee5be556"><td class="memItemLeft" align="right" valign="top">enum  { ... } &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a19969595b0fd3fb650197a21ee5be556">FSM</a></td></tr>
+<tr class="memdesc:a19969595b0fd3fb650197a21ee5be556"><td class="mdescLeft">&#160;</td><td class="mdescRight">Machine a état.  <a href="#a19969595b0fd3fb650197a21ee5be556">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a19969595b0fd3fb650197a21ee5be556"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
+<div class="textblock"><p>Fichier principal. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Clement Truillet (<a href="#" onclick="location.href='mai'+'lto:'+'cle'+'me'+'nt.'+'tr'+'uil'+'le'+'t@u'+'ni'+'v-t'+'ls'+'e3.'+'fr'; return false;">cleme<span style="display: none;">.nosp@m.</span>nt.t<span style="display: none;">.nosp@m.</span>ruill<span style="display: none;">.nosp@m.</span>et@u<span style="display: none;">.nosp@m.</span>niv-t<span style="display: none;">.nosp@m.</span>lse3<span style="display: none;">.nosp@m.</span>.fr</a>) </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>0.1 </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2019-04-01</dd></dl>
+<dl class="section copyright"><dt>Copyright</dt><dd>Copyright (c) 2019 </dd></dl>
+
+<p class="definition">Définition dans le fichier <a class="el" href="main_8c_source.html">main.c</a>.</p>
+</div><h2 class="groupheader">Documentation des macros</h2>
+<a id="af56c9199d291aba7cb1a5433fb44ecd5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af56c9199d291aba7cb1a5433fb44ecd5">&#9670;&nbsp;</a></span>CLEAR_STDIN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CLEAR_STDIN&#160;&#160;&#160;{ int c; while((c = getchar()) != '\n' &amp;&amp; c != EOF); }</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Vide le buffer stdin. </p>
+
+<p class="definition">Définition à la ligne <a class="el" href="main_8c_source.html#l00026">26</a> du fichier <a class="el" href="main_8c_source.html">main.c</a>.</p>
+
+</div>
+</div>
+<a id="a7e3662e10fcd0bb440a524366d7fbc27"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e3662e10fcd0bb440a524366d7fbc27">&#9670;&nbsp;</a></span>color</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define color</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">param</td><td>)</td>
+          <td>&#160;&#160;&#160;printf(&quot;\033[%sm&quot;,param)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Change la couleur d'ecriture sur stdout. </p>
+
+<p class="definition">Définition à la ligne <a class="el" href="main_8c_source.html#l00033">33</a> du fichier <a class="el" href="main_8c_source.html">main.c</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Documentation du type de l'énumération</h2>
+<a id="a06fc87d81c62e9abb8790b6e5713c55b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a06fc87d81c62e9abb8790b6e5713c55b">&#9670;&nbsp;</a></span>anonymous enum</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">anonymous enum</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Machine a état. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Valeurs énumérées</th></tr><tr><td class="fieldname"><a id="a06fc87d81c62e9abb8790b6e5713c55ba0a041e18d712f7b239eac5375daf4a05"></a>TITLE&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a06fc87d81c62e9abb8790b6e5713c55ba20391dd2915a0e64343d24c2f2e40b95"></a>CONNECT&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a06fc87d81c62e9abb8790b6e5713c55baa3f37c7f7b5e86d18ef2c916274bbe82"></a>CREATE_USER&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a06fc87d81c62e9abb8790b6e5713c55baecb7078aa5dcb5fd4dcc5e827c240d62"></a>CREATE_ACCOUNT&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a06fc87d81c62e9abb8790b6e5713c55ba3228e792244f936584abc6e3d7542d2c"></a>ADMIN&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a06fc87d81c62e9abb8790b6e5713c55ba50aa59cff9478ba0494e81fee66da287"></a>CUSTOMER&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a06fc87d81c62e9abb8790b6e5713c55ba5208019a9eb85844cfbb55be38939361"></a>SHOW_LISTACCOUNT&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a06fc87d81c62e9abb8790b6e5713c55ba3a3768db6d2b793945b4f859a45b0957"></a>SHOW_ACCOUNT&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a06fc87d81c62e9abb8790b6e5713c55bac1bee29cc4915cda4b613b8b95330663"></a>TRANSFER&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a06fc87d81c62e9abb8790b6e5713c55ba4a0c839fca002eb2b7b930fefeef657b"></a>CHANGE_PWD&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a06fc87d81c62e9abb8790b6e5713c55ba748005382152808a72b1a9177d9dc806"></a>INFO&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a06fc87d81c62e9abb8790b6e5713c55badc6f24fd6915a3f2786a1b7045406924"></a>END&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a06fc87d81c62e9abb8790b6e5713c55baf2fe61cb21743cafa90b1f38d189912a"></a>KAAMELOT&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+<p class="definition">Définition à la ligne <a class="el" href="main_8c_source.html#l00051">51</a> du fichier <a class="el" href="main_8c_source.html">main.c</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Documentation des fonctions</h2>
+<a id="a0ddf1224851353fc92bfbff6f499fa97"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ddf1224851353fc92bfbff6f499fa97">&#9670;&nbsp;</a></span>main()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int main </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>argc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>argv</em>[]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="main_8c_source.html#l00068">68</a> du fichier <a class="el" href="main_8c_source.html">main.c</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Documentation des variables</h2>
+<a id="a19969595b0fd3fb650197a21ee5be556"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a19969595b0fd3fb650197a21ee5be556">&#9670;&nbsp;</a></span>FSM</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum { ... }  FSM</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Machine a état. </p>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="main_8c.html">main.c</a></li>
+    <li class="footer">Généré par
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.15 </li>
+  </ul>
+</div>
+</body>
+</html>

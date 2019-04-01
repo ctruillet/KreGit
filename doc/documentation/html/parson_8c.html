@@ -1,0 +1,3079 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.15"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kregit: Référence du fichier src/parson.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(initResizable);
+/* @license-end */</script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="Perceval.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Kregit
+   &#160;<span id="projectnumber">0.6</span>
+   </div>
+   <div id="projectbrief">La nouvelle banque of digital innovation à base de blockchain et de IA-deep-machine learning alimenté en IPv12</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.15 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('parson_8c.html','');});
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#define-members">Macros</a> &#124;
+<a href="#typedef-members">Définitions de type</a> &#124;
+<a href="#func-members">Fonctions</a>  </div>
+  <div class="headertitle">
+<div class="title">Référence du fichier parson.c</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Parson.  
+<a href="#details">Plus de détails...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="parson_8h_source.html">parson.h</a>&quot;</code><br />
+<code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
+<code>#include &lt;ctype.h&gt;</code><br />
+<code>#include &lt;math.h&gt;</code><br />
+<code>#include &lt;errno.h&gt;</code><br />
+</div>
+<p><a href="parson_8c_source.html">Aller au code source de ce fichier.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">union &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unionjson__value__value.html">json_value_value</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structjson__value__t.html">json_value_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structjson__object__t.html">json_object_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structjson__array__t.html">json_array_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a9c61175e049e412fa214d373674b1c68"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a9c61175e049e412fa214d373674b1c68">sscanf</a>&#160;&#160;&#160;THINK_TWICE_ABOUT_USING_SSCANF</td></tr>
+<tr class="separator:a9c61175e049e412fa214d373674b1c68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e8ccd661b425d5010a8d896117d4023"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a6e8ccd661b425d5010a8d896117d4023">STARTING_CAPACITY</a>&#160;&#160;&#160;16</td></tr>
+<tr class="separator:a6e8ccd661b425d5010a8d896117d4023"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a975fbcb7495d702b27dbbdb9fb149fa1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a975fbcb7495d702b27dbbdb9fb149fa1">MAX_NESTING</a>&#160;&#160;&#160;2048</td></tr>
+<tr class="separator:a975fbcb7495d702b27dbbdb9fb149fa1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3336588f9544e5e7d91549f5df5547a5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a3336588f9544e5e7d91549f5df5547a5">FLOAT_FORMAT</a>&#160;&#160;&#160;&quot;%1.17g&quot; /* do not increase precision without incresing NUM_BUF_SIZE */</td></tr>
+<tr class="separator:a3336588f9544e5e7d91549f5df5547a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a13a865fd9c733c2cfeb6f9bba1a479c6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a13a865fd9c733c2cfeb6f9bba1a479c6">NUM_BUF_SIZE</a>&#160;&#160;&#160;64 /* double printed with &quot;%1.17g&quot; shouldn't be longer than 25 bytes so let's be paranoid and use 64 */</td></tr>
+<tr class="separator:a13a865fd9c733c2cfeb6f9bba1a479c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4644341e60718dfb88eaa20a29e2979"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#ad4644341e60718dfb88eaa20a29e2979">SIZEOF_TOKEN</a>(a)&#160;&#160;&#160;(sizeof(a) - 1)</td></tr>
+<tr class="separator:ad4644341e60718dfb88eaa20a29e2979"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f71b0b0e28703925b516e5212a985f6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a0f71b0b0e28703925b516e5212a985f6">SKIP_CHAR</a>(str)&#160;&#160;&#160;((*str)++)</td></tr>
+<tr class="separator:a0f71b0b0e28703925b516e5212a985f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39541f12f48d7f63c165301cc0888f91"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a39541f12f48d7f63c165301cc0888f91">SKIP_WHITESPACES</a>(str)&#160;&#160;&#160;while (isspace((unsigned char)(**str))) { <a class="el" href="parson_8c.html#a0f71b0b0e28703925b516e5212a985f6">SKIP_CHAR</a>(str); }</td></tr>
+<tr class="separator:a39541f12f48d7f63c165301cc0888f91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa99ec4acc4ecb2dc3c2d05da15d0e3f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#afa99ec4acc4ecb2dc3c2d05da15d0e3f">MAX</a>(a,  b)&#160;&#160;&#160;((a) &gt; (b) ? (a) : (b))</td></tr>
+<tr class="separator:afa99ec4acc4ecb2dc3c2d05da15d0e3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1442218b676f983b5f73daca3faa9449"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a1442218b676f983b5f73daca3faa9449">IS_NUMBER_INVALID</a>(x)&#160;&#160;&#160;(((x) * 0.0) != 0.0)</td></tr>
+<tr class="separator:a1442218b676f983b5f73daca3faa9449"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa2ed8cc468393251c47811ce8338d23"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#aaa2ed8cc468393251c47811ce8338d23">IS_CONT</a>(b)&#160;&#160;&#160;(((unsigned char)(b) &amp; 0xC0) == 0x80) /* is utf-8 continuation byte */</td></tr>
+<tr class="separator:aaa2ed8cc468393251c47811ce8338d23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb7cc56e38fce2aaeaf23238ab50eb5c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#abb7cc56e38fce2aaeaf23238ab50eb5c">APPEND_STRING</a>(str)</td></tr>
+<tr class="separator:abb7cc56e38fce2aaeaf23238ab50eb5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8446c4d4b3471bf0f1215accae0745a8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a8446c4d4b3471bf0f1215accae0745a8">APPEND_INDENT</a>(level)</td></tr>
+<tr class="separator:a8446c4d4b3471bf0f1215accae0745a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Définitions de type</h2></td></tr>
+<tr class="memitem:aef51e45ef64657b4f22fe3ffe678b6ac"><td class="memItemLeft" align="right" valign="top">typedef union <a class="el" href="unionjson__value__value.html">json_value_value</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#aef51e45ef64657b4f22fe3ffe678b6ac">JSON_Value_Value</a></td></tr>
+<tr class="separator:aef51e45ef64657b4f22fe3ffe678b6ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Fonctions</h2></td></tr>
+<tr class="memitem:ac8261ddd04fa96f8978f8eb757c08a1b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#ac8261ddd04fa96f8978f8eb757c08a1b">json_parse_file</a> (const char *filename)</td></tr>
+<tr class="separator:ac8261ddd04fa96f8978f8eb757c08a1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03455169b4320f309fe7a02592d27bf6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a03455169b4320f309fe7a02592d27bf6">json_parse_file_with_comments</a> (const char *filename)</td></tr>
+<tr class="separator:a03455169b4320f309fe7a02592d27bf6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6fb8539fa74c1bce92e3bae010f16eca"><td class="memItemLeft" align="right" valign="top"><a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a6fb8539fa74c1bce92e3bae010f16eca">json_parse_string</a> (const char *string)</td></tr>
+<tr class="separator:a6fb8539fa74c1bce92e3bae010f16eca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7321fa2c89cc76edc6dcab55344def43"><td class="memItemLeft" align="right" valign="top"><a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a7321fa2c89cc76edc6dcab55344def43">json_parse_string_with_comments</a> (const char *string)</td></tr>
+<tr class="separator:a7321fa2c89cc76edc6dcab55344def43"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30c8d5206b84bfce34b387c1782b0749"><td class="memItemLeft" align="right" valign="top"><a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a30c8d5206b84bfce34b387c1782b0749">json_object_get_value</a> (const <a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *object, const char *name)</td></tr>
+<tr class="separator:a30c8d5206b84bfce34b387c1782b0749"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac569318a77fa66a7a688caa0b79c8b35"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#ac569318a77fa66a7a688caa0b79c8b35">json_object_get_string</a> (const <a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *object, const char *name)</td></tr>
+<tr class="separator:ac569318a77fa66a7a688caa0b79c8b35"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac6d8779c183fb9cd58e3c57ba8d7ee21"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#ac6d8779c183fb9cd58e3c57ba8d7ee21">json_object_get_number</a> (const <a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *object, const char *name)</td></tr>
+<tr class="separator:ac6d8779c183fb9cd58e3c57ba8d7ee21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b9cd565ffbfb253491b7edccaf5412c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a4b9cd565ffbfb253491b7edccaf5412c">json_object_get_object</a> (const <a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *object, const char *name)</td></tr>
+<tr class="separator:a4b9cd565ffbfb253491b7edccaf5412c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab813650ef1f9f220c1b9829c1b8b9ffc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="parson_8h.html#a65f383a4ad17a6872ee422c28ff4ab66">JSON_Array</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#ab813650ef1f9f220c1b9829c1b8b9ffc">json_object_get_array</a> (const <a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *object, const char *name)</td></tr>
+<tr class="separator:ab813650ef1f9f220c1b9829c1b8b9ffc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a080a1fb2f95ac9ba3995c096a5339406"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a080a1fb2f95ac9ba3995c096a5339406">json_object_get_boolean</a> (const <a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *object, const char *name)</td></tr>
+<tr class="separator:a080a1fb2f95ac9ba3995c096a5339406"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c7be28792735a26ab579401b112c958"><td class="memItemLeft" align="right" valign="top"><a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a5c7be28792735a26ab579401b112c958">json_object_dotget_value</a> (const <a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *object, const char *name)</td></tr>
+<tr class="separator:a5c7be28792735a26ab579401b112c958"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abaf1aac10dee1aba0e433357cf2fbe64"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#abaf1aac10dee1aba0e433357cf2fbe64">json_object_dotget_string</a> (const <a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *object, const char *name)</td></tr>
+<tr class="separator:abaf1aac10dee1aba0e433357cf2fbe64"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac782225cbe9293782d006140f78daac2"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#ac782225cbe9293782d006140f78daac2">json_object_dotget_number</a> (const <a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *object, const char *name)</td></tr>
+<tr class="separator:ac782225cbe9293782d006140f78daac2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04e36b2b48705c9d4a6836f0fc8b7d39"><td class="memItemLeft" align="right" valign="top"><a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a04e36b2b48705c9d4a6836f0fc8b7d39">json_object_dotget_object</a> (const <a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *object, const char *name)</td></tr>
+<tr class="separator:a04e36b2b48705c9d4a6836f0fc8b7d39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee11ed11437f241eddac211da0bfcc9e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="parson_8h.html#a65f383a4ad17a6872ee422c28ff4ab66">JSON_Array</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#aee11ed11437f241eddac211da0bfcc9e">json_object_dotget_array</a> (const <a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *object, const char *name)</td></tr>
+<tr class="separator:aee11ed11437f241eddac211da0bfcc9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ffd2a8e2e14b24d7a2d02a700507748"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a2ffd2a8e2e14b24d7a2d02a700507748">json_object_dotget_boolean</a> (const <a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *object, const char *name)</td></tr>
+<tr class="separator:a2ffd2a8e2e14b24d7a2d02a700507748"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e804d8e5c9e273fbb1b04cee885fb4d"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a6e804d8e5c9e273fbb1b04cee885fb4d">json_object_get_count</a> (const <a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *object)</td></tr>
+<tr class="separator:a6e804d8e5c9e273fbb1b04cee885fb4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8b152ba6ee225dd097d6dd27a4a575a"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#ae8b152ba6ee225dd097d6dd27a4a575a">json_object_get_name</a> (const <a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *object, size_t index)</td></tr>
+<tr class="separator:ae8b152ba6ee225dd097d6dd27a4a575a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77586a21bb63bb1304c694962b0b3041"><td class="memItemLeft" align="right" valign="top"><a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a77586a21bb63bb1304c694962b0b3041">json_object_get_value_at</a> (const <a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *object, size_t index)</td></tr>
+<tr class="separator:a77586a21bb63bb1304c694962b0b3041"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52de182b44bd820304461439670d1ac6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a52de182b44bd820304461439670d1ac6">json_object_get_wrapping_value</a> (const <a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *object)</td></tr>
+<tr class="separator:a52de182b44bd820304461439670d1ac6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8cbdedc509113a21f3c348f4b1f1f7f8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a8cbdedc509113a21f3c348f4b1f1f7f8">json_object_has_value</a> (const <a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *object, const char *name)</td></tr>
+<tr class="separator:a8cbdedc509113a21f3c348f4b1f1f7f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39e904c031cd65a901ecf27dd3a856d4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a39e904c031cd65a901ecf27dd3a856d4">json_object_has_value_of_type</a> (const <a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *object, const char *name, <a class="el" href="parson_8h.html#a44cf81f85e0d922e18ff42ba96b9add1">JSON_Value_Type</a> type)</td></tr>
+<tr class="separator:a39e904c031cd65a901ecf27dd3a856d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8180fb05845003341554fae35c1d85d2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a8180fb05845003341554fae35c1d85d2">json_object_dothas_value</a> (const <a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *object, const char *name)</td></tr>
+<tr class="separator:a8180fb05845003341554fae35c1d85d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a603ccdeef1b2dd19c56850b8ec25774e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a603ccdeef1b2dd19c56850b8ec25774e">json_object_dothas_value_of_type</a> (const <a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *object, const char *name, <a class="el" href="parson_8h.html#a44cf81f85e0d922e18ff42ba96b9add1">JSON_Value_Type</a> type)</td></tr>
+<tr class="separator:a603ccdeef1b2dd19c56850b8ec25774e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b2f37051066cbd5e824c73781c08e72"><td class="memItemLeft" align="right" valign="top"><a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a0b2f37051066cbd5e824c73781c08e72">json_array_get_value</a> (const <a class="el" href="parson_8h.html#a65f383a4ad17a6872ee422c28ff4ab66">JSON_Array</a> *array, size_t index)</td></tr>
+<tr class="separator:a0b2f37051066cbd5e824c73781c08e72"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4374acb16d347466a517866f0ddc65da"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a4374acb16d347466a517866f0ddc65da">json_array_get_string</a> (const <a class="el" href="parson_8h.html#a65f383a4ad17a6872ee422c28ff4ab66">JSON_Array</a> *array, size_t index)</td></tr>
+<tr class="separator:a4374acb16d347466a517866f0ddc65da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d712bcec84295ecc5c391dbcd20ba6e"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a3d712bcec84295ecc5c391dbcd20ba6e">json_array_get_number</a> (const <a class="el" href="parson_8h.html#a65f383a4ad17a6872ee422c28ff4ab66">JSON_Array</a> *array, size_t index)</td></tr>
+<tr class="separator:a3d712bcec84295ecc5c391dbcd20ba6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a166dadcea50cf7388b96f7990a9a86c1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a166dadcea50cf7388b96f7990a9a86c1">json_array_get_object</a> (const <a class="el" href="parson_8h.html#a65f383a4ad17a6872ee422c28ff4ab66">JSON_Array</a> *array, size_t index)</td></tr>
+<tr class="separator:a166dadcea50cf7388b96f7990a9a86c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0061ea0a4bf885dd801d65b75548ab9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="parson_8h.html#a65f383a4ad17a6872ee422c28ff4ab66">JSON_Array</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#aa0061ea0a4bf885dd801d65b75548ab9">json_array_get_array</a> (const <a class="el" href="parson_8h.html#a65f383a4ad17a6872ee422c28ff4ab66">JSON_Array</a> *array, size_t index)</td></tr>
+<tr class="separator:aa0061ea0a4bf885dd801d65b75548ab9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa2e74bca6589f73ab3bfb7ab502f44af"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#aa2e74bca6589f73ab3bfb7ab502f44af">json_array_get_boolean</a> (const <a class="el" href="parson_8h.html#a65f383a4ad17a6872ee422c28ff4ab66">JSON_Array</a> *array, size_t index)</td></tr>
+<tr class="separator:aa2e74bca6589f73ab3bfb7ab502f44af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3cdef5191eb478cae45757377e3e48f5"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a3cdef5191eb478cae45757377e3e48f5">json_array_get_count</a> (const <a class="el" href="parson_8h.html#a65f383a4ad17a6872ee422c28ff4ab66">JSON_Array</a> *array)</td></tr>
+<tr class="separator:a3cdef5191eb478cae45757377e3e48f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5d70761f170e80f9801594edfbb811a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#af5d70761f170e80f9801594edfbb811a">json_array_get_wrapping_value</a> (const <a class="el" href="parson_8h.html#a65f383a4ad17a6872ee422c28ff4ab66">JSON_Array</a> *array)</td></tr>
+<tr class="separator:af5d70761f170e80f9801594edfbb811a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9afd8b1fc34493d5dfddd84540818eb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="parson_8h.html#a44cf81f85e0d922e18ff42ba96b9add1">JSON_Value_Type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#ac9afd8b1fc34493d5dfddd84540818eb">json_value_get_type</a> (const <a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *value)</td></tr>
+<tr class="separator:ac9afd8b1fc34493d5dfddd84540818eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11a1512bdfa1352844cb22da9beef9b7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a11a1512bdfa1352844cb22da9beef9b7">json_value_get_object</a> (const <a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *value)</td></tr>
+<tr class="separator:a11a1512bdfa1352844cb22da9beef9b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a479cd87b98deb1467989174adcbcd149"><td class="memItemLeft" align="right" valign="top"><a class="el" href="parson_8h.html#a65f383a4ad17a6872ee422c28ff4ab66">JSON_Array</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a479cd87b98deb1467989174adcbcd149">json_value_get_array</a> (const <a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *value)</td></tr>
+<tr class="separator:a479cd87b98deb1467989174adcbcd149"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a350d04e05892e0724b8ce6fa094e6f4e"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a350d04e05892e0724b8ce6fa094e6f4e">json_value_get_string</a> (const <a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *value)</td></tr>
+<tr class="separator:a350d04e05892e0724b8ce6fa094e6f4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac66b65fac26ad83b9b90b3a40030e669"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#ac66b65fac26ad83b9b90b3a40030e669">json_value_get_number</a> (const <a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *value)</td></tr>
+<tr class="separator:ac66b65fac26ad83b9b90b3a40030e669"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8dbc1a82a4ec68592d3654543505244e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a8dbc1a82a4ec68592d3654543505244e">json_value_get_boolean</a> (const <a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *value)</td></tr>
+<tr class="separator:a8dbc1a82a4ec68592d3654543505244e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70adfc1c05ae75488416310b42d63a38"><td class="memItemLeft" align="right" valign="top"><a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a70adfc1c05ae75488416310b42d63a38">json_value_get_parent</a> (const <a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *value)</td></tr>
+<tr class="separator:a70adfc1c05ae75488416310b42d63a38"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2422931b5eea3c2401a86dea9c06b8c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#ab2422931b5eea3c2401a86dea9c06b8c">json_value_free</a> (<a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *value)</td></tr>
+<tr class="separator:ab2422931b5eea3c2401a86dea9c06b8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9616525aee8cbcd1726067eba56d1e6c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a9616525aee8cbcd1726067eba56d1e6c">json_value_init_object</a> (void)</td></tr>
+<tr class="separator:a9616525aee8cbcd1726067eba56d1e6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0af80116270caa33b7e08d831a321274"><td class="memItemLeft" align="right" valign="top"><a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a0af80116270caa33b7e08d831a321274">json_value_init_array</a> (void)</td></tr>
+<tr class="separator:a0af80116270caa33b7e08d831a321274"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a273758bc780525f9ae0b95562c76596f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a273758bc780525f9ae0b95562c76596f">json_value_init_string</a> (const char *string)</td></tr>
+<tr class="separator:a273758bc780525f9ae0b95562c76596f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af76621e07fb3eae92512b7647b05cbe0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#af76621e07fb3eae92512b7647b05cbe0">json_value_init_number</a> (double number)</td></tr>
+<tr class="separator:af76621e07fb3eae92512b7647b05cbe0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adaf14e5bbdadc2c899c9a2216fd115f7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#adaf14e5bbdadc2c899c9a2216fd115f7">json_value_init_boolean</a> (int boolean)</td></tr>
+<tr class="separator:adaf14e5bbdadc2c899c9a2216fd115f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0bc1e5d5298f7c85a1673075a18ec8b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#aa0bc1e5d5298f7c85a1673075a18ec8b">json_value_init_null</a> (void)</td></tr>
+<tr class="separator:aa0bc1e5d5298f7c85a1673075a18ec8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a104080f047ba637c2cc74caee3be09cd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a104080f047ba637c2cc74caee3be09cd">json_value_deep_copy</a> (const <a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *value)</td></tr>
+<tr class="separator:a104080f047ba637c2cc74caee3be09cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6501025c8270219bb522ea169fc8ac7"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#ab6501025c8270219bb522ea169fc8ac7">json_serialization_size</a> (const <a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *value)</td></tr>
+<tr class="separator:ab6501025c8270219bb522ea169fc8ac7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa0950abfa2559f9ffc7f778a461ae52"><td class="memItemLeft" align="right" valign="top"><a class="el" href="parson_8h.html#a7c27445e3f0fce8eecf46326ac592cb3">JSON_Status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#afa0950abfa2559f9ffc7f778a461ae52">json_serialize_to_buffer</a> (const <a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *value, char *buf, size_t buf_size_in_bytes)</td></tr>
+<tr class="separator:afa0950abfa2559f9ffc7f778a461ae52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5501d255adc5040d420bcf7a257de999"><td class="memItemLeft" align="right" valign="top"><a class="el" href="parson_8h.html#a7c27445e3f0fce8eecf46326ac592cb3">JSON_Status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a5501d255adc5040d420bcf7a257de999">json_serialize_to_file</a> (const <a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *value, const char *filename)</td></tr>
+<tr class="separator:a5501d255adc5040d420bcf7a257de999"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc4f7d505f3bc5d79b12ed0089fc9793"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#adc4f7d505f3bc5d79b12ed0089fc9793">json_serialize_to_string</a> (const <a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *value)</td></tr>
+<tr class="separator:adc4f7d505f3bc5d79b12ed0089fc9793"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c9e7442e7e0e065abd4fd9b836c17aa"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a1c9e7442e7e0e065abd4fd9b836c17aa">json_serialization_size_pretty</a> (const <a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *value)</td></tr>
+<tr class="separator:a1c9e7442e7e0e065abd4fd9b836c17aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11ba2d6dcf15cb9c2905cc56d610ddd7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="parson_8h.html#a7c27445e3f0fce8eecf46326ac592cb3">JSON_Status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a11ba2d6dcf15cb9c2905cc56d610ddd7">json_serialize_to_buffer_pretty</a> (const <a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *value, char *buf, size_t buf_size_in_bytes)</td></tr>
+<tr class="separator:a11ba2d6dcf15cb9c2905cc56d610ddd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab41c46f3b13268ae103e8b1d2afb99c5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="parson_8h.html#a7c27445e3f0fce8eecf46326ac592cb3">JSON_Status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#ab41c46f3b13268ae103e8b1d2afb99c5">json_serialize_to_file_pretty</a> (const <a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *value, const char *filename)</td></tr>
+<tr class="separator:ab41c46f3b13268ae103e8b1d2afb99c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d1955ae61721661696f28b65aa8de87"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a5d1955ae61721661696f28b65aa8de87">json_serialize_to_string_pretty</a> (const <a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *value)</td></tr>
+<tr class="separator:a5d1955ae61721661696f28b65aa8de87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b32b8273c00bdcdb3fb9b04062c8084"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a4b32b8273c00bdcdb3fb9b04062c8084">json_free_serialized_string</a> (char *string)</td></tr>
+<tr class="separator:a4b32b8273c00bdcdb3fb9b04062c8084"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c29ce80e9cee3a464cbe0027fb1f84c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="parson_8h.html#a7c27445e3f0fce8eecf46326ac592cb3">JSON_Status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a4c29ce80e9cee3a464cbe0027fb1f84c">json_array_remove</a> (<a class="el" href="parson_8h.html#a65f383a4ad17a6872ee422c28ff4ab66">JSON_Array</a> *array, size_t ix)</td></tr>
+<tr class="separator:a4c29ce80e9cee3a464cbe0027fb1f84c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24c8c0e13d124323f72f48c493c1f726"><td class="memItemLeft" align="right" valign="top"><a class="el" href="parson_8h.html#a7c27445e3f0fce8eecf46326ac592cb3">JSON_Status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a24c8c0e13d124323f72f48c493c1f726">json_array_replace_value</a> (<a class="el" href="parson_8h.html#a65f383a4ad17a6872ee422c28ff4ab66">JSON_Array</a> *array, size_t ix, <a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *value)</td></tr>
+<tr class="separator:a24c8c0e13d124323f72f48c493c1f726"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af865e93d395d11c52a18ff10164a2a1c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="parson_8h.html#a7c27445e3f0fce8eecf46326ac592cb3">JSON_Status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#af865e93d395d11c52a18ff10164a2a1c">json_array_replace_string</a> (<a class="el" href="parson_8h.html#a65f383a4ad17a6872ee422c28ff4ab66">JSON_Array</a> *array, size_t i, const char *string)</td></tr>
+<tr class="separator:af865e93d395d11c52a18ff10164a2a1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4035432816f6e455cc533c15cba51ddf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="parson_8h.html#a7c27445e3f0fce8eecf46326ac592cb3">JSON_Status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a4035432816f6e455cc533c15cba51ddf">json_array_replace_number</a> (<a class="el" href="parson_8h.html#a65f383a4ad17a6872ee422c28ff4ab66">JSON_Array</a> *array, size_t i, double number)</td></tr>
+<tr class="separator:a4035432816f6e455cc533c15cba51ddf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a101fa1f9a3ce32034a8a7f89bc13bb89"><td class="memItemLeft" align="right" valign="top"><a class="el" href="parson_8h.html#a7c27445e3f0fce8eecf46326ac592cb3">JSON_Status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a101fa1f9a3ce32034a8a7f89bc13bb89">json_array_replace_boolean</a> (<a class="el" href="parson_8h.html#a65f383a4ad17a6872ee422c28ff4ab66">JSON_Array</a> *array, size_t i, int boolean)</td></tr>
+<tr class="separator:a101fa1f9a3ce32034a8a7f89bc13bb89"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03da91aa1986b3b97963a843bdad06da"><td class="memItemLeft" align="right" valign="top"><a class="el" href="parson_8h.html#a7c27445e3f0fce8eecf46326ac592cb3">JSON_Status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a03da91aa1986b3b97963a843bdad06da">json_array_replace_null</a> (<a class="el" href="parson_8h.html#a65f383a4ad17a6872ee422c28ff4ab66">JSON_Array</a> *array, size_t i)</td></tr>
+<tr class="separator:a03da91aa1986b3b97963a843bdad06da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a468f06ad47dfcf4b5188196a279da692"><td class="memItemLeft" align="right" valign="top"><a class="el" href="parson_8h.html#a7c27445e3f0fce8eecf46326ac592cb3">JSON_Status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a468f06ad47dfcf4b5188196a279da692">json_array_clear</a> (<a class="el" href="parson_8h.html#a65f383a4ad17a6872ee422c28ff4ab66">JSON_Array</a> *array)</td></tr>
+<tr class="separator:a468f06ad47dfcf4b5188196a279da692"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7fb23d000865c375cc956ef9352d1768"><td class="memItemLeft" align="right" valign="top"><a class="el" href="parson_8h.html#a7c27445e3f0fce8eecf46326ac592cb3">JSON_Status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a7fb23d000865c375cc956ef9352d1768">json_array_append_value</a> (<a class="el" href="parson_8h.html#a65f383a4ad17a6872ee422c28ff4ab66">JSON_Array</a> *array, <a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *value)</td></tr>
+<tr class="separator:a7fb23d000865c375cc956ef9352d1768"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abdd2d9c2fd47a9dcd3cba7368fb1ea89"><td class="memItemLeft" align="right" valign="top"><a class="el" href="parson_8h.html#a7c27445e3f0fce8eecf46326ac592cb3">JSON_Status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#abdd2d9c2fd47a9dcd3cba7368fb1ea89">json_array_append_string</a> (<a class="el" href="parson_8h.html#a65f383a4ad17a6872ee422c28ff4ab66">JSON_Array</a> *array, const char *string)</td></tr>
+<tr class="separator:abdd2d9c2fd47a9dcd3cba7368fb1ea89"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7d32bd24e85ba8adc82dda2bb977f05"><td class="memItemLeft" align="right" valign="top"><a class="el" href="parson_8h.html#a7c27445e3f0fce8eecf46326ac592cb3">JSON_Status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#af7d32bd24e85ba8adc82dda2bb977f05">json_array_append_number</a> (<a class="el" href="parson_8h.html#a65f383a4ad17a6872ee422c28ff4ab66">JSON_Array</a> *array, double number)</td></tr>
+<tr class="separator:af7d32bd24e85ba8adc82dda2bb977f05"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d6d3c1aa0f5544e2cec007c8ae2f36d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="parson_8h.html#a7c27445e3f0fce8eecf46326ac592cb3">JSON_Status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a2d6d3c1aa0f5544e2cec007c8ae2f36d">json_array_append_boolean</a> (<a class="el" href="parson_8h.html#a65f383a4ad17a6872ee422c28ff4ab66">JSON_Array</a> *array, int boolean)</td></tr>
+<tr class="separator:a2d6d3c1aa0f5544e2cec007c8ae2f36d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10046fe3bd949d389bbda6c120721efe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="parson_8h.html#a7c27445e3f0fce8eecf46326ac592cb3">JSON_Status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a10046fe3bd949d389bbda6c120721efe">json_array_append_null</a> (<a class="el" href="parson_8h.html#a65f383a4ad17a6872ee422c28ff4ab66">JSON_Array</a> *array)</td></tr>
+<tr class="separator:a10046fe3bd949d389bbda6c120721efe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa407a58f390b497a6396d20d7c3c7bfd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="parson_8h.html#a7c27445e3f0fce8eecf46326ac592cb3">JSON_Status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#aa407a58f390b497a6396d20d7c3c7bfd">json_object_set_value</a> (<a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *object, const char *name, <a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *value)</td></tr>
+<tr class="separator:aa407a58f390b497a6396d20d7c3c7bfd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4894ebaa8673c6dbc69519b6c1573c99"><td class="memItemLeft" align="right" valign="top"><a class="el" href="parson_8h.html#a7c27445e3f0fce8eecf46326ac592cb3">JSON_Status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a4894ebaa8673c6dbc69519b6c1573c99">json_object_set_string</a> (<a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *object, const char *name, const char *string)</td></tr>
+<tr class="separator:a4894ebaa8673c6dbc69519b6c1573c99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39e19ea718c221389fc991c22d39777d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="parson_8h.html#a7c27445e3f0fce8eecf46326ac592cb3">JSON_Status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a39e19ea718c221389fc991c22d39777d">json_object_set_number</a> (<a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *object, const char *name, double number)</td></tr>
+<tr class="separator:a39e19ea718c221389fc991c22d39777d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b25ed7adda736fabdae1dee7c5f6dc9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="parson_8h.html#a7c27445e3f0fce8eecf46326ac592cb3">JSON_Status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a4b25ed7adda736fabdae1dee7c5f6dc9">json_object_set_boolean</a> (<a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *object, const char *name, int boolean)</td></tr>
+<tr class="separator:a4b25ed7adda736fabdae1dee7c5f6dc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab27d5079abe1331df55f0b806ae7b574"><td class="memItemLeft" align="right" valign="top"><a class="el" href="parson_8h.html#a7c27445e3f0fce8eecf46326ac592cb3">JSON_Status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#ab27d5079abe1331df55f0b806ae7b574">json_object_set_null</a> (<a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *object, const char *name)</td></tr>
+<tr class="separator:ab27d5079abe1331df55f0b806ae7b574"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a639e70952e2bffab866303ef528367a4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="parson_8h.html#a7c27445e3f0fce8eecf46326ac592cb3">JSON_Status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a639e70952e2bffab866303ef528367a4">json_object_dotset_value</a> (<a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *object, const char *name, <a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *value)</td></tr>
+<tr class="separator:a639e70952e2bffab866303ef528367a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0069c12155c176511ea091a6471cbe49"><td class="memItemLeft" align="right" valign="top"><a class="el" href="parson_8h.html#a7c27445e3f0fce8eecf46326ac592cb3">JSON_Status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a0069c12155c176511ea091a6471cbe49">json_object_dotset_string</a> (<a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *object, const char *name, const char *string)</td></tr>
+<tr class="separator:a0069c12155c176511ea091a6471cbe49"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3fafcf7fc27c8a0b08e517ebad87037"><td class="memItemLeft" align="right" valign="top"><a class="el" href="parson_8h.html#a7c27445e3f0fce8eecf46326ac592cb3">JSON_Status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#ae3fafcf7fc27c8a0b08e517ebad87037">json_object_dotset_number</a> (<a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *object, const char *name, double number)</td></tr>
+<tr class="separator:ae3fafcf7fc27c8a0b08e517ebad87037"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0dbd83d15003b246782f0f75659b3f3d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="parson_8h.html#a7c27445e3f0fce8eecf46326ac592cb3">JSON_Status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a0dbd83d15003b246782f0f75659b3f3d">json_object_dotset_boolean</a> (<a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *object, const char *name, int boolean)</td></tr>
+<tr class="separator:a0dbd83d15003b246782f0f75659b3f3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a386ab4593c8f46ddcb907207ffeea1d7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="parson_8h.html#a7c27445e3f0fce8eecf46326ac592cb3">JSON_Status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a386ab4593c8f46ddcb907207ffeea1d7">json_object_dotset_null</a> (<a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *object, const char *name)</td></tr>
+<tr class="separator:a386ab4593c8f46ddcb907207ffeea1d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1051dd0b0e301046529d5f9550c7bd3a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="parson_8h.html#a7c27445e3f0fce8eecf46326ac592cb3">JSON_Status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a1051dd0b0e301046529d5f9550c7bd3a">json_object_remove</a> (<a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *object, const char *name)</td></tr>
+<tr class="separator:a1051dd0b0e301046529d5f9550c7bd3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a638e7780ad1ab5bdcec7cba173954de4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="parson_8h.html#a7c27445e3f0fce8eecf46326ac592cb3">JSON_Status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a638e7780ad1ab5bdcec7cba173954de4">json_object_dotremove</a> (<a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *object, const char *name)</td></tr>
+<tr class="separator:a638e7780ad1ab5bdcec7cba173954de4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9874cd6712b28250a2abe3186ba569e9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="parson_8h.html#a7c27445e3f0fce8eecf46326ac592cb3">JSON_Status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a9874cd6712b28250a2abe3186ba569e9">json_object_clear</a> (<a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *object)</td></tr>
+<tr class="separator:a9874cd6712b28250a2abe3186ba569e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50dfef020cb9a9d82eaa2a540a5dd724"><td class="memItemLeft" align="right" valign="top"><a class="el" href="parson_8h.html#a7c27445e3f0fce8eecf46326ac592cb3">JSON_Status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a50dfef020cb9a9d82eaa2a540a5dd724">json_validate</a> (const <a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *schema, const <a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *value)</td></tr>
+<tr class="separator:a50dfef020cb9a9d82eaa2a540a5dd724"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d940749adc93761c25e3730271677c8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a4d940749adc93761c25e3730271677c8">json_value_equals</a> (const <a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *a, const <a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *b)</td></tr>
+<tr class="separator:a4d940749adc93761c25e3730271677c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e9f04113d64e986c8b1e3fa7dc0b2e8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="parson_8h.html#a44cf81f85e0d922e18ff42ba96b9add1">JSON_Value_Type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a2e9f04113d64e986c8b1e3fa7dc0b2e8">json_type</a> (const <a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *value)</td></tr>
+<tr class="separator:a2e9f04113d64e986c8b1e3fa7dc0b2e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87e53b3a6b500e11f13d20a71ecf9595"><td class="memItemLeft" align="right" valign="top"><a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a87e53b3a6b500e11f13d20a71ecf9595">json_object</a> (const <a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *value)</td></tr>
+<tr class="separator:a87e53b3a6b500e11f13d20a71ecf9595"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad24e6bc3a30c1464b3d60dada1f4afcc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="parson_8h.html#a65f383a4ad17a6872ee422c28ff4ab66">JSON_Array</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#ad24e6bc3a30c1464b3d60dada1f4afcc">json_array</a> (const <a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *value)</td></tr>
+<tr class="separator:ad24e6bc3a30c1464b3d60dada1f4afcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87c49c4a3b0c3d4d28be636ac5f7f1cd"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a87c49c4a3b0c3d4d28be636ac5f7f1cd">json_string</a> (const <a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *value)</td></tr>
+<tr class="separator:a87c49c4a3b0c3d4d28be636ac5f7f1cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70d61224267692217c2907097e209be0"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a70d61224267692217c2907097e209be0">json_number</a> (const <a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *value)</td></tr>
+<tr class="separator:a70d61224267692217c2907097e209be0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7083e59d4970797c4b0c4b630d4aa078"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a7083e59d4970797c4b0c4b630d4aa078">json_boolean</a> (const <a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *value)</td></tr>
+<tr class="separator:a7083e59d4970797c4b0c4b630d4aa078"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb589bd96b2d28a7724d29f9ef50a338"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#aeb589bd96b2d28a7724d29f9ef50a338">json_set_allocation_functions</a> (<a class="el" href="parson_8h.html#a356364ff4aa4b12ac120d25bd8c5f8c9">JSON_Malloc_Function</a> malloc_fun, <a class="el" href="parson_8h.html#aa6d9986e9dc8c0fb1a330f635f508b5a">JSON_Free_Function</a> free_fun)</td></tr>
+<tr class="separator:aeb589bd96b2d28a7724d29f9ef50a338"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60e0704a3ac10a42e00cc570bce5daff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parson_8c.html#a60e0704a3ac10a42e00cc570bce5daff">json_set_escape_slashes</a> (int escape_slashes)</td></tr>
+<tr class="separator:a60e0704a3ac10a42e00cc570bce5daff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
+<div class="textblock"><p>Parson. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Krzysztof Gabis ( <a href="http://kgabis.github.com/parson/">http://kgabis.github.com/parson/</a> ) </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>0.1 </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2017</dd></dl>
+<dl class="section copyright"><dt>Copyright</dt><dd>Copyright (c) 2012 - 2017 Krzysztof Gabis</dd></dl>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+<p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
+<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. </p>
+
+<p class="definition">Définition dans le fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+</div><h2 class="groupheader">Documentation des macros</h2>
+<a id="a8446c4d4b3471bf0f1215accae0745a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8446c4d4b3471bf0f1215accae0745a8">&#9670;&nbsp;</a></span>APPEND_INDENT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define APPEND_INDENT</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">level</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Valeur :</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> { written = append_indent(buf, (level));\</div><div class="line">                                  if (written &lt; 0) { <span class="keywordflow">return</span> -1; }\</div><div class="line">                                  if (buf != NULL) { buf += written; }\</div><div class="line">                                  written_total += written; } <span class="keywordflow">while</span>(0)</div></div><!-- fragment -->
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l00879">879</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="abb7cc56e38fce2aaeaf23238ab50eb5c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb7cc56e38fce2aaeaf23238ab50eb5c">&#9670;&nbsp;</a></span>APPEND_STRING</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define APPEND_STRING</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">str</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Valeur :</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> { written = append_string(buf, (str));\</div><div class="line">                                if (written &lt; 0) { <span class="keywordflow">return</span> -1; }\</div><div class="line">                                if (buf != NULL) { buf += written; }\</div><div class="line">                                written_total += written; } <span class="keywordflow">while</span>(0)</div></div><!-- fragment -->
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l00874">874</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a3336588f9544e5e7d91549f5df5547a5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3336588f9544e5e7d91549f5df5547a5">&#9670;&nbsp;</a></span>FLOAT_FORMAT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define FLOAT_FORMAT&#160;&#160;&#160;&quot;%1.17g&quot; /* do not increase precision without incresing NUM_BUF_SIZE */</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l00052">52</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="aaa2ed8cc468393251c47811ce8338d23"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa2ed8cc468393251c47811ce8338d23">&#9670;&nbsp;</a></span>IS_CONT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define IS_CONT</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">b</td><td>)</td>
+          <td>&#160;&#160;&#160;(((unsigned char)(b) &amp; 0xC0) == 0x80) /* is utf-8 continuation byte */</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l00074">74</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a1442218b676f983b5f73daca3faa9449"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1442218b676f983b5f73daca3faa9449">&#9670;&nbsp;</a></span>IS_NUMBER_INVALID</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define IS_NUMBER_INVALID</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">x</td><td>)</td>
+          <td>&#160;&#160;&#160;(((x) * 0.0) != 0.0)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l00066">66</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="afa99ec4acc4ecb2dc3c2d05da15d0e3f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa99ec4acc4ecb2dc3c2d05da15d0e3f">&#9670;&nbsp;</a></span>MAX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">a, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">b&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;((a) &gt; (b) ? (a) : (b))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l00058">58</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a975fbcb7495d702b27dbbdb9fb149fa1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a975fbcb7495d702b27dbbdb9fb149fa1">&#9670;&nbsp;</a></span>MAX_NESTING</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX_NESTING&#160;&#160;&#160;2048</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l00050">50</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a13a865fd9c733c2cfeb6f9bba1a479c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a13a865fd9c733c2cfeb6f9bba1a479c6">&#9670;&nbsp;</a></span>NUM_BUF_SIZE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define NUM_BUF_SIZE&#160;&#160;&#160;64 /* double printed with &quot;%1.17g&quot; shouldn't be longer than 25 bytes so let's be paranoid and use 64 */</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l00053">53</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="ad4644341e60718dfb88eaa20a29e2979"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4644341e60718dfb88eaa20a29e2979">&#9670;&nbsp;</a></span>SIZEOF_TOKEN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SIZEOF_TOKEN</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">a</td><td>)</td>
+          <td>&#160;&#160;&#160;(sizeof(a) - 1)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l00055">55</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a0f71b0b0e28703925b516e5212a985f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f71b0b0e28703925b516e5212a985f6">&#9670;&nbsp;</a></span>SKIP_CHAR</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SKIP_CHAR</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">str</td><td>)</td>
+          <td>&#160;&#160;&#160;((*str)++)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l00056">56</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a39541f12f48d7f63c165301cc0888f91"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a39541f12f48d7f63c165301cc0888f91">&#9670;&nbsp;</a></span>SKIP_WHITESPACES</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SKIP_WHITESPACES</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">str</td><td>)</td>
+          <td>&#160;&#160;&#160;while (isspace((unsigned char)(**str))) { <a class="el" href="parson_8c.html#a0f71b0b0e28703925b516e5212a985f6">SKIP_CHAR</a>(str); }</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l00057">57</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a9c61175e049e412fa214d373674b1c68"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c61175e049e412fa214d373674b1c68">&#9670;&nbsp;</a></span>sscanf</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define sscanf&#160;&#160;&#160;THINK_TWICE_ABOUT_USING_SSCANF</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l00047">47</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a6e8ccd661b425d5010a8d896117d4023"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e8ccd661b425d5010a8d896117d4023">&#9670;&nbsp;</a></span>STARTING_CAPACITY</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define STARTING_CAPACITY&#160;&#160;&#160;16</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l00049">49</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Documentation des définitions de type</h2>
+<a id="aef51e45ef64657b4f22fe3ffe678b6ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef51e45ef64657b4f22fe3ffe678b6ac">&#9670;&nbsp;</a></span>JSON_Value_Value</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef union <a class="el" href="unionjson__value__value.html">json_value_value</a>  <a class="el" href="parson_8c.html#aef51e45ef64657b4f22fe3ffe678b6ac">JSON_Value_Value</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Documentation des fonctions</h2>
+<a id="ad24e6bc3a30c1464b3d60dada1f4afcc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad24e6bc3a30c1464b3d60dada1f4afcc">&#9670;&nbsp;</a></span>json_array()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="parson_8h.html#a65f383a4ad17a6872ee422c28ff4ab66">JSON_Array</a>* json_array </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l02042">2042</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a2d6d3c1aa0f5544e2cec007c8ae2f36d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d6d3c1aa0f5544e2cec007c8ae2f36d">&#9670;&nbsp;</a></span>json_array_append_boolean()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="parson_8h.html#a7c27445e3f0fce8eecf46326ac592cb3">JSON_Status</a> json_array_append_boolean </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="parson_8h.html#a65f383a4ad17a6872ee422c28ff4ab66">JSON_Array</a> *&#160;</td>
+          <td class="paramname"><em>array</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>boolean</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01738">1738</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a10046fe3bd949d389bbda6c120721efe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a10046fe3bd949d389bbda6c120721efe">&#9670;&nbsp;</a></span>json_array_append_null()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="parson_8h.html#a7c27445e3f0fce8eecf46326ac592cb3">JSON_Status</a> json_array_append_null </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="parson_8h.html#a65f383a4ad17a6872ee422c28ff4ab66">JSON_Array</a> *&#160;</td>
+          <td class="paramname"><em>array</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01750">1750</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="af7d32bd24e85ba8adc82dda2bb977f05"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7d32bd24e85ba8adc82dda2bb977f05">&#9670;&nbsp;</a></span>json_array_append_number()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="parson_8h.html#a7c27445e3f0fce8eecf46326ac592cb3">JSON_Status</a> json_array_append_number </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="parson_8h.html#a65f383a4ad17a6872ee422c28ff4ab66">JSON_Array</a> *&#160;</td>
+          <td class="paramname"><em>array</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>number</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01726">1726</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="abdd2d9c2fd47a9dcd3cba7368fb1ea89"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abdd2d9c2fd47a9dcd3cba7368fb1ea89">&#9670;&nbsp;</a></span>json_array_append_string()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="parson_8h.html#a7c27445e3f0fce8eecf46326ac592cb3">JSON_Status</a> json_array_append_string </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="parson_8h.html#a65f383a4ad17a6872ee422c28ff4ab66">JSON_Array</a> *&#160;</td>
+          <td class="paramname"><em>array</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>string</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01714">1714</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a7fb23d000865c375cc956ef9352d1768"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7fb23d000865c375cc956ef9352d1768">&#9670;&nbsp;</a></span>json_array_append_value()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="parson_8h.html#a7c27445e3f0fce8eecf46326ac592cb3">JSON_Status</a> json_array_append_value </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="parson_8h.html#a65f383a4ad17a6872ee422c28ff4ab66">JSON_Array</a> *&#160;</td>
+          <td class="paramname"><em>array</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01707">1707</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a468f06ad47dfcf4b5188196a279da692"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a468f06ad47dfcf4b5188196a279da692">&#9670;&nbsp;</a></span>json_array_clear()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="parson_8h.html#a7c27445e3f0fce8eecf46326ac592cb3">JSON_Status</a> json_array_clear </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="parson_8h.html#a65f383a4ad17a6872ee422c28ff4ab66">JSON_Array</a> *&#160;</td>
+          <td class="paramname"><em>array</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01695">1695</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="aa0061ea0a4bf885dd801d65b75548ab9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa0061ea0a4bf885dd801d65b75548ab9">&#9670;&nbsp;</a></span>json_array_get_array()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="parson_8h.html#a65f383a4ad17a6872ee422c28ff4ab66">JSON_Array</a>* json_array_get_array </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="parson_8h.html#a65f383a4ad17a6872ee422c28ff4ab66">JSON_Array</a> *&#160;</td>
+          <td class="paramname"><em>array</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>index</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01272">1272</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="aa2e74bca6589f73ab3bfb7ab502f44af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa2e74bca6589f73ab3bfb7ab502f44af">&#9670;&nbsp;</a></span>json_array_get_boolean()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int json_array_get_boolean </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="parson_8h.html#a65f383a4ad17a6872ee422c28ff4ab66">JSON_Array</a> *&#160;</td>
+          <td class="paramname"><em>array</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>index</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01276">1276</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a3cdef5191eb478cae45757377e3e48f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3cdef5191eb478cae45757377e3e48f5">&#9670;&nbsp;</a></span>json_array_get_count()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t json_array_get_count </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="parson_8h.html#a65f383a4ad17a6872ee422c28ff4ab66">JSON_Array</a> *&#160;</td>
+          <td class="paramname"><em>array</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01280">1280</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a3d712bcec84295ecc5c391dbcd20ba6e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d712bcec84295ecc5c391dbcd20ba6e">&#9670;&nbsp;</a></span>json_array_get_number()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double json_array_get_number </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="parson_8h.html#a65f383a4ad17a6872ee422c28ff4ab66">JSON_Array</a> *&#160;</td>
+          <td class="paramname"><em>array</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>index</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01264">1264</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a166dadcea50cf7388b96f7990a9a86c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a166dadcea50cf7388b96f7990a9a86c1">&#9670;&nbsp;</a></span>json_array_get_object()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a>* json_array_get_object </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="parson_8h.html#a65f383a4ad17a6872ee422c28ff4ab66">JSON_Array</a> *&#160;</td>
+          <td class="paramname"><em>array</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>index</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01268">1268</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a4374acb16d347466a517866f0ddc65da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4374acb16d347466a517866f0ddc65da">&#9670;&nbsp;</a></span>json_array_get_string()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* json_array_get_string </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="parson_8h.html#a65f383a4ad17a6872ee422c28ff4ab66">JSON_Array</a> *&#160;</td>
+          <td class="paramname"><em>array</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>index</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01260">1260</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a0b2f37051066cbd5e824c73781c08e72"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b2f37051066cbd5e824c73781c08e72">&#9670;&nbsp;</a></span>json_array_get_value()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a>* json_array_get_value </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="parson_8h.html#a65f383a4ad17a6872ee422c28ff4ab66">JSON_Array</a> *&#160;</td>
+          <td class="paramname"><em>array</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>index</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01253">1253</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="af5d70761f170e80f9801594edfbb811a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5d70761f170e80f9801594edfbb811a">&#9670;&nbsp;</a></span>json_array_get_wrapping_value()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a>* json_array_get_wrapping_value </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="parson_8h.html#a65f383a4ad17a6872ee422c28ff4ab66">JSON_Array</a> *&#160;</td>
+          <td class="paramname"><em>array</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01284">1284</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a4c29ce80e9cee3a464cbe0027fb1f84c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c29ce80e9cee3a464cbe0027fb1f84c">&#9670;&nbsp;</a></span>json_array_remove()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="parson_8h.html#a7c27445e3f0fce8eecf46326ac592cb3">JSON_Status</a> json_array_remove </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="parson_8h.html#a65f383a4ad17a6872ee422c28ff4ab66">JSON_Array</a> *&#160;</td>
+          <td class="paramname"><em>array</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>ix</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01625">1625</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a101fa1f9a3ce32034a8a7f89bc13bb89"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a101fa1f9a3ce32034a8a7f89bc13bb89">&#9670;&nbsp;</a></span>json_array_replace_boolean()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="parson_8h.html#a7c27445e3f0fce8eecf46326ac592cb3">JSON_Status</a> json_array_replace_boolean </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="parson_8h.html#a65f383a4ad17a6872ee422c28ff4ab66">JSON_Array</a> *&#160;</td>
+          <td class="paramname"><em>array</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>i</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>boolean</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01671">1671</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a03da91aa1986b3b97963a843bdad06da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a03da91aa1986b3b97963a843bdad06da">&#9670;&nbsp;</a></span>json_array_replace_null()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="parson_8h.html#a7c27445e3f0fce8eecf46326ac592cb3">JSON_Status</a> json_array_replace_null </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="parson_8h.html#a65f383a4ad17a6872ee422c28ff4ab66">JSON_Array</a> *&#160;</td>
+          <td class="paramname"><em>array</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>i</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01683">1683</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a4035432816f6e455cc533c15cba51ddf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4035432816f6e455cc533c15cba51ddf">&#9670;&nbsp;</a></span>json_array_replace_number()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="parson_8h.html#a7c27445e3f0fce8eecf46326ac592cb3">JSON_Status</a> json_array_replace_number </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="parson_8h.html#a65f383a4ad17a6872ee422c28ff4ab66">JSON_Array</a> *&#160;</td>
+          <td class="paramname"><em>array</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>i</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>number</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01659">1659</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="af865e93d395d11c52a18ff10164a2a1c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af865e93d395d11c52a18ff10164a2a1c">&#9670;&nbsp;</a></span>json_array_replace_string()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="parson_8h.html#a7c27445e3f0fce8eecf46326ac592cb3">JSON_Status</a> json_array_replace_string </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="parson_8h.html#a65f383a4ad17a6872ee422c28ff4ab66">JSON_Array</a> *&#160;</td>
+          <td class="paramname"><em>array</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>i</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>string</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01647">1647</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a24c8c0e13d124323f72f48c493c1f726"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a24c8c0e13d124323f72f48c493c1f726">&#9670;&nbsp;</a></span>json_array_replace_value()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="parson_8h.html#a7c27445e3f0fce8eecf46326ac592cb3">JSON_Status</a> json_array_replace_value </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="parson_8h.html#a65f383a4ad17a6872ee422c28ff4ab66">JSON_Array</a> *&#160;</td>
+          <td class="paramname"><em>array</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>ix</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01637">1637</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a7083e59d4970797c4b0c4b630d4aa078"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7083e59d4970797c4b0c4b630d4aa078">&#9670;&nbsp;</a></span>json_boolean()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int json_boolean </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l02054">2054</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a4b32b8273c00bdcdb3fb9b04062c8084"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b32b8273c00bdcdb3fb9b04062c8084">&#9670;&nbsp;</a></span>json_free_serialized_string()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void json_free_serialized_string </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>string</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01621">1621</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a70d61224267692217c2907097e209be0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a70d61224267692217c2907097e209be0">&#9670;&nbsp;</a></span>json_number()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double json_number </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l02050">2050</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a87e53b3a6b500e11f13d20a71ecf9595"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87e53b3a6b500e11f13d20a71ecf9595">&#9670;&nbsp;</a></span>json_object()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a>* json_object </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l02038">2038</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a9874cd6712b28250a2abe3186ba569e9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9874cd6712b28250a2abe3186ba569e9">&#9670;&nbsp;</a></span>json_object_clear()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="parson_8h.html#a7c27445e3f0fce8eecf46326ac592cb3">JSON_Status</a> json_object_clear </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *&#160;</td>
+          <td class="paramname"><em>object</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01897">1897</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="aee11ed11437f241eddac211da0bfcc9e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee11ed11437f241eddac211da0bfcc9e">&#9670;&nbsp;</a></span>json_object_dotget_array()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="parson_8h.html#a65f383a4ad17a6872ee422c28ff4ab66">JSON_Array</a>* json_object_dotget_array </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *&#160;</td>
+          <td class="paramname"><em>object</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01204">1204</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a2ffd2a8e2e14b24d7a2d02a700507748"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ffd2a8e2e14b24d7a2d02a700507748">&#9670;&nbsp;</a></span>json_object_dotget_boolean()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int json_object_dotget_boolean </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *&#160;</td>
+          <td class="paramname"><em>object</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01208">1208</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="ac782225cbe9293782d006140f78daac2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac782225cbe9293782d006140f78daac2">&#9670;&nbsp;</a></span>json_object_dotget_number()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double json_object_dotget_number </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *&#160;</td>
+          <td class="paramname"><em>object</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01196">1196</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a04e36b2b48705c9d4a6836f0fc8b7d39"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a04e36b2b48705c9d4a6836f0fc8b7d39">&#9670;&nbsp;</a></span>json_object_dotget_object()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a>* json_object_dotget_object </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *&#160;</td>
+          <td class="paramname"><em>object</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01200">1200</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="abaf1aac10dee1aba0e433357cf2fbe64"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abaf1aac10dee1aba0e433357cf2fbe64">&#9670;&nbsp;</a></span>json_object_dotget_string()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* json_object_dotget_string </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *&#160;</td>
+          <td class="paramname"><em>object</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01192">1192</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a5c7be28792735a26ab579401b112c958"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c7be28792735a26ab579401b112c958">&#9670;&nbsp;</a></span>json_object_dotget_value()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a>* json_object_dotget_value </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *&#160;</td>
+          <td class="paramname"><em>object</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01183">1183</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a8180fb05845003341554fae35c1d85d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8180fb05845003341554fae35c1d85d2">&#9670;&nbsp;</a></span>json_object_dothas_value()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int json_object_dothas_value </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *&#160;</td>
+          <td class="paramname"><em>object</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01243">1243</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a603ccdeef1b2dd19c56850b8ec25774e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a603ccdeef1b2dd19c56850b8ec25774e">&#9670;&nbsp;</a></span>json_object_dothas_value_of_type()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int json_object_dothas_value_of_type </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *&#160;</td>
+          <td class="paramname"><em>object</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="parson_8h.html#a44cf81f85e0d922e18ff42ba96b9add1">JSON_Value_Type</a>&#160;</td>
+          <td class="paramname"><em>type</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01247">1247</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a638e7780ad1ab5bdcec7cba173954de4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a638e7780ad1ab5bdcec7cba173954de4">&#9670;&nbsp;</a></span>json_object_dotremove()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="parson_8h.html#a7c27445e3f0fce8eecf46326ac592cb3">JSON_Status</a> json_object_dotremove </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *&#160;</td>
+          <td class="paramname"><em>object</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01893">1893</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a0dbd83d15003b246782f0f75659b3f3d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0dbd83d15003b246782f0f75659b3f3d">&#9670;&nbsp;</a></span>json_object_dotset_boolean()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="parson_8h.html#a7c27445e3f0fce8eecf46326ac592cb3">JSON_Status</a> json_object_dotset_boolean </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *&#160;</td>
+          <td class="paramname"><em>object</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>boolean</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01865">1865</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a386ab4593c8f46ddcb907207ffeea1d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a386ab4593c8f46ddcb907207ffeea1d7">&#9670;&nbsp;</a></span>json_object_dotset_null()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="parson_8h.html#a7c27445e3f0fce8eecf46326ac592cb3">JSON_Status</a> json_object_dotset_null </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *&#160;</td>
+          <td class="paramname"><em>object</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01877">1877</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="ae3fafcf7fc27c8a0b08e517ebad87037"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3fafcf7fc27c8a0b08e517ebad87037">&#9670;&nbsp;</a></span>json_object_dotset_number()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="parson_8h.html#a7c27445e3f0fce8eecf46326ac592cb3">JSON_Status</a> json_object_dotset_number </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *&#160;</td>
+          <td class="paramname"><em>object</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>number</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01853">1853</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a0069c12155c176511ea091a6471cbe49"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0069c12155c176511ea091a6471cbe49">&#9670;&nbsp;</a></span>json_object_dotset_string()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="parson_8h.html#a7c27445e3f0fce8eecf46326ac592cb3">JSON_Status</a> json_object_dotset_string </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *&#160;</td>
+          <td class="paramname"><em>object</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>string</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01841">1841</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a639e70952e2bffab866303ef528367a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a639e70952e2bffab866303ef528367a4">&#9670;&nbsp;</a></span>json_object_dotset_value()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="parson_8h.html#a7c27445e3f0fce8eecf46326ac592cb3">JSON_Status</a> json_object_dotset_value </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *&#160;</td>
+          <td class="paramname"><em>object</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01799">1799</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="ab813650ef1f9f220c1b9829c1b8b9ffc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab813650ef1f9f220c1b9829c1b8b9ffc">&#9670;&nbsp;</a></span>json_object_get_array()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="parson_8h.html#a65f383a4ad17a6872ee422c28ff4ab66">JSON_Array</a>* json_object_get_array </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *&#160;</td>
+          <td class="paramname"><em>object</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01175">1175</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a080a1fb2f95ac9ba3995c096a5339406"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a080a1fb2f95ac9ba3995c096a5339406">&#9670;&nbsp;</a></span>json_object_get_boolean()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int json_object_get_boolean </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *&#160;</td>
+          <td class="paramname"><em>object</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01179">1179</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a6e804d8e5c9e273fbb1b04cee885fb4d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e804d8e5c9e273fbb1b04cee885fb4d">&#9670;&nbsp;</a></span>json_object_get_count()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t json_object_get_count </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *&#160;</td>
+          <td class="paramname"><em>object</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01212">1212</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="ae8b152ba6ee225dd097d6dd27a4a575a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8b152ba6ee225dd097d6dd27a4a575a">&#9670;&nbsp;</a></span>json_object_get_name()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* json_object_get_name </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *&#160;</td>
+          <td class="paramname"><em>object</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>index</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01216">1216</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="ac6d8779c183fb9cd58e3c57ba8d7ee21"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac6d8779c183fb9cd58e3c57ba8d7ee21">&#9670;&nbsp;</a></span>json_object_get_number()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double json_object_get_number </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *&#160;</td>
+          <td class="paramname"><em>object</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01167">1167</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a4b9cd565ffbfb253491b7edccaf5412c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b9cd565ffbfb253491b7edccaf5412c">&#9670;&nbsp;</a></span>json_object_get_object()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a>* json_object_get_object </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *&#160;</td>
+          <td class="paramname"><em>object</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01171">1171</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="ac569318a77fa66a7a688caa0b79c8b35"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac569318a77fa66a7a688caa0b79c8b35">&#9670;&nbsp;</a></span>json_object_get_string()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* json_object_get_string </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *&#160;</td>
+          <td class="paramname"><em>object</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01163">1163</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a30c8d5206b84bfce34b387c1782b0749"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a30c8d5206b84bfce34b387c1782b0749">&#9670;&nbsp;</a></span>json_object_get_value()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a>* json_object_get_value </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *&#160;</td>
+          <td class="paramname"><em>object</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01156">1156</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a77586a21bb63bb1304c694962b0b3041"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a77586a21bb63bb1304c694962b0b3041">&#9670;&nbsp;</a></span>json_object_get_value_at()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a>* json_object_get_value_at </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *&#160;</td>
+          <td class="paramname"><em>object</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>index</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01223">1223</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a52de182b44bd820304461439670d1ac6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a52de182b44bd820304461439670d1ac6">&#9670;&nbsp;</a></span>json_object_get_wrapping_value()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a>* json_object_get_wrapping_value </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *&#160;</td>
+          <td class="paramname"><em>object</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01230">1230</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a8cbdedc509113a21f3c348f4b1f1f7f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8cbdedc509113a21f3c348f4b1f1f7f8">&#9670;&nbsp;</a></span>json_object_has_value()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int json_object_has_value </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *&#160;</td>
+          <td class="paramname"><em>object</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01234">1234</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a39e904c031cd65a901ecf27dd3a856d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a39e904c031cd65a901ecf27dd3a856d4">&#9670;&nbsp;</a></span>json_object_has_value_of_type()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int json_object_has_value_of_type </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *&#160;</td>
+          <td class="paramname"><em>object</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="parson_8h.html#a44cf81f85e0d922e18ff42ba96b9add1">JSON_Value_Type</a>&#160;</td>
+          <td class="paramname"><em>type</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01238">1238</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a1051dd0b0e301046529d5f9550c7bd3a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1051dd0b0e301046529d5f9550c7bd3a">&#9670;&nbsp;</a></span>json_object_remove()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="parson_8h.html#a7c27445e3f0fce8eecf46326ac592cb3">JSON_Status</a> json_object_remove </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *&#160;</td>
+          <td class="paramname"><em>object</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01889">1889</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a4b25ed7adda736fabdae1dee7c5f6dc9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b25ed7adda736fabdae1dee7c5f6dc9">&#9670;&nbsp;</a></span>json_object_set_boolean()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="parson_8h.html#a7c27445e3f0fce8eecf46326ac592cb3">JSON_Status</a> json_object_set_boolean </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *&#160;</td>
+          <td class="paramname"><em>object</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>boolean</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01791">1791</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="ab27d5079abe1331df55f0b806ae7b574"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab27d5079abe1331df55f0b806ae7b574">&#9670;&nbsp;</a></span>json_object_set_null()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="parson_8h.html#a7c27445e3f0fce8eecf46326ac592cb3">JSON_Status</a> json_object_set_null </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *&#160;</td>
+          <td class="paramname"><em>object</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01795">1795</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a39e19ea718c221389fc991c22d39777d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a39e19ea718c221389fc991c22d39777d">&#9670;&nbsp;</a></span>json_object_set_number()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="parson_8h.html#a7c27445e3f0fce8eecf46326ac592cb3">JSON_Status</a> json_object_set_number </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *&#160;</td>
+          <td class="paramname"><em>object</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>number</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01787">1787</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a4894ebaa8673c6dbc69519b6c1573c99"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4894ebaa8673c6dbc69519b6c1573c99">&#9670;&nbsp;</a></span>json_object_set_string()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="parson_8h.html#a7c27445e3f0fce8eecf46326ac592cb3">JSON_Status</a> json_object_set_string </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *&#160;</td>
+          <td class="paramname"><em>object</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>string</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01783">1783</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="aa407a58f390b497a6396d20d7c3c7bfd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa407a58f390b497a6396d20d7c3c7bfd">&#9670;&nbsp;</a></span>json_object_set_value()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="parson_8h.html#a7c27445e3f0fce8eecf46326ac592cb3">JSON_Status</a> json_object_set_value </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a> *&#160;</td>
+          <td class="paramname"><em>object</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01762">1762</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="ac8261ddd04fa96f8978f8eb757c08a1b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac8261ddd04fa96f8978f8eb757c08a1b">&#9670;&nbsp;</a></span>json_parse_file()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a>* json_parse_file </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>filename</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01107">1107</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a03455169b4320f309fe7a02592d27bf6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a03455169b4320f309fe7a02592d27bf6">&#9670;&nbsp;</a></span>json_parse_file_with_comments()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a>* json_parse_file_with_comments </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>filename</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01118">1118</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a6fb8539fa74c1bce92e3bae010f16eca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6fb8539fa74c1bce92e3bae010f16eca">&#9670;&nbsp;</a></span>json_parse_string()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a>* json_parse_string </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>string</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01129">1129</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a7321fa2c89cc76edc6dcab55344def43"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7321fa2c89cc76edc6dcab55344def43">&#9670;&nbsp;</a></span>json_parse_string_with_comments()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a>* json_parse_string_with_comments </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>string</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01139">1139</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="ab6501025c8270219bb522ea169fc8ac7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab6501025c8270219bb522ea169fc8ac7">&#9670;&nbsp;</a></span>json_serialization_size()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t json_serialization_size </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01501">1501</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a1c9e7442e7e0e065abd4fd9b836c17aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c9e7442e7e0e065abd4fd9b836c17aa">&#9670;&nbsp;</a></span>json_serialization_size_pretty()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t json_serialization_size_pretty </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01561">1561</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="afa0950abfa2559f9ffc7f778a461ae52"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa0950abfa2559f9ffc7f778a461ae52">&#9670;&nbsp;</a></span>json_serialize_to_buffer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="parson_8h.html#a7c27445e3f0fce8eecf46326ac592cb3">JSON_Status</a> json_serialize_to_buffer </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *&#160;</td>
+          <td class="paramname"><em>value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>buf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>buf_size_in_bytes</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01507">1507</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a11ba2d6dcf15cb9c2905cc56d610ddd7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a11ba2d6dcf15cb9c2905cc56d610ddd7">&#9670;&nbsp;</a></span>json_serialize_to_buffer_pretty()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="parson_8h.html#a7c27445e3f0fce8eecf46326ac592cb3">JSON_Status</a> json_serialize_to_buffer_pretty </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *&#160;</td>
+          <td class="paramname"><em>value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>buf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>buf_size_in_bytes</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01567">1567</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a5501d255adc5040d420bcf7a257de999"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5501d255adc5040d420bcf7a257de999">&#9670;&nbsp;</a></span>json_serialize_to_file()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="parson_8h.html#a7c27445e3f0fce8eecf46326ac592cb3">JSON_Status</a> json_serialize_to_file </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *&#160;</td>
+          <td class="paramname"><em>value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>filename</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01520">1520</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="ab41c46f3b13268ae103e8b1d2afb99c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab41c46f3b13268ae103e8b1d2afb99c5">&#9670;&nbsp;</a></span>json_serialize_to_file_pretty()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="parson_8h.html#a7c27445e3f0fce8eecf46326ac592cb3">JSON_Status</a> json_serialize_to_file_pretty </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *&#160;</td>
+          <td class="paramname"><em>value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>filename</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01580">1580</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="adc4f7d505f3bc5d79b12ed0089fc9793"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc4f7d505f3bc5d79b12ed0089fc9793">&#9670;&nbsp;</a></span>json_serialize_to_string()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* json_serialize_to_string </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01542">1542</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a5d1955ae61721661696f28b65aa8de87"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5d1955ae61721661696f28b65aa8de87">&#9670;&nbsp;</a></span>json_serialize_to_string_pretty()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* json_serialize_to_string_pretty </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01602">1602</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="aeb589bd96b2d28a7724d29f9ef50a338"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb589bd96b2d28a7724d29f9ef50a338">&#9670;&nbsp;</a></span>json_set_allocation_functions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void json_set_allocation_functions </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="parson_8h.html#a356364ff4aa4b12ac120d25bd8c5f8c9">JSON_Malloc_Function</a>&#160;</td>
+          <td class="paramname"><em>malloc_fun</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="parson_8h.html#aa6d9986e9dc8c0fb1a330f635f508b5a">JSON_Free_Function</a>&#160;</td>
+          <td class="paramname"><em>free_fun</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l02058">2058</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a60e0704a3ac10a42e00cc570bce5daff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60e0704a3ac10a42e00cc570bce5daff">&#9670;&nbsp;</a></span>json_set_escape_slashes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void json_set_escape_slashes </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>escape_slashes</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l02063">2063</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a87c49c4a3b0c3d4d28be636ac5f7f1cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87c49c4a3b0c3d4d28be636ac5f7f1cd">&#9670;&nbsp;</a></span>json_string()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* json_string </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l02046">2046</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a2e9f04113d64e986c8b1e3fa7dc0b2e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e9f04113d64e986c8b1e3fa7dc0b2e8">&#9670;&nbsp;</a></span>json_type()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="parson_8h.html#a44cf81f85e0d922e18ff42ba96b9add1">JSON_Value_Type</a> json_type </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l02034">2034</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a50dfef020cb9a9d82eaa2a540a5dd724"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a50dfef020cb9a9d82eaa2a540a5dd724">&#9670;&nbsp;</a></span>json_validate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="parson_8h.html#a7c27445e3f0fce8eecf46326ac592cb3">JSON_Status</a> json_validate </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *&#160;</td>
+          <td class="paramname"><em>schema</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01910">1910</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a104080f047ba637c2cc74caee3be09cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a104080f047ba637c2cc74caee3be09cd">&#9670;&nbsp;</a></span>json_value_deep_copy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a>* json_value_deep_copy </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01422">1422</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a4d940749adc93761c25e3730271677c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d940749adc93761c25e3730271677c8">&#9670;&nbsp;</a></span>json_value_equals()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int json_value_equals </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *&#160;</td>
+          <td class="paramname"><em>b</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01970">1970</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="ab2422931b5eea3c2401a86dea9c06b8c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2422931b5eea3c2401a86dea9c06b8c">&#9670;&nbsp;</a></span>json_value_free()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void json_value_free </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01317">1317</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a479cd87b98deb1467989174adcbcd149"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a479cd87b98deb1467989174adcbcd149">&#9670;&nbsp;</a></span>json_value_get_array()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="parson_8h.html#a65f383a4ad17a6872ee422c28ff4ab66">JSON_Array</a>* json_value_get_array </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01297">1297</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a8dbc1a82a4ec68592d3654543505244e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8dbc1a82a4ec68592d3654543505244e">&#9670;&nbsp;</a></span>json_value_get_boolean()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int json_value_get_boolean </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01309">1309</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="ac66b65fac26ad83b9b90b3a40030e669"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac66b65fac26ad83b9b90b3a40030e669">&#9670;&nbsp;</a></span>json_value_get_number()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double json_value_get_number </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01305">1305</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a11a1512bdfa1352844cb22da9beef9b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a11a1512bdfa1352844cb22da9beef9b7">&#9670;&nbsp;</a></span>json_value_get_object()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="parson_8h.html#aac3bec48f2f023bc1b362fc7cf0697c8">JSON_Object</a>* json_value_get_object </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01293">1293</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a70adfc1c05ae75488416310b42d63a38"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a70adfc1c05ae75488416310b42d63a38">&#9670;&nbsp;</a></span>json_value_get_parent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a>* json_value_get_parent </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01313">1313</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a350d04e05892e0724b8ce6fa094e6f4e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a350d04e05892e0724b8ce6fa094e6f4e">&#9670;&nbsp;</a></span>json_value_get_string()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* json_value_get_string </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01301">1301</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="ac9afd8b1fc34493d5dfddd84540818eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac9afd8b1fc34493d5dfddd84540818eb">&#9670;&nbsp;</a></span>json_value_get_type()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="parson_8h.html#a44cf81f85e0d922e18ff42ba96b9add1">JSON_Value_Type</a> json_value_get_type </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a> *&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01289">1289</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a0af80116270caa33b7e08d831a321274"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0af80116270caa33b7e08d831a321274">&#9670;&nbsp;</a></span>json_value_init_array()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a>* json_value_init_array </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01349">1349</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="adaf14e5bbdadc2c899c9a2216fd115f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adaf14e5bbdadc2c899c9a2216fd115f7">&#9670;&nbsp;</a></span>json_value_init_boolean()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a>* json_value_init_boolean </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>boolean</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01401">1401</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="aa0bc1e5d5298f7c85a1673075a18ec8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa0bc1e5d5298f7c85a1673075a18ec8b">&#9670;&nbsp;</a></span>json_value_init_null()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a>* json_value_init_null </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01412">1412</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="af76621e07fb3eae92512b7647b05cbe0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af76621e07fb3eae92512b7647b05cbe0">&#9670;&nbsp;</a></span>json_value_init_number()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a>* json_value_init_number </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>number</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01386">1386</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a9616525aee8cbcd1726067eba56d1e6c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9616525aee8cbcd1726067eba56d1e6c">&#9670;&nbsp;</a></span>json_value_init_object()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a>* json_value_init_object </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01334">1334</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+<a id="a273758bc780525f9ae0b95562c76596f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a273758bc780525f9ae0b95562c76596f">&#9670;&nbsp;</a></span>json_value_init_string()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="parson_8h.html#a91dc2479d3207401f079aad08043852e">JSON_Value</a>* json_value_init_string </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>string</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="parson_8c_source.html#l01364">1364</a> du fichier <a class="el" href="parson_8c_source.html">parson.c</a>.</p>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="parson_8c.html">parson.c</a></li>
+    <li class="footer">Généré par
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.15 </li>
+  </ul>
+</div>
+</body>
+</html>
