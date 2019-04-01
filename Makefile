@@ -44,3 +44,6 @@ clean :
 
 cleanlog :
 	rm $(LOG)
+
+doc :
+	xdg-open doc/documentation/html/index.html

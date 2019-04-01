@@ -65,6 +65,15 @@ void set_ID(Account acc, char * ID);
  * @param type 
  */
 void set_type_account(Account acc, char * type);
+
+/**
+ * @brief Defini un compte à partir de son ID
+ * 
+ * @param ID 
+ * @return Account 
+ */
+Account setAccount(char * ID);
+
 /**
  * @brief Créer un nouveau compte
  * 

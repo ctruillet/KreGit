@@ -105,8 +105,11 @@ void set_UID(User_account uacc, char *ID){
     strcpy(uacc->u_ID,ID);
 }
 
-void setAccountFirst(User_account uacc, Account acc){
-    uacc->first=acc;
+void setAccountFirst(User_account uacc, Account ac){
+    printf("--->%s %s \n",get_id(ac),get_type_account(ac));
+    ((uacc->first)=ac);
+    printf("--->%s %s \n",get_id(uacc->first),get_type_account(ac));
+    
 }
 
 //file management
@@ -143,8 +146,8 @@ User_account create_user_account(int admin, char *name, char *firstname, char *p
     json_object_dotset_string(root_object, "user_account.firstname", firstname);
     json_object_dotset_string(root_object, "user_account.name", name);
     json_object_dotset_string(root_object, "user_account.pwd", pwd);
-    json_object_dotset_value(root_object, "user_account.List_account",json_parse_string(List_accountToString(a)));
-    //json_object_dotset_value(root_object, "user_account.List_account",json_parse_string("[\"email@example.com\",\"email2@example.com\"]"));
+    //json_object_dotset_value(root_object, "user_account.List_account",json_parse_string(List_accountToString(a)));
+    json_object_dotset_value(root_object, "user_account.List_account",json_parse_string("[\"LivretA-852148\",\"PEL-784585\",\"LivretA-055867\"]"));
     
     serialized_string = json_serialize_to_string_pretty(root_value);
 
@@ -158,9 +161,7 @@ User_account create_user_account(int admin, char *name, char *firstname, char *p
     fprintf(listUser,"%s,%s,%s,%s \n",name,firstname,path,pwd);
     fclose(listUser);
 
-
     User_account uacc = setUser(U_id, admin, name, firstname, pwd, NULL);
-
 
     return uacc;
 }
@@ -170,7 +171,8 @@ User_account charge_user_account(char * file, int * isAdmin){
     //size attribution for the struct
     User_account uacc = NULL;
     uacc = (User_account)malloc(sizeof(User_account)); 
-    uacc->first=(Account)malloc(sizeof(Account));
+    //uacc->first=(Account)malloc(sizeof(Account));
+    Account ac = (Account)malloc(sizeof(Account));
 
     JSON_Value *root_value;
     JSON_Object *root_object;
@@ -192,17 +194,31 @@ User_account charge_user_account(char * file, int * isAdmin){
     //Liste des accounts
     list = json_value_get_array(json_object_dotget_value(root_object,"user_account.List_account"));
     printf("Il y a %d comptes\n",(int) json_array_get_count(list));
-    for (int i = 0; i < json_array_get_count(list); i++) {
+
+   for (int i = 0; i < json_array_get_count(list); i++) {
         strcpy(elt,json_array_get_string(list, i));
-        printf("\t%s\n",elt);
+        printf("\t-%s-\n",elt);
+        ac = setAccount(elt);
+        /*
+        * BUG
+        *   Il semblerait que Account ne soit pas reconnu comme tel
+        *   Bonne chance moi du futur
+        */
+
+        if(i==0){
+            uacc = setUser((char*)json_object_dotget_string(root_object, "user_account.ID"),
+               (int)json_object_dotget_number(root_object, "user_account.admin"),
+               (char*)json_object_dotget_string(root_object, "user_account.firstname"),
+               (char*)json_object_dotget_string(root_object, "user_account.name"),
+               (char*)json_object_dotget_string(root_object, "user_account.pwd"),
+               ac);
+        }else{
+            printf("-> Ajout du compte %d\n",i);
+            addNewAccount(getAccount(uacc),ac);
+            printf("<- Compte %d ajouté\n",i);
+        }
     }
 
-    /*uacc = setUser(json_object_dotget_string(root_object, "user_account.ID"),
-               (int)json_object_dotget_number(root_object, "user_account.admin"),
-               json_object_dotget_string(root_object, "user_account.firstname"),
-               json_object_dotget_string(root_object, "user_account.name"),
-               json_object_dotget_string(root_object, "user_account.pwd"));
-    */
     /* cleanup code */
     
     /* Reste a faire

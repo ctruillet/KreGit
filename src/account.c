@@ -47,9 +47,25 @@ void set_type_account(Account acc, char * type){
     strcpy(acc->type_account,type);
 }
 
-void addNewAccount(Account a, Account aAdd){
+Account setAccount(char * ID){
     Account ac = (Account)malloc(sizeof(Account));
+    set_ID(ac,ID);
+    printf("\t\tID : %s\n",ID);
+    char temp[32];
+    strcpy(temp,ID);
+    char *type = strtok(temp,"-");
+    set_type_account(ac,type);
+    printf("\t\ttype : %s %s\n",type,ID);
+    ac->next=NULL;
+    printf("\t\tNULL : %d\n",(ac->next==NULL)?1:0);
+    return ac;
+}
+
+void addNewAccount(Account a, Account aAdd){
+    Account ac = a;
+    printf("-> NULL : %d\n",(a->next==NULL)?1:0);
     while (ac->next != NULL){
+        printf("Compte %s\n",get_id(a));
         ac = ac->next;
     }
     ac->next = aAdd;
@@ -73,13 +89,13 @@ int nbrAccount(Account a){
 char *List_accountToString(Account a){
     Account a2 = a;                                     //to avoid modification on the pointeur
     char * strR = (char *)malloc(sizeof(char)*128);
-    char str[128] = "[";
+    char str[128] = "[\"";
     while(a2!=NULL){
         strcat(str,a2->ID);
-        strcat(str,",");
+        strcat(str,"\",\"");
         a2 = a2->next;
     }
-    strcat(str,"]");
+    strcat(str,"\"]");
     strcpy(strR,str);
     return strR;
 }
