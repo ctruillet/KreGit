@@ -1,39 +1,28 @@
 /*
 * Valentin Frydrychowski 
-* Derniere modification : 31/03/2019
+* Clement Truillet
+* Derniere modification : 01/04/2019
 */
 #define __ACCOUNT_H__
 #ifndef __USER_ACCOUNT_H__
     #include "user_account.h"
 #endif
-#define IDACCSIZE 16 //size in char of an account id
 
 typedef struct account_s *Account;
-typedef struct list_account_s *List_account;
 
-Account create_account(char **owners, char *type_account); /* Create a directory with .json and history.csv in it, fill the .json */
-void create_account_json(char *ID, char **owners, char *type_account);      //create a .json with generic account structure
-void create_account_csv(char *ID);
-char *create_account_ID(char*type);        //create an ID whith the date of creation
-void delete_account(Account acc);
-void charge_account(Account acc, char *ID);  //decrypte the account an charge it in the struct
-void discharge_account(Account acc);        //save the .json and .csv, crypt it and free pointeur
+//Getters
+char * get_id(Account acc);
+char * get_type_account(Account acc);
+int nbrAccount(Account a);
+char *List_accountToString(Account a);
 
-void add_list(List_account l, Account acc);      //add this account to the list
-void remoove_list(List_account l, Account acc);     //remoove this account to the list
-int Liste_accountSize(List_account l);      //return the size of a list of accounts
-char *List_accountToString(Account a);       //convert List_account format to String format
+//Setters
+void set_ID(Account acc, char * ID);
+void set_type_account(Account acc, char * type);
+Account createAccount(char * type_account);
+void addNewAccount(Account a, Account aAdd);
 
-char *get_id(Account acc);
-char **get_owners(Account acc);     //return a table of strings
-char *get_type_account(Account acc);
-float get_balance(Account acc);
-char *get_history(Account acc, char *date); //get the history ofthe account between two dates
-
-void add_history(Account acc, char *operation);     //add an operation to the history
-void set_owners(Account acc, char **own);
-void set_ID(Account acc, char *ID);
-void set_type_account(Account acc, char *type);
-
-char withdraw(Account acc, float ammount);      //make a whithdraw in the account
-char deposit(Account acc, float ammount);       //make a deposit in the account
+//file management
+char * createAccountID(char * type);
+void createAccountCsv(char * ID);
+int newOperation(Account a, double operation, char * comment);

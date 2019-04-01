@@ -1,7 +1,8 @@
 
 /*
 * Valentin Frydrychowski 
-* Derniere modification : 31/03/2019
+* Clement Truillet
+* Derniere modification : 01/04/2019
 */
 #include <string.h>
 #include <stdio.h>
@@ -12,92 +13,52 @@
 //structure of account
 typedef struct account_s{
     char ID[32];                //Identification
-    char type_account[32];      //type of account
+    char type_account[32];      //Type of account
     Account next;               //Next Account
-
 } account;
 
-//structure of an account list
-typedef struct list_account_s{
-    Account current;   //current element of the list
-    List_account next; //next element of the list
-} list_account;
-
-//getters
-char *get_id(Account acc)
-{
+//Getters
+char * get_id(Account acc){
     return acc->ID;
 }
-/*
-char **get_owners(Account acc)
-{
-    return acc->owners;
-}*/
-
-char *get_type_account(Account acc)
-{
+char * get_type_account(Account acc){
     return acc->type_account;
 }
 
-/*float get_balance(Account acc)
-{
-    //TODO
+//Setters
+void set_ID(Account acc, char * ID){
+    strcpy(acc->ID,ID);
 }
 
-char **get_history(Account acc, char date1, char date2)
-{
-
-    //TODO
+void set_type_account(Account acc, char * type){
+    strcpy(acc->type_account,type);
 }
 
-//setters
-
-void add_history(Account acc, char *operation)
-{
-    //TODO
-}*/
-/*
-void set_owners(Account acc, char **own)
-{
-    acc->owners[0] = own[0];
-    acc->owners[1] = own[1];
-}*/
-/*
-void set_ID(Account acc, char *ID)
-{
-    acc->ID = ID;
-}
-
-void set_type_account(Account acc, char *type)
-{
-    acc->type_account = type;
-}
-*/
-void add_list(List_account l, Account acc)
-{
-    List_account l2 = malloc(sizeof(account) + sizeof(List_account));
-    l2 = l;
-    while (l2 != NULL){
-        l2 = l2->next;
+void addNewAccount(Account a, Account aAdd){
+    Account ac = (Account)malloc(sizeof(Account));
+    while (ac->next != NULL){
+        ac = ac->next;
     }
-    l2->current = acc;
-    l2->next = NULL;
+    ac->next = aAdd;
+
+    /* ToDo
+    *   Ajouter l'ID à UserAccount
+    */
 }
 
-int Liste_accountSize(List_account l)
-{
+
+int nbrAccount(Account a){
     int size = 0;
-    List_account l2 = l; //to avoid modification on the pointeur
-    while (l2 != NULL)
-    { //while we didn't reach the end of the list
+    Account ac = a;             //to avoid modification on the pointeur
+    while (ac != NULL){         //while we didn't reach the end of the list
         size++;
-        l2 = l2->next;
+        ac = ac->next;
     }
     return size;
 }
 
 char *List_accountToString(Account a){
-    Account a2 = a; //to avoid modification on the pointeur
+    Account a2 = a;                                     //to avoid modification on the pointeur
     char * strR = (char *)malloc(sizeof(char)*128);
     char str[128] = "[";
     while(a2!=NULL){
@@ -111,8 +72,7 @@ char *List_accountToString(Account a){
 }
 
 //file management
-
-char *create_account_ID(char * type){
+char * createAccountID(char * type){
     char *ID = (char*)malloc(32);
     char *timeS = (char*)malloc(32);
     time_t temps;
@@ -128,105 +88,33 @@ char *create_account_ID(char * type){
     
     return ID;
 }
-/*
-void charge_account(Account acc, char ID[IDACCSIZE])
-{
-    set_ID(acc, ID);
-    char *tab[2];
-    tab[0] = "owners1";
-    tab[1] = "owners2";
-    set_owners(acc, tab);
-    set_type_account(acc, "bidon");
-}*/
 
-void create_account_csv(char *ID)
-{
-    char fileName[2 * IDACCSIZE + 18];
-    char path[] = "data/account/.csv";
-    for (int i = 0; i < 2 * IDACCSIZE + 19; i++)
-    {
-        if (i < 13)
-        {
-            fileName[i] = path[i];
-        }
-        else if (i < 13 + IDACCSIZE)
-        {
-            fileName[i] = ID[i - 13];
-        }
-        else if (i == 13 + IDACCSIZE)
-        {
-            fileName[i] = '/';
-        }
-        else if (i < 14 + 2 * IDACCSIZE)
-        {
-            fileName[i] = ID[i - (14 + IDACCSIZE)];
-        }
-        else
-        {
-            fileName[i] = path[i - (2 * IDACCSIZE + 1)];
-        }
-    }
+void createAccountCsv(char * ID){
+    char path[48] = "data/account/";
+    strcat(path,ID);
+    strcat(path,".csv");
 
-    FILE *csv = fopen(fileName, "r");
-    if (csv != NULL)
-    {
-        fprintf(csv, "date;operation;balance;comments");
-        fclose(csv);
+    FILE * fileCSV = fopen(path, "a");
+    if (fileCSV != NULL){
+        fprintf(fileCSV, "date,operation,solde,comments");
+        fclose(fileCSV);
     }
 }
 
-void create_account_json(char *ID, char **owners, char *type_account)
-{
-    char fileName[2 * IDACCSIZE + 20];
-    char path[] = "data/account/.json";
-    for (int i = 0; i < 2 * IDACCSIZE + 20; i++)
-    {
-        if (i < 13)
-        {
-            fileName[i] = path[i];
-        }
-        else if (i < 13 + IDACCSIZE)
-        {
-            fileName[i] = ID[i - 13];
-        }
-        else if (i == 13 + IDACCSIZE)
-        {
-            fileName[i] = '/';
-        }
-        else if (i < 13 + 2 * IDACCSIZE)
-        {
-            fileName[i] = ID[i - (14 + IDACCSIZE)];
-        }
-        else
-        {
-            fileName[i] = path[i - (2 * IDACCSIZE + 1)];
-        }
-    }
-
-    FILE *json = fopen(fileName, "w+");
-    if (json != NULL)
-    {
-        fprintf(json, "{\n\t\"account\": {\n\t\t\"ID\": \"%s\",\n\t\t\"owners\": \"%s;%s\",\n\t\t\"type_account\": \"%s\"\n\t}\n}", ID, owners[0], owners[1], type_account);
-        fclose(json);
-    }
+int newOperation(Account a, double operation, char * comment){
+    /* ToDo
+    *   Ouvrir le fichier CSV associé
+    *   Faire l'opération
+    *   Mettre a jour le solde
+    */
+    return 0;
 }
-/*
-Account create_account(char **owners, char *type_account)
-{
 
-    Account acc = NULL;
-    char *ID = create_account_ID();
-    char path[12 + IDACCSIZE] = "data/account";
-    strcat(path, ID);
-    char commande[18 + IDACCSIZE] = "mkdir ";
-    strcat(commande, path);
-    system(commande);
-    create_account_csv(ID);
-    create_account_json(ID, owners, type_account);
-    charge_account(acc, ID);
+Account createAccount(char * type_account){
+    Account acc = (Account)malloc(sizeof(Account));
+    set_ID(acc,createAccountID(type_account));
+    set_type_account(acc,type_account);
+    acc->next=NULL;
+
     return acc;
 }
-*/
-/*void charge_account(Account acc, char *ID){
-
-}*/

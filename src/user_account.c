@@ -1,9 +1,8 @@
 /*
 * Valentin Frydrychowski 
-* Derniere modification : 31/03/2019
+* Derniere modification : 01/04/2019
 */
 
-//finir chargement list account
 #include <time.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -14,12 +13,9 @@
 #include "../include/account.h"
 #include "../include/parson.h"
 
-#define NAMESIZE 32
-#define FNAMESIZE 32
 
-//structure from a user account
-typedef struct user_account_s
-{
+//Structure of User account
+typedef struct user_account_s{
     char u_ID[32];         //ID of .json file
     int admin;             //account with admin rights
     char name[32];         //name of user
@@ -29,39 +25,33 @@ typedef struct user_account_s
 } user_account;
 
 //getters
-bool is_admin(User_account uacc)
-{
-    return (uacc->admin?1:0);
+int is_admin(User_account uacc){
+    return (uacc->admin);
 }
 
-char *get_u_ID(User_account uacc)
-{
-    return uacc->u_ID;
+char * get_u_ID(User_account uacc){
+    return (uacc->u_ID);
 }
 
-char *get_name(User_account uacc)
-{
-    return uacc->name;
+char * get_name(User_account uacc){
+    return (uacc->name);
 }
 
-char *get_firstname(User_account uacc)
-{
-    return uacc->firstname;
+char * get_firstname(User_account uacc){
+    return (uacc->firstname);
 }
 
-char *get_pwd(User_account uacc)
-{
-    return uacc->pwd;
+char * get_pwd(User_account uacc){
+    return (uacc->pwd);
 }
 
-/*char **get_account_list(User_account uacc)
-{
-    //TODO toString
-}*/
+Account getAccount(User_account uacc){
+    return (uacc->first);
+}
 
 //Setters
 
-User_account setUser(char * ID, int admin, char *name, char *firstname, char *pwd){
+User_account setUser(char * ID, int admin, char * name, char * firstname, char * pwd, Account a){
     User_account ua;
     ua = (User_account)malloc(sizeof(User_account)); 
     set_admin(ua, admin);
@@ -70,6 +60,7 @@ User_account setUser(char * ID, int admin, char *name, char *firstname, char *pw
     set_name(ua,name);
     set_firstname(ua,firstname);
     set_pwd(ua,pwd);
+    setAccountFirst(ua,a);
 
     return ua;
 }
@@ -93,11 +84,10 @@ void set_pwd(User_account uacc, char *pwd){
 void set_UID(User_account uacc, char *ID){
     strcpy(uacc->u_ID,ID);
 }
-/*
-void add_Ulist(User_account uacc, Account acc)
-{
-    add_list(uacc->list, acc);
-}*/
+
+void setAccountFirst(User_account uacc, Account acc){
+    uacc->first=acc;
+}
 
 //file management
 
@@ -120,6 +110,7 @@ User_account create_user_account(int admin, char *name, char *firstname, char *p
     char path[32] = "data/user_account/";
     strcat(path,createUser_ID());
     strcat(path,".json");
+
     //Remplissage du json
     JSON_Value *root_value = json_value_init_object();
     JSON_Object *root_object = json_value_get_object(root_value);
@@ -148,7 +139,8 @@ User_account create_user_account(int admin, char *name, char *firstname, char *p
     fclose(listUser);
 
 
-    User_account uacc = setUser(U_id, admin, name, firstname, pwd);
+    User_account uacc = setUser(U_id, admin, name, firstname, pwd, NULL);
+
 
     return uacc;
 }
@@ -192,8 +184,6 @@ User_account charge_user_account(char * file, int * isAdmin){
                json_object_dotget_string(root_object, "user_account.pwd"));
     */
     /* cleanup code */
-
-
     
     /* Reste a faire
     *       Remplir la structure
@@ -204,46 +194,5 @@ User_account charge_user_account(char * file, int * isAdmin){
 
     json_value_free(root_value);
 
-
-    /*
-    int t;
-    char ID_F[32];
-    char firstname_F[32];
-    char name_F[32];
-    char pwd_F[32];
-    //filling all infos needed
-    char *list = NULL;*/
-
-    /*FILE *json = fopen(file, "r");
-    if (json != NULL){
-        fscanf(json, "{\n\t\"user_account\": {\n\t\t\"ID\": \"%s\",\n\t\t\"admin\": \"%d\",\n\t\t\"firstname\": \"%s\",\n\t\t\"name\": \"%s\",\n\t\t\"pwd\": \"%s\",\n\t\t\"List_account\": \"[%s]\"\n\t}\n}", ID_F, &t, firstname_F, name_F, pwd_F, list);
-        printf("\nID : -%s-\n",ID_F);
-        printf("isAdmin : -%d-\n",t);
-        printf("Firstname : -%s-\n",firstname_F);
-        printf("Name : -%s-\n",name_F);
-        printf("Password : -%s-\n",pwd_F);
-    }
-    fclose(json);
-    printf("%s\n",list);*/
-    /*
-    int strSize = 0;
-
-    //Filling the List of accounts
-    while (list[strSize] != '\0')
-    {
-        strSize++;
-    }
-    for (int i = 1; (strSize - 1) / i >= 1; i++)
-    {
-        char id[IDACCSIZE];
-        for (int y = 0; y < IDACCSIZE; y++)
-        {
-            id[y] = list[(IDACCSIZE + 1)*(i - 1) + y];
-        }
-        Account acc = NULL;
-        charge_account(acc, id);
-        add_list(uacc->list, acc);
-    }
-    */
     return uacc;
 }
