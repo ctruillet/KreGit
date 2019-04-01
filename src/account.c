@@ -1,16 +1,29 @@
+/**
+ * @file account.c
+ * @author Clement Truillet (clement.truillet@univ-tlse3.fr)
+ * @brief Ensemble des fonctions manipulant la structure Account
+ * @version 0.1
+ * @date 2019-04-01
+ * 
+ * @copyright Copyright (c) 2019
+ * 
+ */
 
-/*
-* Valentin Frydrychowski 
-* Clement Truillet
-* Derniere modification : 01/04/2019
-*/
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 #include "../include/account.h"
 
-//structure of account
+/**
+ * @brief Structure account_s
+ * 
+ * Contient    
+ *      - char * ID : Identifiant du compte   
+ *      - char * type_account : Type du compte (PEL, Livret A, ...)   
+ *      - Account next : Pointeur vers le compte suivant   
+ * 
+ */
 typedef struct account_s{
     char ID[32];                //Identification
     char type_account[32];      //Type of account

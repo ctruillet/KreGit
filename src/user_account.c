@@ -1,7 +1,13 @@
-/*
-* Valentin Frydrychowski 
-* Derniere modification : 01/04/2019
-*/
+/**
+ * @file user_account.c
+ * @author Clement Truillet (clement.truillet@univ-tlse3.fr)
+ * @brief Ensemble des fonctions manipulant la structure User_Account
+ * @version 0.1
+ * @date 2019-04-01
+ * 
+ * @copyright Copyright (c) 2019
+ * 
+ */
 
 #include <time.h>
 #include <stdio.h>
@@ -14,7 +20,18 @@
 #include "../include/parson.h"
 
 
-//Structure of User account
+/**
+ * @brief Structure user_account
+ * 
+ * Contient    
+ *      - char * u_ID : Identifiant du fichier json associé au compte   
+ *      - int admin : 1 si le compte est admin, 0 sinon   
+ *      - char * name : Nom de l'utilisateur   
+ *      - char * firstname : Prenom de l'utilisateur   
+ *      - char * pwd : Mot de passe (chiffré) de l'utilisateur   
+ *      - Account first : Pointeur vers le premier compte de l'utilisateur (début de la liste)   
+ * 
+ */
 typedef struct user_account_s{
     char u_ID[32];         //ID of .json file
     int admin;             //account with admin rights
@@ -28,7 +45,10 @@ typedef struct user_account_s{
 int is_admin(User_account uacc){
     return (uacc->admin);
 }
-
+/**
+ * @param User_account 
+ * @return ID de l'Utilisateur
+ */
 char * get_u_ID(User_account uacc){
     return (uacc->u_ID);
 }

@@ -1,5 +1,12 @@
-/*
- * librairie display.h
+/**
+ * @file display.h
+ * @author Clement Truillet (clement.truillet@univ-tlse3.fr)
+ * @brief En-tête des fonctions servant d'interface avec l'utilisateur
+ * @version 0.1
+ * @date 2019-04-01
+ * 
+ * @copyright Copyright (c) 2019
+ * 
  */
 #define __DISPLAY_H__
 
@@ -7,43 +14,98 @@
 	#include "../include/user_account.h"
 #endif
 
-/*
-* Clement Truillet 
-* Derniere modification : 31/03/2019
-*/
-
-//Display title
+/**
+ * @brief Ecrit "KreGit" (en ascii-art)
+ * 
+ */
 void title();
 
-//Say Goodbye
+/**
+ * @brief Ecrit "Goodbye" (en ascii-art)
+ * 
+ */
 void end();
 
-//Informations
+/**
+ * @brief Ecrit les informations sur KreGit, la banque multimondiale MarkDeepDownLearning
+ * 
+ */
 void info();
 
-//Connect
+/**
+ * @brief Lance le formulaire de connection
+ * 
+ * Retourne   
+ * 		- 0 si echec   
+ * 		- 4 si le compte est administrateur   
+ * 		- 5 si le compte est un simple utilisateur   
+ * 
+ * @param ua 
+ * @param isConnect 
+ * @param isAdmin 
+ * @return int 
+ */
 int connect(User_account ua, int * isConnect, int * isAdmin);
 
-//Deconnect
+/**
+ * @brief Deconnecte l'utilisateur
+ * 
+ * @param isConnect 
+ * @param isAdmin 
+ * @param ua 
+ */
 void deconnect(int * isConnect, int * isAdmin, User_account ua);
 
-//Create a new account
+/**
+ * @brief Lance le formulaire de création de compte
+ * 
+ * @param ua 
+ */
 void newAccount_form(User_account ua);
 
-//Create a new user
+/**
+ * @brief Lance le formulaire de création de nouvel utilisateur et le connecte
+ * 
+ * @param ua 
+ * @param isConnect 
+ * @return User_account 
+ */
 User_account newUser_form(User_account ua, int * isConnect);
 
-//Nav_bar - Display all accounts of user with theirs types
+/**
+ * @brief Affiche tout les comptes d'un utilisateur
+ * 
+ * @param ua 
+ * @param FSM 
+ * @return int 
+ */
 int displayListAccount(User_account ua, int FSM);
 
-//Nav bar
+/**
+ * @brief Gere la navigation entre les pages de KreGit la nouvelle banque amélioré par réseau de neurone 4G
+ * 
+ * @param FSM 
+ * @param isConnect 
+ * @param isAdmin 
+ * @return int 
+ */
 int nav(int FSM, int * isConnect, int * isAdmin);
 
-//Display Account
+/**
+ * @brief Affiche un compte
+ * 
+ * @param a 
+ */
 void displayAccount(Account a);
 
-//Error
+/**
+ * @brief Affiche une erreur
+ * 
+ */
 void error();
 
-//Generate a random quote of Percaval (or Karadoc)
+/**
+ * @brief Genere et affiche une citation de Kaamelott
+ * 
+ */
 void kaamelott();

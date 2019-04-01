@@ -1,15 +1,26 @@
+/**
+ * @file encrypt.c
+ * @author Clement Truillet (clement.truillet@univ-tlse3.fr)
+ * @brief Ensemble des fonctions chargées du chiffrement de mot de passe
+ * @version 0.1
+ * @date 2019-04-01
+ * 
+ * @copyright Copyright (c) 2019
+ * 
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "../include/user_account.h"
 #include "../include/encrypt.h"
 
-/*
-* Clement Truillet 
-* Derniere modification : 31/03/2019
-*/
-
-//Encrypt password
+/**
+ * @brief Encrypte une chaine de caractere
+ * 
+ * @param string 
+ * @return char* 
+ */
 char * encryptPassword(char * string){
     FILE *fp;
     char path[1035];
@@ -34,29 +45,13 @@ char * encryptPassword(char * string){
     return (result);
 }
 
-
-//Check if the password is good
+/**
+ * @brief Verifie si le mot de passe est valide
+ * 
+ * @param password 
+ * @param ua 
+ * @return int 
+ */
 int passwordIsGood(char * password, User_account ua){
     return (strcmp(encryptPassword(password),get_pwd(ua))==0 ? 1 : 0);
 }
-
-
-
-/*
-int main(int argc, char *argv[]){
-
-    printf("Avant pwd : -admin-\n");
-    printf("Après pwd : -%s-\n",encryptPassword("admin"));
-
-    printf("\nAvant pwd : -admin123-\n");
-    printf("Après pwd : -%s-\n",encryptPassword("admin123"));
-
-    printf("\nAvant pwd : -abc-\n");
-    printf("Après pwd : -%s-\n",encryptPassword("abc"));
-
-    printf("\nAvant pwd : -a-\n");
-    printf("Après pwd : -%s-\n",encryptPassword("a"));
-
-    printf("\nAvant pwd : -azerty-\n");
-    printf("Après pwd : -%s-\n",encryptPassword("azerty"));
-}*/

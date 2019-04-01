@@ -1,12 +1,18 @@
+/**
+ * @file log.c
+ * @author Clement Truillet (clement.truillet@univ-tlse3.fr)
+ * @brief Ensemble des fonctions chargées de generer et ecrire dans un fichier .log
+ * @version 0.1
+ * @date 2019-04-01
+ * 
+ * @copyright Copyright (c) 2019
+ * 
+ */
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
 #include "../include/log.h"
-
-/*
-* Clement Truillet 
-* Derniere modification : 23/02/2019
-*/
 
 void crea_log(char * FICHIER){
   time_t temps;

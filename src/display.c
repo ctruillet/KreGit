@@ -1,3 +1,14 @@
+/**
+ * @file display.c
+ * @author Clement Truillet (clement.truillet@univ-tlse3.fr)
+ * @brief Ensemble des fonctions servant d'interface avec l'utilisateur
+ * @version 0.1
+ * @date 2019-04-01
+ * 
+ * @copyright Copyright (c) 2019
+ * 
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

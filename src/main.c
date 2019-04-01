@@ -1,3 +1,14 @@
+/**
+ * @file main.c
+ * @author Clement Truillet (clement.truillet@univ-tlse3.fr)
+ * @brief Fichier principal
+ * @version 0.1
+ * @date 2019-04-01
+ * 
+ * @copyright Copyright (c) 2019
+ * 
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -8,19 +19,35 @@
 #include "../include/account.h"
 #include "../include/encrypt.h"
 
-
+/**
+ * @brief Vide le buffer stdin
+ * 
+ */
 #define CLEAR_STDIN { int c; while((c = getchar()) != '\n' && c != EOF); }
 
 #ifndef COLOR
+    /**
+     * @brief Change la couleur d'ecriture sur stdout
+     * 
+     */
     #define color(param) printf("\033[%sm",param)
 #endif
+
+/*! \mainpage Kregit
+*   GitHub : https://github.com/ClementTruillet/KreGit
+*/
+
+
 /* Paramètre  Couleur
 30 Noir |31 Rouge | 32 Vert | 33 Jaune | 34 Bleu| 35 Magenta | 36 Cyan | 37 Blanc
  
 "1" active la haute intensité des caractères.
 */
 
-//FSM
+/**
+ * @brief Machine a état
+ * 
+ */
 enum{
     TITLE,              //0 - Welcome
     CONNECT,            //1 - Connect Page
@@ -37,10 +64,6 @@ enum{
     KAAMELOT = 42       //42 - Kaamelot    
 }FSM;
 
-/*
-* Clement Truillet 
-* Derniere modification : 31/03/2019
-*/
 
 int main(int argc, char *argv[]){
     //Init
