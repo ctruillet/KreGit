@@ -27,8 +27,8 @@
 typedef struct account_s{
     char ID[32];                //Identification
     char type_account[32];      //Type of account
-    Account next;               //Next Account
-} account;
+    struct account_s* next;     //Next Account
+} account ;
 
 //Getters
 char * get_id(Account acc){
@@ -56,22 +56,25 @@ void InfoAccount(Account a){
 }
 
 Account setAccount(char * ID){
-    Account ac = (Account)malloc(sizeof(Account));
+    Account ac = (Account) malloc(sizeof(Account));
     set_ID(ac,ID);
-    char temp[32];
+    char temp[32]= "\0";
+
     strcpy(temp,ID);
-    char *type = strtok(temp,"-");
+    // Get the first token
+    char *type = strtok(temp,"-"); // merdier token
+    printf("\tSET ACCOUNT : TYPE : %s\n", type);
     set_type_account(ac,type);
     ac->next=NULL;
-
     return (ac);
 }
 
 void addNewAccount(Account a, Account aAdd){
-    Account ac = a;
     InfoAccount(a);
+
+    Account ac = a;
     while (ac->next != NULL){
-        printf("Compte %s\n",get_id(a));
+        printf(">> on passe le Compte %s\n",get_id(a));
         ac = getNextAccount(ac);
     }
     ac->next = aAdd;

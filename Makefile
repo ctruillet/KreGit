@@ -1,6 +1,6 @@
 MAKE = make
 GCC = gcc
-LIBFLAGS = -lm
+LIBFLAGS = -lm -lcrypt
 CFLAGS = -Wall -g
 INCLUDE = include/
 SRC = $(wildcard src/*.c)

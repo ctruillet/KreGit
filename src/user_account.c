@@ -46,8 +46,8 @@ typedef struct user_account_s{
     char name[32];         //name of user
     char firstname[32];    //first name of user
     char pwd[32];          //password link to the account
-    Account first;         //list of account own by user
-} user_account;
+    struct account_s* first;         //list of account own by user
+} user_account ;
 
 //getters
 int is_admin(User_account uacc){
@@ -301,11 +301,13 @@ User_account charge_user_account(char * file, int * isAdmin){
         *       -> refaire setUser avec UserAccount dans les params ?
         */
        
+       
         // Comptes
         if(i==0){
             first = setAccount(elt);
             InfoAccount(first);
-        }else{
+        }
+        else{
             ac = setAccount(elt);
             
             printf("-> Ajout du compte %d\n",i);
