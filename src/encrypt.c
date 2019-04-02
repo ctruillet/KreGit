@@ -25,7 +25,7 @@
  * @return char* 
  */
 char* encryptPassword(char* string){
-    return (crypt(string,"456b7016a916a4b178dd72b947c152b7,"));
+    return (strcat(crypt(string,"456b7016a916a4b178dd72b947c152b7,"),crypt(string,"MqRRfGUfbJWV54,")));
 }
 
 /**

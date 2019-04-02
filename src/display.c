@@ -27,6 +27,7 @@
 #ifndef COLOR
     #define color(param) printf("\033[%sm",param)
 #endif
+
 /* Paramètre  Couleur
 30 Noir |31 Rouge | 32 Vert | 33 Jaune | 34 Bleu | 35 Magenta | 36 Cyan | 37 Blanc
  
@@ -92,7 +93,9 @@ User_account connect(User_account ua, int * isConnect, int * isAdmin){
     char * firstnameF;
     char * pwdF;
     char * jsonF;
+    printf("Préparation de la matrice\n");
     fichier = fopen("data/user_account/listUser.dat", "r");
+    rewind(fichier);
     if (fichier != NULL){
         while ((isEquals!=2) && (fgets(chaine, 128, fichier) != NULL)){   
             isEquals=0;
@@ -128,10 +131,12 @@ User_account connect(User_account ua, int * isConnect, int * isAdmin){
     }else{
         printf("Impossible d'ouvrir le fichier\n");
     }
-    fclose(fichier);
+    if(fclose(fichier)==0){
+        printf(">> Fichier ListUser bien fermé <<");
+    }
 
     if(isEquals==2){
-      //printf("\n\nName : -%s-\nFisrtname : -%s-\nPassword : -%s-\nJSON : -%s-\n",nameF, firstnameF, pwdF, jsonF);
+      printf("\n\nName : -%s-\nFisrtname : -%s-\nPassword : -%s-\nJSON : -%s-\n",nameF, firstnameF, pwdF, jsonF);
       (*isConnect)=1;
       ua = charge_user_account(jsonF, isAdmin);
       return ua;
@@ -154,6 +159,7 @@ User_account deconnect(int * isConnect, int * isAdmin, User_account ua){
     (*isConnect) = 0;
     (*isAdmin) = 0;
     free(ua);
+    ua=NULL;
     return ua;
 }
 
