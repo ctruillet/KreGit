@@ -83,7 +83,7 @@ int main(int argc, char *argv[]){
     int isConnect = 0;
     int isAdmin = 0;
 
-    User_account ua;    
+    User_account ua = NULL;    
 
     title();
 
@@ -93,12 +93,24 @@ int main(int argc, char *argv[]){
 
         switch (FSM){
             case TITLE:                             //Welcome
+                ua = deconnect(&isConnect, &isAdmin, ua);
                 w_log(logF,"Welcome page - FSM = 0");
                 break;
 
             case CONNECT:                       
                 w_log(logF,"Connect Page - FSM = 1");
-                FSM = connect(ua,&isConnect,&isAdmin);
+                ua = connect(ua,&isConnect,&isAdmin);
+                if(isConnect == 0){
+                    printf("Echec de l'authentification\n");
+                    FSM =  0;
+                }else{
+                    if(isAdmin==1){
+                        FSM = 4;
+                    }else{
+                        FSM = 5;
+                    }
+                    InfoUser(ua);
+                }
                 break;
 
             case CREATE_USER:                     
@@ -131,6 +143,7 @@ int main(int argc, char *argv[]){
                 break;
 
             case CHANGE_PWD:
+                ua = changePwd(ua);
                 w_log(logF,"Change password - FSM = 9");
                 break;
 

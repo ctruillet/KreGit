@@ -38,6 +38,10 @@ char * get_type_account(Account acc){
     return acc->type_account;
 }
 
+Account getNextAccount(Account ac){
+    return ac->next;
+}
+
 //Setters
 void set_ID(Account acc, char * ID){
     strcpy(acc->ID,ID);
@@ -47,30 +51,32 @@ void set_type_account(Account acc, char * type){
     strcpy(acc->type_account,type);
 }
 
+void InfoAccount(Account a){
+    printf("--------------------------\n| Compte %s\n| \tType : %s\n| \tSuivant ? %s\n--------------------------\n",get_id(a),get_type_account(a),(getNextAccount(a)!=NULL)?"Oui":"Non");
+}
+
 Account setAccount(char * ID){
     Account ac = (Account)malloc(sizeof(Account));
     set_ID(ac,ID);
-    printf("\t\tID : %s\n",ID);
     char temp[32];
     strcpy(temp,ID);
     char *type = strtok(temp,"-");
     set_type_account(ac,type);
-    printf("\t\ttype : %s %s\n",type,ID);
     ac->next=NULL;
-    printf("\t\tNULL : %d\n",(ac->next==NULL)?1:0);
-    return ac;
+
+    return (ac);
 }
 
 void addNewAccount(Account a, Account aAdd){
     Account ac = a;
-    printf("-> NULL : %d\n",(a->next==NULL)?1:0);
+    InfoAccount(a);
     while (ac->next != NULL){
         printf("Compte %s\n",get_id(a));
-        ac = ac->next;
+        ac = getNextAccount(ac);
     }
     ac->next = aAdd;
 
-    /* ToDo
+    /* ToDo & BUG
     *   Ajouter l'ID à UserAccount
     */
 }

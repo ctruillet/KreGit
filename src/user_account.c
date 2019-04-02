@@ -15,10 +15,18 @@
 #include <stdbool.h>
 #include <string.h>
 #include <time.h>
-#include "../include/user_account.h"
 #include "../include/account.h"
+#include "../include/user_account.h"
+#include "../include/encrypt.h"
 #include "../include/parson.h"
 
+#ifndef CLEAR_STDIN
+    #define CLEAR_STDIN { int c; while((c = getchar()) != '\n' && c != EOF); }
+#endif
+
+#ifndef COLOR
+    #define color(param) printf("\033[%sm",param)
+#endif
 
 /**
  * @brief Structure user_account
@@ -69,18 +77,44 @@ Account getAccount(User_account uacc){
     return (uacc->first);
 }
 
+void InfoUser(User_account ua){
+    printf("--------------------------\n| Utilisateur %s\n| \tNom : %s\n| \tPrenom : %s\n| \tPassword : %s\n| \tAdmin ? %s\n--------------------------\n",
+    get_u_ID(ua),
+    get_name(ua),
+    get_firstname(ua),
+    get_pwd(ua),
+    (is_admin(ua)==1?"Oui":"Non"));
+    /*printf("--------------------------\n| Utilisateur %s\n| \tNom : %s\n| \tPrenom : %s\n| \tPassword : %s\n| \tAdmin ? %s\n| \tNombre de compte :  %d\n--------------------------\n",
+    get_u_ID(ua),
+    get_name(ua),
+    get_firstname(ua),
+    get_pwd(ua),
+    (is_admin(ua)==1?"Oui":"Non"),
+    nbrAccount((Account)getAccount(ua)));*/
+}
+
 //Setters
 
-User_account setUser(char * ID, int admin, char * name, char * firstname, char * pwd, Account a){
-    User_account ua;
+User_account setUser(char * ID, int admin, char * name, char * firstname, char * pwd){
+    //printf("- - - - > NULL : %d\n",(getNextAccount(a)==NULL)?1:0);
+    User_account ua = NULL;
+    //printf("- - - - - > avant malloc NULL : %d\n",(getNextAccount(a)==NULL)?1:0);
     ua = (User_account)malloc(sizeof(User_account)); 
+    //printf("- - - - - > après malloc NULL : %d\n",(getNextAccount(a)==NULL)?1:0);
     set_admin(ua, admin);
+    //printf("- - - - - > NULL : %d\n",(getNextAccount(a)==NULL)?1:0);
     set_firstname(ua,firstname);
+    //printf("- - - - - > NULL : %d\n",(getNextAccount(a)==NULL)?1:0);
     set_UID(ua,ID);
+    //printf("- - - - - > NULL : %d\n",(getNextAccount(a)==NULL)?1:0);
     set_name(ua,name);
+    //printf("- - - - - > NULL : %d\n",(getNextAccount(a)==NULL)?1:0);
     set_firstname(ua,firstname);
+    //printf("- - - - - > NULL : %d\n",(getNextAccount(a)==NULL)?1:0);
     set_pwd(ua,pwd);
-    setAccountFirst(ua,a);
+    //printf("- - - - - > NULL : %d\n",(getNextAccount(a)==NULL)?1:0);
+    /*setAccountFirst(ua,a);
+    printf("- - - - > NULL : %d\n",(getNextAccount(a)==NULL)?1:0);*/
 
     return ua;
 }
@@ -112,6 +146,63 @@ void setAccountFirst(User_account uacc, Account ac){
     
 }
 
+User_account changePwd(User_account ua){
+    int isPasswordGood = 0;
+    char newpwd[32];
+    char newpawdConfirm[32];
+
+    while(isPasswordGood<=0 && isPasswordGood!=-3){ //Check if password is good
+        printf("Nouveau mot de passe : ");
+        scanf("%s",newpwd);
+        CLEAR_STDIN
+        printf("Confirmez le mot de passe : ");
+        scanf("%s",newpawdConfirm);
+        CLEAR_STDIN
+        if(strcmp(newpwd,newpawdConfirm)==0)
+            isPasswordGood=1;            
+        if(isPasswordGood<=0){
+            color("31");
+            printf("\n/!\\ Mots de passe non identiques /!\\\n");
+            color("0");
+            if(2+isPasswordGood>0)
+              printf("Il vous reste %d essais \n",2+isPasswordGood);
+            isPasswordGood--;
+        }
+
+        if(isPasswordGood==-3){
+            color("31");
+            printf("\nEchec\n");
+            color("0");
+            return ua;
+        }
+            
+    }
+
+    InfoUser(ua);
+
+    printf("--------------------------\n");
+    printf("| Utilisateur %s\n",get_u_ID(ua));
+    printf("| \tNom : %s\n",get_name(ua));
+    printf("| \tPrenom : %s\n",get_firstname(ua));
+    printf("| \tPassword : %s\n",encryptPassword(newpwd));
+    printf("| \tAdmin ? %s\n",(is_admin(ua)==1?"Oui":"Non"));
+    printf("--------------------------\n");
+    
+    
+    
+    
+    
+
+    //ua = create_user_account(is_admin(ua),get_name(ua),get_firstname(ua),encryptPassword(newpwd),getAccount(ua));
+    //ua = create_user_account(is_admin(ua),get_name(ua),get_firstname(ua),encryptPassword(newpwd),NULL);
+    InfoUser(ua);
+
+    /*ToDo
+    *   Modifier le listUser.dat
+    */
+   return ua;
+}
+
 //file management
 
 char * createUser_ID(){
@@ -128,20 +219,21 @@ char * createUser_ID(){
     return ID;
 }
 
-User_account create_user_account(int admin, char *name, char *firstname, char *pwd, Account a){
-    char * U_id = createUser_ID();            //ToDo
+User_account create_user_account(char * uID, int admin, char *name, char *firstname, char *pwd, Account a){
+    printf("Création de compte\n");
     char path[32] = "data/user_account/";
-    strcat(path,createUser_ID());
+    strcat(path,uID);
     strcat(path,".json");
 
     //Remplissage du json
+    printf("Formatage des données\n");
     JSON_Value *root_value = json_value_init_object();
     JSON_Object *root_object = json_value_get_object(root_value);
     char *serialized_string = NULL;
     FILE *jsonF = NULL;
     FILE *listUser = NULL;
-    jsonF = fopen(path, "w+");
-    json_object_dotset_string(root_object, "user_account.ID", U_id);
+
+    json_object_dotset_string(root_object, "user_account.ID", uID);
     json_object_dotset_number(root_object, "user_account.admin", (double)admin);
     json_object_dotset_string(root_object, "user_account.firstname", firstname);
     json_object_dotset_string(root_object, "user_account.name", name);
@@ -157,11 +249,12 @@ User_account create_user_account(int admin, char *name, char *firstname, char *p
     json_value_free(root_value);
 
     //Ajout du compte dans la liste des users
+    printf("Ecriture des données\n");
     listUser = fopen("data/user_account/listUser.dat","a");
     fprintf(listUser,"%s,%s,%s,%s \n",name,firstname,path,pwd);
     fclose(listUser);
 
-    User_account uacc = setUser(U_id, admin, name, firstname, pwd, NULL);
+    User_account uacc = setUser(uID, admin, name, firstname, pwd);
 
     return uacc;
 }
@@ -169,10 +262,12 @@ User_account create_user_account(int admin, char *name, char *firstname, char *p
 //charge the infos of the json into the user_account struct
 User_account charge_user_account(char * file, int * isAdmin){
     //size attribution for the struct
+    Account ac; //= (Account)malloc(sizeof(Account));
+    Account first; //= (Account)malloc(sizeof(Account));
     User_account uacc = NULL;
     uacc = (User_account)malloc(sizeof(User_account)); 
     //uacc->first=(Account)malloc(sizeof(Account));
-    Account ac = (Account)malloc(sizeof(Account));
+    
 
     JSON_Value *root_value;
     JSON_Object *root_object;
@@ -183,41 +278,51 @@ User_account charge_user_account(char * file, int * isAdmin){
     root_value = json_parse_file(file);
     root_object = json_value_get_object(root_value);
 
-    printf("%s %s %s %s %s\n", "ID", "ADMIN", "Prenom", "Nom", "Password");
+    /*printf("%s %s %s %s %s\n", "ID", "ADMIN", "Prenom", "Nom", "Password");
         printf("%s %d %s %s %s\n",
                json_object_dotget_string(root_object, "user_account.ID"),
                (int)json_object_dotget_number(root_object, "user_account.admin"),
                json_object_dotget_string(root_object, "user_account.firstname"),
                json_object_dotget_string(root_object, "user_account.name"),
-               json_object_dotget_string(root_object, "user_account.pwd"));
+               json_object_dotget_string(root_object, "user_account.pwd"));*/
 
     //Liste des accounts
     list = json_value_get_array(json_object_dotget_value(root_object,"user_account.List_account"));
     printf("Il y a %d comptes\n",(int) json_array_get_count(list));
 
    for (int i = 0; i < json_array_get_count(list); i++) {
-        strcpy(elt,json_array_get_string(list, i));
-        printf("\t-%s-\n",elt);
-        ac = setAccount(elt);
+        strcpy(elt,json_array_get_string(list, i));        
         /*
         * BUG
         *   Il semblerait que Account ne soit pas reconnu comme tel
         *   Bonne chance moi du futur
+        *       -> Faire un constrcuteur par copie sur setAccoutFirst ?
+        *       --> faire setUser sans Account dans les param ?
+        *       -> refaire setUser avec UserAccount dans les params ?
         */
-
+       
+        // Comptes
         if(i==0){
-            uacc = setUser((char*)json_object_dotget_string(root_object, "user_account.ID"),
-               (int)json_object_dotget_number(root_object, "user_account.admin"),
-               (char*)json_object_dotget_string(root_object, "user_account.firstname"),
-               (char*)json_object_dotget_string(root_object, "user_account.name"),
-               (char*)json_object_dotget_string(root_object, "user_account.pwd"),
-               ac);
+            first = setAccount(elt);
+            InfoAccount(first);
         }else{
+            ac = setAccount(elt);
+            
             printf("-> Ajout du compte %d\n",i);
-            addNewAccount(getAccount(uacc),ac);
+            InfoAccount(ac);
+            //addNewAccount(first,ac);
             printf("<- Compte %d ajouté\n",i);
         }
     }
+
+    // User
+    uacc = setUser((char*)json_object_dotget_string(root_object, "user_account.ID"), //Visiblement ac merde ici
+            (int)json_object_dotget_number(root_object, "user_account.admin"),
+            (char*)json_object_dotget_string(root_object, "user_account.firstname"),
+            (char*)json_object_dotget_string(root_object, "user_account.name"),
+            (char*)json_object_dotget_string(root_object, "user_account.pwd"));
+    InfoUser(uacc);
+
 
     /* cleanup code */
     
@@ -228,7 +333,7 @@ User_account charge_user_account(char * file, int * isAdmin){
     */
 
 
-    json_value_free(root_value);
+    //json_value_free(root_value);
 
     return uacc;
 }

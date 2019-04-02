@@ -12,7 +12,7 @@
 #define __USER_ACCOUNT_H__
 
 #include <stdbool.h>
-#include "account.h"
+#include "../include/account.h"
 
 /**
  * @brief Pointeur sur la structure user_account_s
@@ -64,6 +64,9 @@ char * get_pwd(User_account uacc);
  */
 Account getAccount(User_account uacc);
 
+void InfoUser(User_account ua);
+
+
 //Setters
 /**
  * @brief Defini un Utilisateur
@@ -76,7 +79,7 @@ Account getAccount(User_account uacc);
  * @param a 
  * @return User_account 
  */
-User_account setUser(char * ID, int admin, char *name, char *firstname, char *pwd, Account a);
+User_account setUser(char * ID, int admin, char *name, char *firstname, char *pwd);
 /**
  * @brief Defini la variable isAdmin d'un utilisateur
  * 
@@ -120,6 +123,13 @@ void set_UID(User_account uacc, char *ID);
  */
 void setAccountFirst(User_account uacc, Account acc);
 
+/**
+ * @brief Modifie le mot de passe
+ * 
+ * @param ua 
+ */
+User_account changePwd(User_account ua);
+
 //file management
 /**
  * @brief Crée un identifiant d'utilisateur unique
@@ -140,7 +150,7 @@ char * createUser_ID();
  * @param a 
  * @return User_account 
  */
-User_account create_user_account(int admin, char *name, char *firstname, char *pwd, Account a);
+User_account create_user_account(char * ID, int admin, char *name, char *firstname, char *pwd, Account a);
 
 /**
  * @brief Recuperer les informations de l'utilisateur dans le fichier json associé

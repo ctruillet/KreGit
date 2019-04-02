@@ -11,7 +11,7 @@
 
 #define __ACCOUNT_H__
 #ifndef __USER_ACCOUNT_H__
-    #include "user_account.h"
+    #include "../include/user_account.h"
 #endif
 
 /**
@@ -35,6 +35,22 @@ char * get_id(Account acc);
  * @return char* 
  */
 char * get_type_account(Account acc);
+
+/**
+ * @brief Retourne le compte suivant du compte
+ * 
+ * @param ac 
+ * @return Account 
+ */
+Account getNextAccount(Account ac);
+
+/**
+ * @brief Affiche les informations d'un compte
+ * 
+ * @param a 
+ */
+void InfoAccount(Account a);
+
 /**
  * @brief Retourne le nombre de compte
  * 

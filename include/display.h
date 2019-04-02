@@ -45,7 +45,7 @@ void info();
  * @param isAdmin 
  * @return int 
  */
-int connect(User_account ua, int * isConnect, int * isAdmin);
+User_account connect(User_account ua, int * isConnect, int * isAdmin);
 
 /**
  * @brief Deconnecte l'utilisateur
@@ -54,7 +54,7 @@ int connect(User_account ua, int * isConnect, int * isAdmin);
  * @param isAdmin 
  * @param ua 
  */
-void deconnect(int * isConnect, int * isAdmin, User_account ua);
+User_account deconnect(int * isConnect, int * isAdmin, User_account ua);
 
 /**
  * @brief Lance le formulaire de création de compte

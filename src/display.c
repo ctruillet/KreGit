@@ -68,7 +68,8 @@ void end(){
 }
 
 //Connect
-int connect(User_account ua, int * isConnect, int * isAdmin){
+User_account connect(User_account ua, int * isConnect, int * isAdmin){
+    ua = (User_account)malloc(sizeof(User_account));
     char name[16];
     char firstname[16];
     char pwd[16];
@@ -133,12 +134,10 @@ int connect(User_account ua, int * isConnect, int * isAdmin){
       //printf("\n\nName : -%s-\nFisrtname : -%s-\nPassword : -%s-\nJSON : -%s-\n",nameF, firstnameF, pwdF, jsonF);
       (*isConnect)=1;
       ua = charge_user_account(jsonF, isAdmin);
-      return 5;
+      return ua;
     }else{
-      printf("ERREUR");
+      return ua;
     }
- 
-    return 0;
     /*Demande user_name
     * Demande pwd
     * Verification pwd
@@ -151,10 +150,11 @@ int connect(User_account ua, int * isConnect, int * isAdmin){
 }
 
 //Deconnect
-void deconnect(int * isConnect, int * isAdmin, User_account ua){
+User_account deconnect(int * isConnect, int * isAdmin, User_account ua){
     (*isConnect) = 0;
     (*isAdmin) = 0;
     free(ua);
+    return ua;
 }
 
 //Create a new account
@@ -210,7 +210,7 @@ User_account newUser_form(User_account ua, int * isConnect){
             
       }
 
-    ua=create_user_account(0, name, firstname, encryptPassword(pwd), NULL);
+    ua=create_user_account(createUser_ID(), 0, name, firstname, encryptPassword(pwd), NULL);
     printf("\nNous vous souhaitons la bienvenue !\n\n");
     (*isConnect)=1;
     return ua;
@@ -278,7 +278,6 @@ int nav(int FSM, int * isConnect, int * isAdmin){
             if(i==1 || i==2 || i==3 || i==4){
                 switch(i){
                     case 1:
-                        (*isConnect)=0;
                         return 0;
                         break;
                     case 2:
@@ -307,7 +306,6 @@ int nav(int FSM, int * isConnect, int * isAdmin){
             if(i==1 || i==2 || i==3 || i==4 || i==5){
                 switch(i){
                     case 1:
-                        (*isConnect)=0;
                         return 0;
                         break;
                     case 2:
