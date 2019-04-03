@@ -36,7 +36,7 @@
 
 /*
 * Clement Truillet 
-* Derniere modification : 31/03/2019
+* Derniere modification : 03/04/2019
 */
 
 //Display title
@@ -93,7 +93,7 @@ User_account connect(User_account ua, int * isConnect, int * isAdmin){
     char * firstnameF;
     char * pwdF;
     char * jsonF;
-    printf("Préparation de la matrice\n");
+
     fichier = fopen("data/user_account/listUser.dat", "r");
     rewind(fichier);
     if (fichier != NULL){
@@ -130,9 +130,6 @@ User_account connect(User_account ua, int * isConnect, int * isAdmin){
         }
     }else{
         printf("Impossible d'ouvrir le fichier\n");
-    }
-    if(fclose(fichier)==0){
-        printf(">> Fichier ListUser bien fermé <<\n");
     }
 
     if(isEquals==2){

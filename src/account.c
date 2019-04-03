@@ -3,7 +3,7 @@
  * @author Clement Truillet (clement.truillet@univ-tlse3.fr)
  * @brief Ensemble des fonctions manipulant la structure Account
  * @version 0.1
- * @date 2019-04-01
+ * @date 2019-04-03
  * 
  * @copyright Copyright (c) 2019
  * 
@@ -85,13 +85,17 @@ void addNewAccount(Account a, Account aAdd){
 
 
 int nbrAccount(Account a){
-    int size = 0;
-    Account ac = a;             //to avoid modification on the pointeur
-    while (ac != NULL){         //while we didn't reach the end of the list
-        size++;
-        ac = ac->next;
+    if(a == NULL){
+        return 0;
+    }else{
+        int size = 0;
+        Account ac = a;             //to avoid modification on the pointeur
+        while (ac != NULL){         //while we didn't reach the end of the list
+            size++;
+            ac = ac->next;
+        }
+        return size;
     }
-    return size;
 }
 
 char *List_accountToString(Account a){

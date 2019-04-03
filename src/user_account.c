@@ -41,11 +41,11 @@
  * 
  */
 typedef struct user_account_s{
-    char u_ID[32];         //ID of .json file
+    char u_ID[64];         //ID of .json file
     int admin;             //account with admin rights
     char name[32];         //name of user
     char firstname[32];    //first name of user
-    char pwd[32];          //password link to the account
+    char pwd[64];          //password link to the account
     struct account_s* first;         //list of account own by user
 } user_account ;
 
@@ -53,10 +53,7 @@ typedef struct user_account_s{
 int is_admin(User_account uacc){
     return (uacc->admin);
 }
-/**
- * @param User_account 
- * @return ID de l'Utilisateur
- */
+
 char * get_u_ID(User_account uacc){
     return (uacc->u_ID);
 }
@@ -78,12 +75,6 @@ Account getAccount(User_account uacc){
 }
 
 void InfoUser(User_account ua){
-    /*printf("--------------------------\n| Utilisateur %s\n| \tNom : %s\n| \tPrenom : %s\n| \tPassword : -%s-\n| \tAdmin ? %s\n--------------------------\n",
-    get_u_ID(ua),
-    get_name(ua),
-    get_firstname(ua),
-    get_pwd(ua),
-    (is_admin(ua)==1?"Oui":"Non"));*/
     printf("--------------------------\n| Utilisateur %s\n| \tNom : %s\n| \tPrenom : %s\n| \tPassword : %s\n| \tAdmin ? %s\n| \tNombre de compte :  %d\n--------------------------\n",
     get_u_ID(ua),
     get_name(ua),
@@ -122,7 +113,7 @@ void set_firstname(User_account uacc, char *firstname){
 }
 
 void set_pwd(User_account uacc, char *pwd){
-    sprintf(uacc->pwd,"%32s",pwd);
+    strcpy(uacc->pwd,pwd);
 }
 
 void set_UID(User_account uacc, char *ID){
@@ -167,16 +158,6 @@ User_account changePwd(User_account ua){
         }
             
     }
-
-    InfoUser(ua);
-
-    printf("--------------------------\n");
-    printf("| Utilisateur %s\n",get_u_ID(ua));
-    printf("| \tNom : %s\n",get_name(ua));
-    printf("| \tPrenom : %s\n",get_firstname(ua));
-    printf("| \tPassword : %s\n",encryptPassword(newpwd));
-    printf("| \tAdmin ? %s\n",(is_admin(ua)==1?"Oui":"Non"));
-    printf("--------------------------\n");
     
     // Remove the user's line in ListUser.dat
     FILE * fileIN;
@@ -186,13 +167,15 @@ User_account changePwd(User_account ua){
 
     char name[32];
     char firstname[32];
-    char pwd[32];
+    char pwd[64];
+    char json[64] = "data/user_account/";
+
     strcpy(name,get_name(ua));
     strcpy(firstname,get_firstname(ua));
     strcpy(pwd,get_pwd(ua));
-    char json[64] = "data/user_account/";
-    strcat(json,get_u_ID(ua));
-    strcat(json,".json");
+    sprintf(json,"data/user_account/%s.json",get_u_ID(ua));
+
+    //printf(">>\n\t%s\n\t%s\n\t%s\n\t%s\n<<\n",name,firstname,pwd,json);
 
     char * nameF;
     char * firstnameF;
@@ -202,10 +185,9 @@ User_account changePwd(User_account ua){
     int isEquals = 1;
 
     fileIN = fopen("data/user_account/listUser.dat","r");
-    fileOUT = fopen("data/user_account/listUser.dat","w");
+    fileOUT = fopen("data/user_account/listUserOUT.dat","w");
 
     if(fileIN != NULL){
-
         while (fgets(line, 128, fileIN) != NULL){
             strcpy(lineF,line);
             for(int i=0; ((i<4) && isEquals == 1);i++){
@@ -251,20 +233,10 @@ User_account changePwd(User_account ua){
 
     remove("data/user_account/listUser.dat");
     rename("data/user_account/listUserOUT.dat","data/user_account/listUser.dat");
-    
-    /*ToDo
-    *   Créer un nouveau compte avec le bon mot de passe
-    *       Supprimer l'ancien fichier .json
-    *       Créer un nouveau JSON
-    *       Ajouter les infos du l'user dans le Listuser.dat
-    */
-    
 
-    //ua = create_user_account(is_admin(ua),get_name(ua),get_firstname(ua),encryptPassword(newpwd),getAccount(ua));
-    //ua = create_user_account(is_admin(ua),get_name(ua),get_firstname(ua),encryptPassword(newpwd),NULL);
+    ua = create_user_account(get_u_ID(ua),is_admin(ua),get_name(ua),get_firstname(ua),encryptPassword(newpwd),getAccount(ua));
     InfoUser(ua);
 
-    
    return ua;
 }
 
@@ -322,6 +294,7 @@ User_account create_user_account(char * uID, int admin, char *name, char *firstn
     fclose(listUser);
 
     User_account uacc = setUser(uID, admin, name, firstname, pwd);
+    setAccountFirst(uacc,a);
 
     return uacc;
 }
@@ -345,13 +318,13 @@ User_account charge_user_account(char * file, int * isAdmin){
     root_value = json_parse_file(file);
     root_object = json_value_get_object(root_value);
 
-    /*printf("%s %s %s %s %s\n", "ID", "ADMIN", "Prenom", "Nom", "Password");
-        printf("%s %d %s %s %s\n",
+    printf("%s %s %s %s %s\n", "ID", "ADMIN", "Prenom", "Nom", "Password");
+        printf(">%s< >%d< >%s< >%s< >%s<\n",
                json_object_dotget_string(root_object, "user_account.ID"),
                (int)json_object_dotget_number(root_object, "user_account.admin"),
                json_object_dotget_string(root_object, "user_account.firstname"),
                json_object_dotget_string(root_object, "user_account.name"),
-               json_object_dotget_string(root_object, "user_account.pwd"));*/
+               json_object_dotget_string(root_object, "user_account.pwd"));
 
     //Liste des accounts
     list = json_value_get_array(json_object_dotget_value(root_object,"user_account.List_account"));
@@ -367,21 +340,23 @@ User_account charge_user_account(char * file, int * isAdmin){
         else{
             ac = setAccount(elt);
             InfoAccount(ac);
-            printf("-> Ajout du compte %d\n",i);            
+            //printf("-> Ajout du compte %d\n",i);            
             addNewAccount(first,ac);
-            printf("<- Compte %d ajouté\n",i);
+            //printf("<- Compte %d ajouté\n",i);
         }
     }
 
     // User
     uacc = setUser((char*)json_object_dotget_string(root_object, "user_account.ID"), //Visiblement ac merde ici
             (int)json_object_dotget_number(root_object, "user_account.admin"),
-            (char*)json_object_dotget_string(root_object, "user_account.firstname"),
             (char*)json_object_dotget_string(root_object, "user_account.name"),
+            (char*)json_object_dotget_string(root_object, "user_account.firstname"),
             (char*)json_object_dotget_string(root_object, "user_account.pwd"));
 
     //InfoUser(uacc);
-    printf(">> COMPTE : %s\n",List_accountToString(first));
+    //printf(">> COMPTES : %s\n",List_accountToString(first));
+    setAccountFirst(uacc,first);
+    //printf(">> COMPTES : %s\n",List_accountToString(getAccount(uacc)));
 
     /* cleanup code */
     
