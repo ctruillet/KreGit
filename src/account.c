@@ -56,25 +56,24 @@ void InfoAccount(Account a){
 }
 
 Account setAccount(char * ID){
-    Account ac = (Account) malloc(sizeof(Account));
+    Account ac = (Account) malloc(sizeof(struct account_s));
     set_ID(ac,ID);
     char temp[32]= "\0";
 
     strcpy(temp,ID);
     // Get the first token
     char *type = strtok(temp,"-"); // merdier token
-    printf("\tSET ACCOUNT : TYPE : %s\n", type);
     set_type_account(ac,type);
     ac->next=NULL;
     return (ac);
 }
 
 void addNewAccount(Account a, Account aAdd){
-    InfoAccount(a);
+    //InfoAccount(a);
 
     Account ac = a;
     while (ac->next != NULL){
-        printf(">> on passe le Compte %s\n",get_id(a));
+        //printf(">> on passe le Compte %s\n",get_id(ac));
         ac = getNextAccount(ac);
     }
     ac->next = aAdd;
@@ -98,13 +97,17 @@ int nbrAccount(Account a){
 char *List_accountToString(Account a){
     Account a2 = a;                                     //to avoid modification on the pointeur
     char * strR = (char *)malloc(sizeof(char)*128);
-    char str[128] = "[\"";
+    char str[128] = "[";
     while(a2!=NULL){
+        strcat(str,"\\\"");
         strcat(str,a2->ID);
-        strcat(str,"\",\"");
+        strcat(str,"\\\"");
+        if(a2->next != NULL){
+            strcat(str,",");
+        }
         a2 = a2->next;
     }
-    strcat(str,"\"]");
+    strcat(str,"]");
     strcpy(strR,str);
     return strR;
 }

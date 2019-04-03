@@ -1,7 +1,7 @@
 MAKE = make
 GCC = gcc
 LIBFLAGS = -lm -lcrypt
-CFLAGS = -Wall -g
+CFLAGS = -Wall -g -ggdb
 INCLUDE = include/
 SRC = $(wildcard src/*.c)
 MOVE = mv

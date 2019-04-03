@@ -132,7 +132,7 @@ User_account connect(User_account ua, int * isConnect, int * isAdmin){
         printf("Impossible d'ouvrir le fichier\n");
     }
     if(fclose(fichier)==0){
-        printf(">> Fichier ListUser bien fermé <<");
+        printf(">> Fichier ListUser bien fermé <<\n");
     }
 
     if(isEquals==2){

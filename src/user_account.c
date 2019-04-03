@@ -78,7 +78,7 @@ Account getAccount(User_account uacc){
 }
 
 void InfoUser(User_account ua){
-    printf("--------------------------\n| Utilisateur %s\n| \tNom : %s\n| \tPrenom : %s\n| \tPassword : %s\n| \tAdmin ? %s\n--------------------------\n",
+    printf("--------------------------\n| Utilisateur %s\n| \tNom : %s\n| \tPrenom : %s\n| \tPassword : -%s-\n| \tAdmin ? %s\n--------------------------\n",
     get_u_ID(ua),
     get_name(ua),
     get_firstname(ua),
@@ -99,7 +99,7 @@ User_account setUser(char * ID, int admin, char * name, char * firstname, char *
     //printf("- - - - > NULL : %d\n",(getNextAccount(a)==NULL)?1:0);
     User_account ua = NULL;
     //printf("- - - - - > avant malloc NULL : %d\n",(getNextAccount(a)==NULL)?1:0);
-    ua = (User_account)malloc(sizeof(User_account)); 
+    ua = (User_account)malloc(sizeof(struct user_account_s)); 
     //printf("- - - - - > après malloc NULL : %d\n",(getNextAccount(a)==NULL)?1:0);
     set_admin(ua, admin);
     //printf("- - - - - > NULL : %d\n",(getNextAccount(a)==NULL)?1:0);
@@ -265,7 +265,7 @@ User_account charge_user_account(char * file, int * isAdmin){
     Account ac; //= (Account)malloc(sizeof(Account));
     Account first; //= (Account)malloc(sizeof(Account));
     User_account uacc = NULL;
-    uacc = (User_account)malloc(sizeof(User_account)); 
+    uacc = (User_account)malloc(sizeof(struct user_account_s)); 
     //uacc->first=(Account)malloc(sizeof(Account));
     
 
@@ -309,10 +309,9 @@ User_account charge_user_account(char * file, int * isAdmin){
         }
         else{
             ac = setAccount(elt);
-            
-            printf("-> Ajout du compte %d\n",i);
             InfoAccount(ac);
-            //addNewAccount(first,ac);
+            printf("-> Ajout du compte %d\n",i);            
+            addNewAccount(first,ac);
             printf("<- Compte %d ajouté\n",i);
         }
     }
@@ -323,8 +322,9 @@ User_account charge_user_account(char * file, int * isAdmin){
             (char*)json_object_dotget_string(root_object, "user_account.firstname"),
             (char*)json_object_dotget_string(root_object, "user_account.name"),
             (char*)json_object_dotget_string(root_object, "user_account.pwd"));
-    InfoUser(uacc);
 
+    //InfoUser(uacc);
+    printf(">> COMPTE : %s\n",List_accountToString(first));
 
     /* cleanup code */
     
@@ -335,7 +335,7 @@ User_account charge_user_account(char * file, int * isAdmin){
     */
 
 
-    //json_value_free(root_value);
+    json_value_free(root_value);
 
     return uacc;
 }
