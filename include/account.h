@@ -128,3 +128,9 @@ void createAccountCsv(char * ID);
  * @return int 
  */
 int newOperation(Account a, double operation, char * comment);
+/**
+ * @brief renvoi la représentation du float avec 2 decimal
+ * 
+ * @param d
+ */
+char *twoDeci(char *d);
