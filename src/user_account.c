@@ -3,7 +3,7 @@
  * @author Clement Truillet (clement.truillet@univ-tlse3.fr)
  * @brief Ensemble des fonctions manipulant la structure User_Account
  * @version 0.1
- * @date 2019-04-01
+ * @date 2019-04-03
  * 
  * @copyright Copyright (c) 2019
  * 
@@ -178,18 +178,93 @@ User_account changePwd(User_account ua){
     printf("| \tAdmin ? %s\n",(is_admin(ua)==1?"Oui":"Non"));
     printf("--------------------------\n");
     
+    // Remove the user's line in ListUser.dat
+    FILE * fileIN;
+    FILE * fileOUT;
+    char line[128] = "";
+    char lineF[128] = "";
+
+    char name[32];
+    char firstname[32];
+    char pwd[32];
+    strcpy(name,get_name(ua));
+    strcpy(firstname,get_firstname(ua));
+    strcpy(pwd,get_pwd(ua));
+    char json[64] = "data/user_account/";
+    strcat(json,get_u_ID(ua));
+    strcat(json,".json");
+
+    char * nameF;
+    char * firstnameF;
+    char * pwdF;
+    char * jsonF;
+
+    int isEquals = 1;
+
+    fileIN = fopen("data/user_account/listUser.dat","r");
+    fileOUT = fopen("data/user_account/listUser.dat","w");
+
+    if(fileIN != NULL){
+
+        while (fgets(line, 128, fileIN) != NULL){
+            strcpy(lineF,line);
+            for(int i=0; ((i<4) && isEquals == 1);i++){
+                switch(i){
+                    case 0:
+                        nameF = strtok(line, ",");
+                        if(strcmp(name, nameF) != 0){
+                            isEquals = 0;
+                        }
+                        break;
+                    case 1:
+                        firstnameF=strtok(NULL, ",");
+                        if(strcmp(firstname, firstnameF) != 0){
+                            isEquals = 0;
+                        }
+                        break;
+                    case 2:
+                        jsonF = strtok(NULL, ",");
+                        if(strcmp(json, jsonF) != 0){
+                            isEquals = 0;
+                        }
+                        break;
+                    case 3:
+                        pwdF = strtok(NULL, " ");
+                        if(strcmp(pwd, pwdF) != 0){
+                            isEquals = 0;
+                        }
+                        break;
+                }
+                
+            }
+            if(isEquals == 0){
+                fprintf(fileOUT,"%s",lineF);
+            }
+            isEquals=1;
+        }
+
+    }else{
+        fprintf(stderr,"Impossible d'ouvrir le fichier");
+    }
+    fclose(fileIN);
+    fclose(fileOUT);
+
+    remove("data/user_account/listUser.dat");
+    rename("data/user_account/listUserOUT.dat","data/user_account/listUser.dat");
     
-    
-    
+    /*ToDo
+    *   Créer un nouveau compte avec le bon mot de passe
+    *       Supprimer l'ancien fichier .json
+    *       Créer un nouveau JSON
+    *       Ajouter les infos du l'user dans le Listuser.dat
+    */
     
 
     //ua = create_user_account(is_admin(ua),get_name(ua),get_firstname(ua),encryptPassword(newpwd),getAccount(ua));
     //ua = create_user_account(is_admin(ua),get_name(ua),get_firstname(ua),encryptPassword(newpwd),NULL);
     InfoUser(ua);
 
-    /*ToDo
-    *   Modifier le listUser.dat
-    */
+    
    return ua;
 }
 
@@ -211,7 +286,7 @@ char * createUser_ID(){
 
 User_account create_user_account(char * uID, int admin, char *name, char *firstname, char *pwd, Account a){
 
-    char path[32] = "data/user_account/";
+    char path[64] = "data/user_account/";
     strcat(path,uID);
     strcat(path,".json");
 
@@ -283,17 +358,7 @@ User_account charge_user_account(char * file, int * isAdmin){
     printf("Il y a %d comptes\n",(int) json_array_get_count(list));
 
    for (int i = 0; i < json_array_get_count(list); i++) {
-        strcpy(elt,json_array_get_string(list, i));        
-        /*
-        * BUG
-        *   Il semblerait que Account ne soit pas reconnu comme tel
-        *   Bonne chance moi du futur
-        *       -> Faire un constrcuteur par copie sur setAccoutFirst ?
-        *       --> faire setUser sans Account dans les param ?
-        *       -> refaire setUser avec UserAccount dans les params ?
-        */
-       
-       
+        strcpy(elt,json_array_get_string(list, i));    
         // Comptes
         if(i==0){
             first = setAccount(elt);
