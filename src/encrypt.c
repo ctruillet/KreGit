@@ -25,7 +25,7 @@
  * @return char* 
  */
 char* encryptPassword(char* string){
-    printf(">>%s<<\n",crypt(string,"456b7016a916a4b178dd72b947c152b7,"));
+    //printf(">>%s<<\n",crypt(string,"456b7016a916a4b178dd72b947c152b7,"));
     return (crypt(string,"456b7016a916a4b178dd72b947c152b7,"));
 }
 

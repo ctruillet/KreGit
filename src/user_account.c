@@ -78,43 +78,33 @@ Account getAccount(User_account uacc){
 }
 
 void InfoUser(User_account ua){
-    printf("--------------------------\n| Utilisateur %s\n| \tNom : %s\n| \tPrenom : %s\n| \tPassword : -%s-\n| \tAdmin ? %s\n--------------------------\n",
+    /*printf("--------------------------\n| Utilisateur %s\n| \tNom : %s\n| \tPrenom : %s\n| \tPassword : -%s-\n| \tAdmin ? %s\n--------------------------\n",
     get_u_ID(ua),
     get_name(ua),
     get_firstname(ua),
     get_pwd(ua),
-    (is_admin(ua)==1?"Oui":"Non"));
-    /*printf("--------------------------\n| Utilisateur %s\n| \tNom : %s\n| \tPrenom : %s\n| \tPassword : %s\n| \tAdmin ? %s\n| \tNombre de compte :  %d\n--------------------------\n",
+    (is_admin(ua)==1?"Oui":"Non"));*/
+    printf("--------------------------\n| Utilisateur %s\n| \tNom : %s\n| \tPrenom : %s\n| \tPassword : %s\n| \tAdmin ? %s\n| \tNombre de compte :  %d\n--------------------------\n",
     get_u_ID(ua),
     get_name(ua),
     get_firstname(ua),
     get_pwd(ua),
     (is_admin(ua)==1?"Oui":"Non"),
-    nbrAccount((Account)getAccount(ua)));*/
+    nbrAccount((Account)getAccount(ua)));
 }
 
 //Setters
 
 User_account setUser(char * ID, int admin, char * name, char * firstname, char * pwd){
-    //printf("- - - - > NULL : %d\n",(getNextAccount(a)==NULL)?1:0);
     User_account ua = NULL;
-    //printf("- - - - - > avant malloc NULL : %d\n",(getNextAccount(a)==NULL)?1:0);
     ua = (User_account)malloc(sizeof(struct user_account_s)); 
-    //printf("- - - - - > après malloc NULL : %d\n",(getNextAccount(a)==NULL)?1:0);
     set_admin(ua, admin);
-    //printf("- - - - - > NULL : %d\n",(getNextAccount(a)==NULL)?1:0);
     set_firstname(ua,firstname);
-    //printf("- - - - - > NULL : %d\n",(getNextAccount(a)==NULL)?1:0);
     set_UID(ua,ID);
-    //printf("- - - - - > NULL : %d\n",(getNextAccount(a)==NULL)?1:0);
     set_name(ua,name);
-    //printf("- - - - - > NULL : %d\n",(getNextAccount(a)==NULL)?1:0);
     set_firstname(ua,firstname);
-    //printf("- - - - - > NULL : %d\n",(getNextAccount(a)==NULL)?1:0);
     set_pwd(ua,pwd);
-    //printf("- - - - - > NULL : %d\n",(getNextAccount(a)==NULL)?1:0);
-    /*setAccountFirst(ua,a);
-    printf("- - - - > NULL : %d\n",(getNextAccount(a)==NULL)?1:0);*/
+    //setAccountFirst(ua,a);
 
     return ua;
 }
@@ -220,18 +210,20 @@ char * createUser_ID(){
 }
 
 User_account create_user_account(char * uID, int admin, char *name, char *firstname, char *pwd, Account a){
-    printf("Création de compte\n");
+
     char path[32] = "data/user_account/";
     strcat(path,uID);
     strcat(path,".json");
 
     //Remplissage du json
-    printf("Formatage des données\n");
+
     JSON_Value *root_value = json_value_init_object();
     JSON_Object *root_object = json_value_get_object(root_value);
     char *serialized_string = NULL;
     FILE *jsonF = NULL;
     FILE *listUser = NULL;
+
+    jsonF = fopen(path, "w+"); //Open json File
 
     json_object_dotset_string(root_object, "user_account.ID", uID);
     json_object_dotset_number(root_object, "user_account.admin", (double)admin);
@@ -249,7 +241,7 @@ User_account create_user_account(char * uID, int admin, char *name, char *firstn
     json_value_free(root_value);
 
     //Ajout du compte dans la liste des users
-    printf("Ecriture des données\n");
+
     listUser = fopen("data/user_account/listUser.dat","a");
     fprintf(listUser,"%s,%s,%s,%s \n",name,firstname,path,pwd);
     fclose(listUser);
