@@ -3,7 +3,7 @@
  * @author Clement Truillet (clement.truillet@univ-tlse3.fr)
  * @brief En-tête des fonctions manipulant directement la structure User_Account
  * @version 0.1
- * @date 2019-04-01
+ * @date 2019-04-04
  * 
  * @copyright Copyright (c) 2019
  * 
@@ -151,6 +151,16 @@ char * createUser_ID();
  * @return User_account 
  */
 User_account create_user_account(char * ID, int admin, char *name, char *firstname, char *pwd, Account a);
+
+/**
+ * @brief Ajoute les informations d'un utilisateur dans ListUser.dat
+ * 
+ * @param name 
+ * @param firstname 
+ * @param path 
+ * @param pwd 
+ */
+void addUserInList(char * name, char * firstname, char * ID, char * pwd);
 
 /**
  * @brief Recuperer les informations de l'utilisateur dans le fichier json associé

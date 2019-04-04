@@ -116,6 +116,7 @@ int main(int argc, char *argv[]){
             case CREATE_USER:                     
                 w_log(logF,"Create a new User - FSM = 2");
                 ua = newUser_form(ua, &isConnect);
+                addUserInList(get_name(ua),get_firstname(ua),get_u_ID(ua),get_pwd(ua));
                 break;
 
             case CREATE_ACCOUNT:        

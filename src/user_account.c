@@ -233,6 +233,7 @@ User_account changePwd(User_account ua){
     rename("data/user_account/listUserOUT.dat","data/user_account/listUser.dat");
 
     ua = create_user_account(get_u_ID(ua),is_admin(ua),get_name(ua),get_firstname(ua),encryptPassword(newpwd),getAccount(ua));
+    addUserInList(get_name(ua),get_firstname(ua),get_u_ID(ua),encryptPassword(newpwd));
     InfoUser(ua);
 
    return ua;
@@ -266,7 +267,6 @@ User_account create_user_account(char * uID, int admin, char *name, char *firstn
     JSON_Object *root_object = json_value_get_object(root_value);
     char *serialized_string = NULL;
     FILE *jsonF = NULL;
-    FILE *listUser = NULL;
 
     jsonF = fopen(path, "w+"); //Open json File
 
@@ -286,14 +286,21 @@ User_account create_user_account(char * uID, int admin, char *name, char *firstn
 
     //Ajout du compte dans la liste des users
 
-    listUser = fopen("data/user_account/listUser.dat","a");
-    fprintf(listUser,"%s,%s,%s,%s \n",name,firstname,path,pwd);
-    fclose(listUser);
+    
 
     User_account uacc = setUser(uID, admin, name, firstname, pwd);
     setAccountFirst(uacc,a);
 
     return uacc;
+}
+
+void addUserInList(char * name, char * firstname, char * ID, char * pwd){
+    FILE *listUser = NULL;
+    char path[64]= "";
+    sprintf(path,"data/user_account/%s.json",ID);
+    listUser = fopen("data/user_account/listUser.dat","a");
+    fprintf(listUser,"%s,%s,%s,%s \n",name,firstname,path,pwd);
+    fclose(listUser);
 }
 
 //charge the infos of the json into the user_account struct

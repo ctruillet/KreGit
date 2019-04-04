@@ -93,6 +93,7 @@ Account setAccount(char * ID);
 /**
  * @brief Créer un nouveau compte
  * 
+ * @param ID
  * @param type_account 
  * @return Account 
  */
@@ -102,6 +103,7 @@ Account createAccount(char * ID, char * type_account);
  * 
  * @param a 
  * @param aAdd 
+ * @return Account
  */
 Account addNewAccount(Account a, Account aAdd);
 
@@ -113,6 +115,7 @@ Account addNewAccount(Account a, Account aAdd);
  * @return char* 
  */
 char * createAccountID(char * type);
+
 /**
  * @brief Generer le fichier CSV d'un compte 
  * 
