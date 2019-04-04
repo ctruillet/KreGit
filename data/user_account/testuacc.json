@@ -1,9 +1,0 @@
-{
-    "user_account": {
-        "ID": "testid",
-        "admin": "oui",
-        "firstname": "jean",
-        "pwd": "123soleil",
-        "List_account": "[acc1 acc2 acc3]"
-    }
-} 

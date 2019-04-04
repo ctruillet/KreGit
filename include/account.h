@@ -1,39 +1,130 @@
-/*
-* Valentin Frydrychowski 
-* Derniere modification : 07/03/2019
-*/
+/**
+ * @file account.h
+ * @author Clement Truillet (clement.truillet@univ-tlse3.fr)
+ * @brief En-tête des fonctions manipulant directement la structure Account
+ * @version 0.1
+ * @date 2019-04-01
+ * 
+ * @copyright Copyright (c) 2019
+ * 
+ */
+
 #define __ACCOUNT_H__
 #ifndef __USER_ACCOUNT_H__
-    #include "user_account.h"
+    #include "../include/user_account.h"
 #endif
-#define IDACCSIZE 16 //size in char of an account id
 
+/**
+ * @brief pointeur sur la structure account_s
+ * 
+ */
 typedef struct account_s *Account;
-typedef struct list_account_s *List_account;
 
-Account create_account(char **owners, char *type_account); /* Create a directory with .json and history.csv in it, fill the .json */
-void create_account_json(char *ID, char **owners, char *type_account);      //create a .json with generic account structure
-void create_account_csv(char *ID);
-char *create_account_ID();        //create an ID whith the date of creation
-void delete_account(Account acc);
-void charge_account(Account acc, char *ID);  //decrypte the account an charge it in the struct
-void discharge_account(Account acc);        //save the .json and .csv, crypt it and free pointeur
+//Getters
+/**
+ * @brief Retourne l'ID d'un compte
+ * 
+ * @param acc 
+ * @return char* 
+ */
+char * get_id(Account acc);
+/**
+ * @brief Retourne le type d'un compte
+ * 
+ * @param acc 
+ * @return char* 
+ */
+char * get_type_account(Account acc);
 
-void add_list(List_account l, Account acc);      //add this account to the list
-void remoove_list(List_account l, Account acc);     //remoove this account to the list
-int Liste_accountSize(List_account l);      //return the size of a list of accounts
-char *List_accountToString(List_account l);       //convert List_account format to String format
+/**
+ * @brief Retourne le compte suivant du compte
+ * 
+ * @param ac 
+ * @return Account 
+ */
+Account getNextAccount(Account ac);
 
-char *get_id(Account acc);
-char **get_owners(Account acc);     //return a table of strings
-char *get_type_account(Account acc);
-float get_balance(Account acc);
-char *get_history(Account acc, char *date); //get the history ofthe account between two dates
+/**
+ * @brief Affiche les informations d'un compte
+ * 
+ * @param a 
+ */
+void InfoAccount(Account a);
 
-void add_history(Account acc, char *operation);     //add an operation to the history
-void set_owners(Account acc, char **own);
-void set_ID(Account acc, char *ID);
-void set_type_account(Account acc, char *type);
+/**
+ * @brief Retourne le nombre de compte
+ * 
+ * @param a 
+ * @return int 
+ */
+int nbrAccount(Account a);
+/**
+ * @brief Retourne la liste des comptes sous forme de chaine de caractere
+ * 
+ * @param a 
+ * @return char* 
+ */
+char *List_accountToString(Account a);
 
-char withdraw(Account acc, float ammount);      //make a whithdraw in the account
-char deposit(Account acc, float ammount);       //make a deposit in the account
+//Setters
+/**
+ * @brief Definir l'ID d'un compte
+ * 
+ * @param acc 
+ * @param ID 
+ */
+void set_ID(Account acc, char * ID);
+/**
+ * @brief Definier le type d'un compte
+ * 
+ * @param acc 
+ * @param type 
+ */
+void set_type_account(Account acc, char * type);
+
+/**
+ * @brief Defini un compte à partir de son ID
+ * 
+ * @param ID 
+ * @return Account 
+ */
+Account setAccount(char * ID);
+
+/**
+ * @brief Créer un nouveau compte
+ * 
+ * @param type_account 
+ * @return Account 
+ */
+Account createAccount(char * ID, char * type_account);
+/**
+ * @brief Ajouter un nouveau compte à une liste de compte
+ * 
+ * @param a 
+ * @param aAdd 
+ */
+Account addNewAccount(Account a, Account aAdd);
+
+//file management
+/**
+ * @brief Créer un identifiant de compte
+ * 
+ * @param type 
+ * @return char* 
+ */
+char * createAccountID(char * type);
+/**
+ * @brief Generer le fichier CSV d'un compte 
+ * 
+ * @param ID 
+ */
+void createAccountCsv(char * ID);
+/**
+ * @brief Ajouter une nouvelle opération à un compte
+ * 
+ * @param a 
+ * @param operation 
+ * @param comment 
+ * @return int 
+ */
+int newOperation(Account a, double operation, char * comment);

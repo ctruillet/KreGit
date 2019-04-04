@@ -1,221 +1,163 @@
+/**
+ * @file account.c
+ * @author Clement Truillet (clement.truillet@univ-tlse3.fr)
+ * @brief Ensemble des fonctions manipulant la structure Account
+ * @version 0.1
+ * @date 2019-04-03
+ * 
+ * @copyright Copyright (c) 2019
+ * 
+ */
 
-/*
-* Valentin Frydrychowski 
-* Derniere modification : 28/03/2019
-*/
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include "../include/account.h"
 
-//structure of account
-typedef struct account_s
-{
-    char *ID;      //Identification
-    char **owners; //owners list of account
-    char *type_account;      //type of account
-    //char *history;      //history of the account
+/**
+ * @brief Structure account_s
+ * 
+ * Contient    
+ *      - char * ID : Identifiant du compte   
+ *      - char * type_account : Type du compte (PEL, Livret A, ...)   
+ *      - Account next : Pointeur vers le compte suivant   
+ * 
+ */
+typedef struct account_s{
+    char ID[64];                //Identification
+    char type_account[32];      //Type of account
+    struct account_s* next;     //Next Account
+} account ;
 
-} account;
-
-//structure of an account list
-typedef struct list_account_s
-{
-    Account current;   //current element of the list
-    List_account next; //next element of the list
-} list_account;
-
-//getters
-char *get_id(Account acc)
-{
+//Getters
+char * get_id(Account acc){
     return acc->ID;
 }
-
-char **get_owners(Account acc)
-{
-    return acc->owners;
-}
-
-char *get_type_account(Account acc)
-{
+char * get_type_account(Account acc){
     return acc->type_account;
 }
 
-/*float get_balance(Account acc)
-{
-    //TODO
+Account getNextAccount(Account ac){
+    return ac->next;
 }
 
-char **get_history(Account acc, char date1, char date2)
-{
-
-    //TODO
+//Setters
+void set_ID(Account acc, char * ID){
+    strcpy(acc->ID,ID);
 }
 
-//setters
-
-void add_history(Account acc, char *operation)
-{
-    //TODO
-}*/
-
-void set_owners(Account acc, char **own)
-{
-    acc->owners[0] = own[0];
-    acc->owners[1] = own[1];
+void set_type_account(Account acc, char * type){
+    strcpy(acc->type_account,type);
 }
 
-void set_ID(Account acc, char *ID)
-{
-    acc->ID = ID;
+void InfoAccount(Account a){
+    printf("--------------------------\n| Compte %s\n| \tType : %s\n| \tSuivant ? %s\n--------------------------\n",get_id(a),get_type_account(a),(getNextAccount(a)!=NULL)?"Oui":"Non");
 }
 
-void set_type_account(Account acc, char *type)
-{
-    acc->type_account = type;
+Account setAccount(char * ID){
+    Account ac = (Account) malloc(sizeof(struct account_s));
+    set_ID(ac,ID);
+    char temp[32]= "\0";
+
+    strcpy(temp,ID);
+    // Get the first token
+    char *type = strtok(temp,"-"); // merdier token
+    set_type_account(ac,type);
+    ac->next=NULL;
+    return (ac);
 }
 
-void add_list(List_account l, Account acc)
-{
-    List_account l2 = malloc(sizeof(account) + sizeof(List_account));
-    l2 = l;
-    while (l != NULL)
-    {
-        l2 = l2->next;
+Account addNewAccount(Account a, Account aAdd){
+    if(a==NULL){
+        a=aAdd;
+    }else{
+        Account ac = a;
+        while (ac->next != NULL){
+            //printf(">> on passe le Compte %s\n",get_id(ac));
+            ac = getNextAccount(ac);
+        }
+        ac->next = aAdd;
     }
-    l2->current = acc;
-    l2->next = NULL;
+    return a;
 }
 
-int Liste_accountSize(List_account l)
-{
-    int size = 0;
-    List_account l2 = l; //to avoid modification on the pointeur
-    while (l2 != NULL)
-    { //while we didn't reach the end of the list
-        size++;
-        l2 = l2->next;
+
+int nbrAccount(Account a){
+    if(a == NULL){
+        return 0;
+    }else{
+        int size = 0;
+        Account ac = a;             //to avoid modification on the pointeur
+        while (ac != NULL){         //while we didn't reach the end of the list
+            size++;
+            ac = ac->next;
+        }
+        return size;
     }
-    return size;
 }
 
-char *List_accountToString(List_account l)
-{
-    List_account l2 = l; //to avoid modification on the pointeur
-    int size = Liste_accountSize(l);
-    int stringSize = (IDACCSIZE + 1) * size + 3;
-    char str[stringSize];
-    str[0] = '[';
-    while(l2!=NULL){
-        strcat(str,l2->current->ID);
-        strcat(str,",");
-        l2 = l2->next;
+char *List_accountToString(Account a){
+    Account a2 = a;                                     //to avoid modification on the pointeur
+    char * strR = (char *)malloc(sizeof(char)*128);
+    char str[128] = "[";
+    while(a2!=NULL){
+        strcat(str,"\"");
+        strcat(str,a2->ID);
+        strcat(str,"\"");
+        if(a2->next != NULL){
+            strcat(str,",");
+        }
+        a2 = a2->next;
     }
     strcat(str,"]");
-    return str;
+    strcpy(strR,str);
+    return strR;
 }
 
 //file management
+char * createAccountID(char * type){
+    char *ID = (char*)malloc(32);
+    char *timeS = (char*)malloc(32);
+    time_t temps;
+    struct tm date;
 
-char *create_account_ID()
-{
-    return ("temp123456789aze");
+    // Recuperation de la date et l'heure actuelle.
+    time(&temps);
+    date=*localtime(&temps);
+
+    // Remplissage de la chaîne avec en date_heure
+    strftime(timeS, 128, "%m%d%Y%H%M%S", &date);
+    sprintf(ID,"%s-%s",type,timeS);
+    
+    return ID;
 }
 
-void charge_account(Account acc, char ID[IDACCSIZE])
-{
-    set_ID(acc, ID);
-    char *tab[2];
-    tab[0] = "owners1";
-    tab[1] = "owners2";
-    set_owners(acc, tab);
-    set_type_account(acc, "bidon");
-}
+void createAccountCsv(char * ID){
+    char path[64];
+    sprintf(path,"data/account/%s.csv",ID);
 
-void create_account_csv(char *ID)
-{
-    char fileName[2 * IDACCSIZE + 18];
-    char path[] = "data/account/.csv";
-    for (int i = 0; i < 2 * IDACCSIZE + 19; i++)
-    {
-        if (i < 13)
-        {
-            fileName[i] = path[i];
-        }
-        else if (i < 13 + IDACCSIZE)
-        {
-            fileName[i] = ID[i - 13];
-        }
-        else if (i == 13 + IDACCSIZE)
-        {
-            fileName[i] = '/';
-        }
-        else if (i < 14 + 2 * IDACCSIZE)
-        {
-            fileName[i] = ID[i - (14 + IDACCSIZE)];
-        }
-        else
-        {
-            fileName[i] = path[i - (2 * IDACCSIZE + 1)];
-        }
-    }
-
-    FILE *csv = fopen(fileName, "r");
-    if (csv != NULL)
-    {
-        fprintf(csv, "date;operation;balance;comments");
-        fclose(csv);
+    FILE * fileCSV = fopen(path, "a");
+    if (fileCSV != NULL){
+        fprintf(fileCSV, "date,operation,solde,comments");
+        fclose(fileCSV);
     }
 }
 
-void create_account_json(char *ID, char **owners, char *type_account)
-{
-    char fileName[2 * IDACCSIZE + 20];
-    char path[] = "data/account/.json";
-    for (int i = 0; i < 2 * IDACCSIZE + 20; i++)
-    {
-        if (i < 13)
-        {
-            fileName[i] = path[i];
-        }
-        else if (i < 13 + IDACCSIZE)
-        {
-            fileName[i] = ID[i - 13];
-        }
-        else if (i == 13 + IDACCSIZE)
-        {
-            fileName[i] = '/';
-        }
-        else if (i < 13 + 2 * IDACCSIZE)
-        {
-            fileName[i] = ID[i - (14 + IDACCSIZE)];
-        }
-        else
-        {
-            fileName[i] = path[i - (2 * IDACCSIZE + 1)];
-        }
-    }
-
-    FILE *json = fopen(fileName, "w+");
-    if (json != NULL)
-    {
-        fprintf(json, "{\n\t\"account\": {\n\t\t\"ID\": \"%s\",\n\t\t\"owners\": \"%s;%s\",\n\t\t\"type_account\": \"%s\"\n\t}\n}", ID, owners[0], owners[1], type_account);
-        fclose(json);
-    }
+int newOperation(Account a, double operation, char * comment){
+    /* ToDo
+    *   Ouvrir le fichier CSV associé
+    *   Faire l'opération
+    *   Mettre a jour le solde
+    */
+    return 0;
 }
 
-Account create_account(char **owners, char *type_account)
-{
+Account createAccount(char * ID, char * type_account){
+    Account acc = (Account)malloc(sizeof(struct account_s));
+    set_ID(acc,ID);
+    set_type_account(acc,type_account);
+    acc->next=NULL;
 
-    Account acc = NULL;
-    char *ID = create_account_ID();
-    char path[12 + IDACCSIZE] = "data/account";
-    strcat(path, ID);
-    char commande[18 + IDACCSIZE] = "mkdir ";
-    strcat(commande, path);
-    system(commande);
-    create_account_csv(ID);
-    create_account_json(ID, owners, type_account);
-    charge_account(acc, ID);
     return acc;
-}
+} 

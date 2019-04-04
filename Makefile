@@ -1,7 +1,7 @@
 MAKE = make
 GCC = gcc
-LIBFLAGS = -lm
-CFLAGS = -Wall -g
+LIBFLAGS = -lm -lcrypt
+CFLAGS = -Wall -g -ggdb
 INCLUDE = include/
 SRC = $(wildcard src/*.c)
 MOVE = mv
@@ -21,6 +21,7 @@ all :
 	mkdir -p bin
 	mkdir -p lib
 	mkdir -p data
+	mkdir -p log
 	mkdir -p data/account; mkdir -p data/user_account
 	$(MAKE) compile -s
 	
@@ -43,3 +44,6 @@ clean :
 
 cleanlog :
 	rm $(LOG)
+
+doc :
+	xdg-open doc/documentation/html/index.html

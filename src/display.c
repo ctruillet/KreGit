@@ -1,3 +1,14 @@
+/**
+ * @file display.c
+ * @author Clement Truillet (clement.truillet@univ-tlse3.fr)
+ * @brief Ensemble des fonctions servant d'interface avec l'utilisateur
+ * @version 0.1
+ * @date 2019-04-01
+ * 
+ * @copyright Copyright (c) 2019
+ * 
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -16,6 +27,7 @@
 #ifndef COLOR
     #define color(param) printf("\033[%sm",param)
 #endif
+
 /* Paramètre  Couleur
 30 Noir |31 Rouge | 32 Vert | 33 Jaune | 34 Bleu | 35 Magenta | 36 Cyan | 37 Blanc
  
@@ -24,7 +36,7 @@
 
 /*
 * Clement Truillet 
-* Derniere modification : 28/03/2019
+* Derniere modification : 03/04/2019
 */
 
 //Display title
@@ -57,27 +69,138 @@ void end(){
 }
 
 //Connect
-int connect(User_account ua, int * isConnect){
+User_account connect(User_account ua, int * isConnect, int * isAdmin){
+    ua = (User_account)malloc(sizeof(User_account));
+    char name[16];
+    char firstname[16];
+    char pwd[16];
+    int isEquals=0; //0 - Cherche encore / 1 - Recherche / 2 - Trouvé !  
+
+    printf("\nNom : ");
+    scanf("%s",name);
+    CLEAR_STDIN
+    printf("Prénom : ");
+    scanf("%s",firstname);
+    CLEAR_STDIN
+    printf("Mot de passe : ");
+    scanf("%s",pwd);
+    CLEAR_STDIN
+    
+    //Read file listUser.dat
+    FILE* fichier = NULL;
+    char chaine[128] = "";
+    char * nameF;
+    char * firstnameF;
+    char * pwdF;
+    char * jsonF;
+
+    fichier = fopen("data/user_account/listUser.dat", "r");
+    rewind(fichier);
+    if (fichier != NULL){
+        while ((isEquals!=2) && (fgets(chaine, 128, fichier) != NULL)){   
+            isEquals=0;
+            nameF = strtok(chaine, ",");
+            if(strcmp(name,nameF)==0){
+                isEquals=1;
+            }
+
+            for(int i=0; ((i<=2) && (isEquals!=0)); i++){
+                switch(i){
+                    case 0:
+                        firstnameF=strtok(NULL, ",");
+                        if(strcmp(firstname,firstnameF)!=0){
+                            isEquals=0;
+                        }
+                        break;
+                    case 2:
+                        pwdF = strtok(NULL, " ");
+                        if(strcmp(encryptPassword(pwd),pwdF)==0){
+                            isEquals=2;
+                        }else{
+                            isEquals=0;
+                        }
+                        break;
+                    case 1:
+                        jsonF = strtok(NULL, ",");
+                        isEquals=2;
+
+                        break;
+                }            
+            }
+        }
+    }else{
+        printf("Impossible d'ouvrir le fichier\n");
+    }
+
+    if(isEquals==2){
+      printf("\n\nName : -%s-\nFisrtname : -%s-\nPassword : -%s-\nJSON : -%s-\n",nameF, firstnameF, pwdF, jsonF);
+      (*isConnect)=1;
+      ua = charge_user_account(jsonF, isAdmin);
+      return ua;
+    }else{
+      return ua;
+    }
     /*Demande user_name
-    *   Charger la structure
     * Demande pwd
     * Verification pwd
     *   passwordIsGood()
+    * Charger la structure
     * Return 4 si le compte est admin
     * return 5 si le compte existe
     * return 0 sinon
     */
-    return 0;
 }
 
 //Deconnect
-void deconnect(int * isConnect, User_account ua){
+User_account deconnect(int * isConnect, int * isAdmin, User_account ua){
     (*isConnect) = 0;
+    (*isAdmin) = 0;
     free(ua);
+    ua=NULL;
+    return ua;
 }
 
 //Create a new account
-void newAccount_form(User_account ua){
+User_account newAccount_form(User_account ua){
+    int choice;
+    char accountID[48];
+    char accountType[32];
+    Account a = NULL;
+
+    printf("Selectionnez le type de votre nouveau compte\n");
+    printf("\t1 - Livret A\n");
+    printf("\t2 - PEL\n");
+    printf("\t3 - Compte Joint\n");
+    scanf("%d",&choice);
+
+    switch(choice){
+        case 1:
+            strcpy(accountType,"LivretA");
+            strcpy(accountID,createAccountID(accountType));
+            a=createAccount(accountID,accountType);
+            break;
+        case 2:
+            strcpy(accountType,"PEL");
+            strcpy(accountID,createAccountID(accountType));
+            a=createAccount(accountID,accountType);
+            break;
+        case 3:
+            strcpy(accountType,"CompteJoint");
+            strcpy(accountID,createAccountID(accountType));
+            a=createAccount(accountID,accountType);
+            break;
+        default:
+            return ua;
+            break;
+    }   
+    InfoAccount(a);     
+    a=addNewAccount(getAccount(ua),a);
+    createAccountCsv(accountID);
+    ua = create_user_account(get_u_ID(ua),is_admin(ua),get_name(ua),get_firstname(ua),get_pwd(ua),a);
+
+    InfoUser(ua);
+
+    return ua;
     /*
     * Demande Type de Compte (Livret A, PEL, compte joint, ...)
     * Demande confirmtation par mot de passe
@@ -93,7 +216,7 @@ User_account newUser_form(User_account ua, int * isConnect){
     char confirm_pwd[16];
     int isPasswordGood = 0;
     color("32");
-    printf("Bienvenue sur l'interace de création de compte");
+    printf("Bienvenue sur l'interface de création de compte");
     color("0");
     printf("\nNom : ");
     scanf("%s",name);
@@ -128,8 +251,8 @@ User_account newUser_form(User_account ua, int * isConnect){
         }
             
       }
-    
-    ua=create_user_account(false, name, firstname, encryptPassword(pwd), NULL);
+
+    ua=create_user_account(createUser_ID(), 0, name, firstname, encryptPassword(pwd), NULL);
     printf("\nNous vous souhaitons la bienvenue !\n\n");
     (*isConnect)=1;
     return ua;
@@ -157,29 +280,28 @@ int nav(int FSM, int * isConnect, int * isAdmin){
 
             scanf("%d",&i);
             CLEAR_STDIN 
-            if(i==1 || i==2 || i==3 || i==4 || i==42){
-                switch(i){
-                    case 1:
-                        return 1;
-                        break;
-                    case 2:
-                        return 2;
-                        break;
-                    case 3:
-                        return 10;
-                        break;
-                    case 4:
-                        return 11;
-                        break;
-                    case 42:
-                        return 42;
-                }
-            }else{
-                return 0;
+
+            switch(i){
+                case 1:
+                    return 1;
+                    break;
+                case 2:
+                    return 2;
+                    break;
+                case 3:
+                    return 10;
+                    break;
+                case 4:
+                    return 11;
+                    break;
+                case 42:
+                    return 42;
+                default:
+                    return(0);         
             }
+
             break;
         case 1:
-            
             break;
         case 2:
             return 5;
@@ -198,7 +320,6 @@ int nav(int FSM, int * isConnect, int * isAdmin){
             if(i==1 || i==2 || i==3 || i==4){
                 switch(i){
                     case 1:
-                        (*isConnect)=0;
                         return 0;
                         break;
                     case 2:
@@ -227,7 +348,6 @@ int nav(int FSM, int * isConnect, int * isAdmin){
             if(i==1 || i==2 || i==3 || i==4 || i==5){
                 switch(i){
                     case 1:
-                        (*isConnect)=0;
                         return 0;
                         break;
                     case 2:

@@ -1,15 +1,20 @@
+/**
+ * @file log.c
+ * @author Clement Truillet (clement.truillet@univ-tlse3.fr)
+ * @brief Ensemble des fonctions chargées de generer et ecrire dans un fichier .log
+ * @version 0.1
+ * @date 2019-04-01
+ * 
+ * @copyright Copyright (c) 2019
+ * 
+ */
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
 #include "../include/log.h"
 
-/*
-* Clement Truillet 
-* Derniere modification : 23/02/2019
-*/
-
 void crea_log(char * FICHIER){
-  system("if [ `ls -l|grep ^d | grep -c ' log$'` -ne 1 ]; then mkdir log; fi"); //If log repertory doesn't exist
   time_t temps;
   struct tm date;
 
@@ -18,20 +23,10 @@ void crea_log(char * FICHIER){
   date=*localtime(&temps);
 
   // Remplissage de la chaîne avec en date_heure
-  strftime(FICHIER, 128, "./log/%m-%d-%Y_%H.%M.%S.log", &date);
-  
-  // Ouverture et création du fichier .log
-  FILE* fichier = NULL;
-  fichier = fopen(FICHIER,"w+");
-  fclose(fichier);
-  
-  //Ecriture dans log
-  w_log(FICHIER,"Création du fichier .log");
-
+  strftime(FICHIER, 128, "log/%m-%d-%Y_%H.%M.%S.log", &date);
 }
 
-int w_log(char * FICHIER, char * str){
-  FILE* fichier = NULL;
+int w_log(FILE * fichier, char * str){  
   char heure[128];
   time_t temps;
   struct tm date;
@@ -42,17 +37,12 @@ int w_log(char * FICHIER, char * str){
   strftime(heure, 128, "[%H:%M:%S]", &date);
 
   // Ouveture du fichier
-  fichier = fopen(FICHIER,"a"); 
 
-  if (fichier != NULL) // Ecriture dans le fichier
-    {
+  if (fichier != NULL){ // Ecriture dans le fichier
         fprintf(fichier, "%s %s\n", heure, str);
-        fclose(fichier);
         return 0;
-    }
-    else // Si echec de l'ouverture, on affiche un message d'erreur
-    {
-        printf("Impossible d'ouvrir le fichier %s\n",FICHIER);
+    }else{ // Si echec de l'ouverture, on affiche un message d'erreur
+        printf("Impossible d'ouvrir le fichier log\n");
         return 1;
     }
 }
