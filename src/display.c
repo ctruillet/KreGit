@@ -188,6 +188,16 @@ User_account newAccount_form(User_account ua){
             strcpy(accountType,"CompteJoint");
             strcpy(accountID,createAccountID(accountType));
             a=createAccount(accountID,accountType);
+
+
+            /* ToDo
+             *  Demander a qui le compte est joint
+             *  Charger l'utilisateur joint
+             *  Ajouter le compte
+             */
+
+
+
             break;
         default:
             return ua;
@@ -260,10 +270,11 @@ User_account newUser_form(User_account ua, int * isConnect){
 
 //Nav_bar - Display all accounts of user with theirs types
 int displayListAccount(User_account ua, int FSM){
-    /*
-    * Affichage des comptes avec leurs types + Solde
-    * Bouton "Nouvelle Opération" 
-    */
+    Account a = getAccount(ua);
+    for(int i=1;a!=NULL;i++){
+        printf("\t%d - %s\n",i,get_id(a));
+        a=getNextAccount(a);
+    }
     return 0;
 }
 

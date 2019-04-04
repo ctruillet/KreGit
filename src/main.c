@@ -133,7 +133,8 @@ int main(int argc, char *argv[]){
                 break;
 
             case SHOW_LISTACCOUNT:  
-                printf(">> COMPTES : %s\n",List_accountToString(getAccount(ua)));                
+                printf(">> COMPTES : %s\n",List_accountToString(getAccount(ua)));         
+                displayListAccount(ua,FSM);       
                 w_log(logF,"Show the list of accounts - FSM = 6");
                 break;
             

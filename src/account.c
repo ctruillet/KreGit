@@ -136,10 +136,18 @@ char * createAccountID(char * type){
 void createAccountCsv(char * ID){
 	char path[64];
 	sprintf(path,"data/account/%s.csv",ID);
+	//récupère la date et l'heure
+    char *timeS = (char *)malloc(32);
+    time_t temps;
+    struct tm date;
+    time(&temps);
+    date = *localtime(&temps);
+    strftime(timeS, 128, "[%Y-%m-%d|%H:%M]", &date);
+
 
 	FILE * fileCSV = fopen(path, "a");
 	if (fileCSV != NULL){
-		fprintf(fileCSV, "date,operation,solde,comments");
+		fprintf(fileCSV, "date,operation,solde,comments\n%s,0,0, ",timeS);
 		fclose(fileCSV);
 	}
 }
