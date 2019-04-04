@@ -134,3 +134,16 @@ int newOperation(Account a, double operation, char * comment);
  * @param d
  */
 char *twoDeci(char *d);
+/**
+ * @brief renvoi l'historique du compte depuis la date
+ * 
+ * @param date de la forme "dd/mm/yyyy"
+ */
+char* history(char* date);//ToDo
+/**
+ * @brief renvoie -1,0,1 si la premiere date est <,=,> à la deuxième
+ * 
+ * @param date1  de la forme "dd/mm/yyyy"
+ * @param date2  de la forme "dd/mm/yyyy"
+ */
+int compareDate(date1,date2);

@@ -164,7 +164,7 @@ void createAccountCsv(char *ID)
     struct tm date;
     time(&temps);
     date = *localtime(&temps);
-    strftime(timeS, 128, "%Y/%m/%d/%H/%M", &date);
+    strftime(timeS, 128, "%d/%m/%Y/%H:%M", &date);
 
     FILE *fileCSV = fopen(path, "a");
     if (fileCSV != NULL)
@@ -204,7 +204,7 @@ int newOperation(Account a, double operation, char *comment)
     struct tm date;
     time(&temps);
     date = *localtime(&temps);
-    strftime(timeS, 128, "%Y/%m/%d/%H/%M", &date);
+    strftime(timeS, 128, "%d/%m/%Y/%H:%M", &date);
 
     if (operation >= 0)
     {
@@ -245,9 +245,64 @@ int newOperation(Account a, double operation, char *comment)
 Account createAccount(char *type_account)
 {
     Account acc = (Account)malloc(sizeof(Account));
-    set_ID(acc, createAccountID(type_account));
+    char *ID = createAccountID(type_account);
+    set_ID(acc, ID);
     set_type_account(acc, type_account);
     acc->next = NULL;
+    createAccountCsv(ID);
 
     return acc;
+}
+
+char* history(char* date)
+{
+    return("l'histoire s'écrit : carpe diem");
+}
+
+int compareDate(date1,date2)
+{
+    int day1;
+    int day2;
+    int month1;
+    int month2;
+    int year1;
+    int year2;
+    sscanf(date1,"%d/%d/%d",&day1,&month1,&year1);
+    sscanf(date2,"%d/%d/%d",&day2,&month2,&year2);
+
+    if (year1<year2)
+    {
+        return -1;
+    }
+    else if (year1>year2)
+    {
+        return 1;
+    }
+    else
+    {
+        if(month1<month2)
+        {
+            return -1;
+        }
+        else if (month1>month2)
+        {
+            return 1;
+        }
+        else
+        {
+            if(day1<day2)
+            {
+                return -1;
+            }
+            else if (day1>day2)
+            {
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+    }
+    return -2;
 }
