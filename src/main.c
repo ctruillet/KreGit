@@ -129,11 +129,11 @@ int main(int argc, char *argv[]){
                 w_log(LOG,"CUSTOMER - FSM = 5");    
                 break;
 
-            case SHOW_LISTACCOUNT:        
-                while(a==NULL){
+            case SHOW_LISTACCOUNT:  
+                if(a==NULL){
                     a=displayListAccount(ua,FSM);
                 }
-                InfoAccount(a);
+                //InfoAccount(a);
                 w_log(LOG,"Show the list of accounts - FSM = 6");
                 break;
             

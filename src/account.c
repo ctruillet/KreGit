@@ -56,15 +56,17 @@ void set_type_account(Account acc, char * type){
 }
 
 void InfoAccount(Account a){
-	printf("--------------------------\n| Compte %s\n| \tType : %s\n| \tSolde : ",get_id(a),get_type_account(a));
-	if(getSolde(a)<=0){
-		color("31");
-	}else{
-		color("32");
+	if(a!=NULL){
+		printf("--------------------------\n| Compte %s\n| \tType : %s\n| \tSolde : ",get_id(a),get_type_account(a));
+		if(getSolde(a)<=0){
+			color("31");
+		}else{
+			color("32");
+		}
+		printf("%.2f €",getSolde(a));
+		color("0");
+		printf("\n--------------------------\n");
 	}
-	printf("%.2f €",getSolde(a));
-	color("0");
-	printf("\n--------------------------\n");
 }
 
 Account setAccount(char * ID){

@@ -254,11 +254,6 @@ User_account newAccount_form(User_account ua){
     InfoUser(ua);
 
     return ua;
-    /*
-    * Demande Type de Compte (Livret A, PEL, compte joint, ...)
-    * Demande confirmtation par mot de passe
-    * 
-    */
 }
 
 //Create a new user
@@ -316,25 +311,29 @@ Account displayListAccount(User_account ua, int FSM){
     int i;
     int choice;
     Account a = getAccount(ua);
-    printf("%s %s\n",get_firstname(ua),get_name(ua));
-    for(i=1;a!=NULL;i++){
-        printf("   |-%d %s\n",i,get_id(a));
-        a=getNextAccount(a);
-    }
+    if(nbrAccount(a)!=0){
+        printf("%s %s\n",get_firstname(ua),get_name(ua));
+        for(i=1;a!=NULL;i++){
+            printf("   |-%d %s\n",i,get_id(a));
+            a=getNextAccount(a);
+        }
 
-    scanf("%d",&choice);
-    CLEAR_STDIN
-    if(choice>=i || choice<=0){
-        printf("ERREUR - Vous avez selectionné un compte inexistant.\n");
-        return NULL;
-    }
+        scanf("%d",&choice);
+        CLEAR_STDIN
+        if(choice>=i || choice<=0){
+            printf("ERREUR - Vous avez selectionné un compte inexistant.\n");
+            return NULL;
+        }
 
-    a = getAccount(ua);
-    for(i=1;i<choice;i++){
-        a=getNextAccount(a);
+        a = getAccount(ua);
+        for(i=1;i<choice;i++){
+            a=getNextAccount(a);
+        }
+        InfoAccount(a);
+        displayAccount(a);
+    }else{
+        printf("Vous n'avez aucun compte.\n");
     }
-    InfoAccount(a);
-    displayAccount(a);
     return a;
 }
 
