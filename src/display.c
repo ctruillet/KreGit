@@ -152,11 +152,16 @@ User_account deconnect(int * isConnect, int * isAdmin, User_account ua){
 
 //Create a new account
 User_account newAccount_form(User_account ua){
+    User_account uaJoint;
     int choice;
+    int isEquals = 0, isAdmin = 0, isError = 0;
     char accountID[48];
     char accountType[32];
-    char name[32];
-    char firstname[32];
+    char name[32], * nameF;
+    char firstname[32], * firstnameF;
+    char * jsonF;
+    char ligne[256];
+    FILE * listUser;
     Account a = NULL;
 
     printf("Selectionnez le type de votre nouveau compte\n");
@@ -182,27 +187,70 @@ User_account newAccount_form(User_account ua){
             strcpy(accountID,createAccountID(accountType));
             a=createAccount(accountID,accountType);
 
-            printf("Nom : ");
+            printf("Entrez les coordonnées de l'utilisateur joint \nNom : ");
+            scanf("%s",name);
+            CLEAR_STDIN
             printf("Prenom : ");
-
-            /* ToDo
-             *  Demander a qui le compte est joint
-             *  Charger l'utilisateur joint
-             *  Ajouter le compte
-             */
+            scanf("%s",firstname );
+            CLEAR_STDIN
 
 
+            listUser = fopen("data/user_account/listUser.dat", "r");
+            rewind(listUser);
+            if (listUser != NULL){
+                while ((isEquals!=2) && (fgets(ligne, 128, listUser) != NULL)){   
+                    isEquals=0;
+                    nameF = strtok(ligne, ",");
+                    if(strcmp(name,nameF)==0){
+                        isEquals=1;
+                    }
 
+                    for(int i=0; ((i<=1) && (isEquals!=0)); i++){
+                        switch(i){
+                            case 0:
+                                firstnameF = strtok(NULL, ",");
+                                if(strcmp(firstname,firstnameF)!=0){
+                                    isEquals=0;
+                                }
+                                break;
+                            case 1:
+                                jsonF = strtok(NULL, ",");
+                                isEquals=2;
+
+                                break;
+                        }            
+                    }
+                }
+            }else{
+                printf("Impossible d'ouvrir le fichier\n");
+            }
+            if(isEquals==2){
+                uaJoint = charge_user_account(jsonF,&isAdmin);
+                if(isAdmin!=1){
+                    a=addNewAccount(getAccount(uaJoint),a);
+                    uaJoint = create_user_account(get_u_ID(uaJoint),is_admin(uaJoint),get_name(uaJoint),get_firstname(uaJoint),get_pwd(uaJoint),a);
+                }else{
+                    printf("[ERREUR] Vous ne pouvez pas avoir un compte joint avec un compte administrateur\n");
+                    isError=1;
+                }
+                free(uaJoint);
+            }else{
+                isError=1;
+                error();
+            }
+            
             break;
         default:
             return ua;
             break;
     }   
-    InfoAccount(a);     
-    a=addNewAccount(getAccount(ua),a);
-    createAccountCsv(accountID);
-    ua = create_user_account(get_u_ID(ua),is_admin(ua),get_name(ua),get_firstname(ua),get_pwd(ua),a);
-
+    if(isError==0){
+        a=createAccount(accountID,accountType);
+        InfoAccount(a);     
+        a=addNewAccount(getAccount(ua),a);
+        createAccountCsv(accountID);
+        ua = create_user_account(get_u_ID(ua),is_admin(ua),get_name(ua),get_firstname(ua),get_pwd(ua),a);
+    }  
     InfoUser(ua);
 
     return ua;
@@ -472,8 +520,7 @@ void displayAccount(Account a){
                 printf("+%.2f€",atof(operation));
                 color("0");
                 printf(" \t %s",comment);
-            }
-            
+            }   
         } 
         printf("\n");
         fclose(fichier);
@@ -486,7 +533,7 @@ void error(){
     color("31");
     printf("[ERREUR 410]\n\n");
     printf("Nos serveurs DNS stockés sur la Lune ne sont actuellement pas en phase avec nos 15 satelites ultraperformants.\n");
-    printf("Nos équipes entrainées par deep-IP-learning sont en train de resoudre ce probleme.");
+    printf("Nos équipes entrainées par deep-IP-learning sont en train de resoudre ce probleme.\n");
     color("0");
 }
 

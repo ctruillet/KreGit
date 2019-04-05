@@ -86,7 +86,6 @@ Account addNewAccount(Account a, Account aAdd){
 	}else{
 		Account ac = a;
 		while (ac->next != NULL){
-			//printf(">> on passe le Compte %s\n",get_id(ac));
 			ac = getNextAccount(ac);
 		}
 		ac->next = aAdd;
@@ -111,8 +110,8 @@ int nbrAccount(Account a){
 
 char *List_accountToString(Account a){
 	Account a2 = a;                                     //to avoid modification on the pointeur
-	char * strR = (char *)malloc(sizeof(char)*128);
-	char str[128] = "[";
+	char * strR = (char *)malloc(sizeof(char)*2048);
+	char str[2048] = "[";
 	while(a2!=NULL){
 		strcat(str,"\"");
 		strcat(str,a2->ID);

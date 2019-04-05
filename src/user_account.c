@@ -263,7 +263,7 @@ char * createUser_ID(){
 }
 
 User_account create_user_account(char * uID, int admin, char *name, char *firstname, char *pwd, Account a){
-    printf(">> COMPTES : %s\n",List_accountToString(a));
+    //printf(">> COMPTES : %s\n",List_accountToString(a));
 
     char path[64];
     sprintf(path,"data/user_account/%s.json",uID);
