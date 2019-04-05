@@ -75,13 +75,20 @@ Account getAccount(User_account uacc){
 }
 
 void InfoUser(User_account ua){
-    printf("--------------------------\n| Utilisateur %s\n| \tNom : %s\n| \tPrenom : %s\n| \tPassword : %s\n| \tAdmin ? %s\n| \tNombre de compte :  %d\n--------------------------\n",
-    get_u_ID(ua),
-    get_name(ua),
-    get_firstname(ua),
-    get_pwd(ua),
-    (is_admin(ua)==1?"Oui":"Non"),
-    nbrAccount((Account)getAccount(ua)));
+    if(is_admin(ua)==1){
+        printf("--------------------------\n| ADMINISTRATEUR %s\n| \tNom : %s\n| \tPrenom : %s\n--------------------------\n",
+        get_u_ID(ua),
+        get_name(ua),
+        get_firstname(ua));
+
+    }else{
+        printf("--------------------------\n| Utilisateur %s\n| \tNom : %s\n| \tPrenom : %s\n| \tNombre de compte :  %d\n--------------------------\n",
+        get_u_ID(ua),
+        get_name(ua),
+        get_firstname(ua),
+        nbrAccount((Account)getAccount(ua)));
+    }
+    
 }
 
 //Setters
@@ -95,7 +102,7 @@ User_account setUser(char * ID, int admin, char * name, char * firstname, char *
     set_name(ua,name);
     set_firstname(ua,firstname);
     set_pwd(ua,pwd);
-    //setAccountFirst(ua,a);
+    setAccountFirst(ua,NULL);
 
     return ua;
 }
@@ -121,9 +128,7 @@ void set_UID(User_account uacc, char *ID){
 }
 
 void setAccountFirst(User_account uacc, Account ac){
-    printf("--->%s %s \n",get_id(ac),get_type_account(ac));
     ((uacc->first)=ac);
-    printf("--->%s %s \n",get_id(uacc->first),get_type_account(ac));
     
 }
 
@@ -235,6 +240,7 @@ User_account changePwd(User_account ua){
     rename("data/user_account/listUserOUT.dat","data/user_account/listUser.dat");
 
     ua = create_user_account(get_u_ID(ua),is_admin(ua),get_name(ua),get_firstname(ua),encryptPassword(newpwd),getAccount(ua));
+    addUserInList(get_name(ua),get_firstname(ua),get_u_ID(ua),encryptPassword(newpwd));
     InfoUser(ua);
 
    return ua;
@@ -257,10 +263,10 @@ char * createUser_ID(){
 }
 
 User_account create_user_account(char * uID, int admin, char *name, char *firstname, char *pwd, Account a){
+    printf(">> COMPTES : %s\n",List_accountToString(a));
 
-    char path[64] = "data/user_account/";
-    strcat(path,uID);
-    strcat(path,".json");
+    char path[64];
+    sprintf(path,"data/user_account/%s.json",uID);
 
     //Remplissage du json
 
@@ -268,7 +274,6 @@ User_account create_user_account(char * uID, int admin, char *name, char *firstn
     JSON_Object *root_object = json_value_get_object(root_value);
     char *serialized_string = NULL;
     FILE *jsonF = NULL;
-    FILE *listUser = NULL;
 
     jsonF = fopen(path, "w+"); //Open json File
 
@@ -277,11 +282,10 @@ User_account create_user_account(char * uID, int admin, char *name, char *firstn
     json_object_dotset_string(root_object, "user_account.firstname", firstname);
     json_object_dotset_string(root_object, "user_account.name", name);
     json_object_dotset_string(root_object, "user_account.pwd", pwd);
-    //json_object_dotset_value(root_object, "user_account.List_account",json_parse_string(List_accountToString(a)));
-    json_object_dotset_value(root_object, "user_account.List_account",json_parse_string("[\"LivretA-852148\",\"PEL-784585\",\"LivretA-055867\"]"));
+    json_object_dotset_value(root_object, "user_account.List_account",json_parse_string(List_accountToString(a)));
+    //json_object_dotset_value(root_object, "user_account.List_account",json_parse_string("[\"LivretA-852148\",\"PEL-784585\",\"LivretA-055867\",\"LivretA-04032019221223\"]"));
     
     serialized_string = json_serialize_to_string_pretty(root_value);
-
     fprintf(jsonF,"%s",serialized_string);
     fclose(jsonF);
     json_free_serialized_string(serialized_string);
@@ -289,9 +293,7 @@ User_account create_user_account(char * uID, int admin, char *name, char *firstn
 
     //Ajout du compte dans la liste des users
 
-    listUser = fopen("data/user_account/listUser.dat","a");
-    fprintf(listUser,"%s,%s,%s,%s \n",name,firstname,path,pwd);
-    fclose(listUser);
+    
 
     User_account uacc = setUser(uID, admin, name, firstname, pwd);
     setAccountFirst(uacc,a);
@@ -299,11 +301,20 @@ User_account create_user_account(char * uID, int admin, char *name, char *firstn
     return uacc;
 }
 
+void addUserInList(char * name, char * firstname, char * ID, char * pwd){
+    FILE *listUser = NULL;
+    char path[64]= "";
+    sprintf(path,"data/user_account/%s.json",ID);
+    listUser = fopen("data/user_account/listUser.dat","a");
+    fprintf(listUser,"%s,%s,%s,%s \n",name,firstname,path,pwd);
+    fclose(listUser);
+}
+
 //charge the infos of the json into the user_account struct
 User_account charge_user_account(char * file, int * isAdmin){
     //size attribution for the struct
-    Account ac; //= (Account)malloc(sizeof(Account));
-    Account first; //= (Account)malloc(sizeof(Account));
+    Account ac = NULL;
+    Account first = NULL;
     User_account uacc = NULL;
     uacc = (User_account)malloc(sizeof(struct user_account_s)); 
     //uacc->first=(Account)malloc(sizeof(Account));
@@ -318,34 +329,6 @@ User_account charge_user_account(char * file, int * isAdmin){
     root_value = json_parse_file(file);
     root_object = json_value_get_object(root_value);
 
-    printf("%s %s %s %s %s\n", "ID", "ADMIN", "Prenom", "Nom", "Password");
-        printf(">%s< >%d< >%s< >%s< >%s<\n",
-               json_object_dotget_string(root_object, "user_account.ID"),
-               (int)json_object_dotget_number(root_object, "user_account.admin"),
-               json_object_dotget_string(root_object, "user_account.firstname"),
-               json_object_dotget_string(root_object, "user_account.name"),
-               json_object_dotget_string(root_object, "user_account.pwd"));
-
-    //Liste des accounts
-    list = json_value_get_array(json_object_dotget_value(root_object,"user_account.List_account"));
-    printf("Il y a %d comptes\n",(int) json_array_get_count(list));
-
-   for (int i = 0; i < json_array_get_count(list); i++) {
-        strcpy(elt,json_array_get_string(list, i));    
-        // Comptes
-        if(i==0){
-            first = setAccount(elt);
-            InfoAccount(first);
-        }
-        else{
-            ac = setAccount(elt);
-            InfoAccount(ac);
-            //printf("-> Ajout du compte %d\n",i);            
-            addNewAccount(first,ac);
-            //printf("<- Compte %d ajouté\n",i);
-        }
-    }
-
     // User
     uacc = setUser((char*)json_object_dotget_string(root_object, "user_account.ID"), //Visiblement ac merde ici
             (int)json_object_dotget_number(root_object, "user_account.admin"),
@@ -353,19 +336,29 @@ User_account charge_user_account(char * file, int * isAdmin){
             (char*)json_object_dotget_string(root_object, "user_account.firstname"),
             (char*)json_object_dotget_string(root_object, "user_account.pwd"));
 
-    //InfoUser(uacc);
-    //printf(">> COMPTES : %s\n",List_accountToString(first));
-    setAccountFirst(uacc,first);
-    //printf(">> COMPTES : %s\n",List_accountToString(getAccount(uacc)));
+    //Liste des accounts
+    list = json_value_get_array(json_object_dotget_value(root_object,"user_account.List_account"));
+  
+   for (int i = 0; i < json_array_get_count(list); i++) {
+        strcpy(elt,json_array_get_string(list, i));    
+        // Comptes
+        if(i==0){
+            first = setAccount(elt);
+        }
+        else{
+            ac = setAccount(elt);        
+            addNewAccount(first,ac);
+        }
+    }
 
-    /* cleanup code */
     
-    /* Reste a faire
-    *       Remplir la structure
-    *       S'occuper de List_Account
-    *       La renvoyer
-    */
 
+    if(first!=NULL){
+        setAccountFirst(uacc,first);
+    }
+    if(is_admin(uacc)==1){
+        (*isAdmin)=1;
+    }
 
     json_value_free(root_value);
 
