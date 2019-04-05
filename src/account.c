@@ -15,6 +15,10 @@
 #include <time.h>
 #include "../include/account.h"
 
+#ifndef COLOR
+    #define color(param) printf("\033[%sm",param)
+#endif
+
 /**
  * @brief Structure account_s
  * 
@@ -52,7 +56,15 @@ void set_type_account(Account acc, char * type){
 }
 
 void InfoAccount(Account a){
-	printf("--------------------------\n| Compte %s\n| \tType : %s\n| \tSuivant ? %s\n--------------------------\n",get_id(a),get_type_account(a),(getNextAccount(a)!=NULL)?"Oui":"Non");
+	printf("--------------------------\n| Compte %s\n| \tType : %s\n| \tSolde : ",get_id(a),get_type_account(a));
+	if(getSolde(a)<=0){
+		color("31");
+	}else{
+		color("32");
+	}
+	printf("%.2f €",getSolde(a));
+	color("0");
+	printf("\n--------------------------\n");
 }
 
 Account setAccount(char * ID){
@@ -147,12 +159,28 @@ void createAccountCsv(char * ID){
 
 	FILE * fileCSV = fopen(path, "a");
 	if (fileCSV != NULL){
-		fprintf(fileCSV, "date,operation,solde,comments\n%s,0,0, ",timeS);
+		fprintf(fileCSV, "date,operation,solde,comments\n%s,0.00,0.00, ",timeS);
 		fclose(fileCSV);
 	}
 }
 
-int newOperation(Account a, double operation, char * comment){
+int newOperation(Account a, float operation, char * comment){
+	char path[64];
+	sprintf(path,"data/account/%s.csv",get_id(a));
+	//récupère la date et l'heure
+    char *timeS = (char *)malloc(32);
+    time_t temps;
+    struct tm date;
+    time(&temps);
+    date = *localtime(&temps);
+    strftime(timeS, 128, "[%d-%m-%Y|%H:%M]", &date);
+
+
+	FILE * fileCSV = fopen(path, "a");
+	if (fileCSV != NULL){
+		fprintf(fileCSV, "%s,%f,%f,%s\n",timeS,operation,getSolde(a)+operation,comment);
+		fclose(fileCSV);
+	}
 	/* ToDo
 	*   Ouvrir le fichier CSV associé
 	*   Faire l'opération
@@ -169,3 +197,28 @@ Account createAccount(char * ID, char * type_account){
 
 	return acc;
 } 
+
+float getSolde(Account a){
+	FILE* fichier = NULL;
+    char * soldeF;
+    char chaine[256] = "";
+    char line[256] = "";
+	char path[256];
+	sprintf(path,"data/account/%s.csv",get_id(a));
+ 
+    fichier = fopen(path, "r");
+ 
+    if (fichier != NULL){
+        while (fgets(line, 256, fichier) != NULL) {
+            strcpy(chaine,line);
+            strtok(chaine,",");
+            strtok(NULL,",");
+            soldeF = strtok(NULL,",");
+            
+        }
+		fclose(fichier);
+		return (atof(soldeF));
+    }else{
+		return 0;
+	}
+}

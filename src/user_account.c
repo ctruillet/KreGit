@@ -329,10 +329,16 @@ User_account charge_user_account(char * file, int * isAdmin){
     root_value = json_parse_file(file);
     root_object = json_value_get_object(root_value);
 
+    // User
+    uacc = setUser((char*)json_object_dotget_string(root_object, "user_account.ID"), //Visiblement ac merde ici
+            (int)json_object_dotget_number(root_object, "user_account.admin"),
+            (char*)json_object_dotget_string(root_object, "user_account.name"),
+            (char*)json_object_dotget_string(root_object, "user_account.firstname"),
+            (char*)json_object_dotget_string(root_object, "user_account.pwd"));
+
     //Liste des accounts
     list = json_value_get_array(json_object_dotget_value(root_object,"user_account.List_account"));
-    printf("Vous avez %d comptes\n",(int) json_array_get_count(list));
-
+  
    for (int i = 0; i < json_array_get_count(list); i++) {
         strcpy(elt,json_array_get_string(list, i));    
         // Comptes
@@ -345,12 +351,7 @@ User_account charge_user_account(char * file, int * isAdmin){
         }
     }
 
-    // User
-    uacc = setUser((char*)json_object_dotget_string(root_object, "user_account.ID"), //Visiblement ac merde ici
-            (int)json_object_dotget_number(root_object, "user_account.admin"),
-            (char*)json_object_dotget_string(root_object, "user_account.name"),
-            (char*)json_object_dotget_string(root_object, "user_account.firstname"),
-            (char*)json_object_dotget_string(root_object, "user_account.pwd"));
+    
 
     if(first!=NULL){
         setAccountFirst(uacc,first);

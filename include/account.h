@@ -45,6 +45,15 @@ char * get_type_account(Account acc);
 Account getNextAccount(Account ac);
 
 /**
+ * @brief Retourne le solde du compte
+ * 
+ * @param a 
+ * @return float 
+ */
+float getSolde(Account a);
+
+
+/**
  * @brief Affiche les informations d'un compte
  * 
  * @param a 
@@ -130,4 +139,4 @@ void createAccountCsv(char * ID);
  * @param comment 
  * @return int 
  */
-int newOperation(Account a, double operation, char * comment);
+int newOperation(Account a, float operation, char * comment);
