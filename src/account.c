@@ -196,7 +196,7 @@ int newOperation(Account a, double operation, char *comment)
     double lfbal;
 
     char path[48] = "data/account/";
-    strcat(path, a->ID);
+    strcat(path, get_id(a));
     strcat(path, ".csv");
     //récupère la date et l'heure
     char *timeS = (char *)malloc(32);
@@ -254,12 +254,57 @@ Account createAccount(char *type_account)
     return acc;
 }
 
-char* history(char* date)
+char* history(Account acc, char* date)
 {
-    return("l'histoire s'écrit : carpe diem");
+    char line[512]="";
+    char *linecp=(char*)malloc(512);
+    char* date2=(char*)malloc(16);
+    char* history=NULL;
+    char *ID = get_id(acc);
+    char path[48] = "data/account/";
+    strcat(path, ID);
+    strcat(path, ".csv");
+    FILE* csv=NULL;
+        //on compte combien de ligne on doit stocker
+        //on stocke les bonnes lignes lors de la deuxième boucle
+    int linenb=0;
+    for(int p=0; p<2; p++)
+    {
+        int firstline=0;
+        if(p)
+        {
+            history=(char* )malloc(linenb);
+        }
+        csv=NULL;
+        csv=fopen(path, "r");
+        if (csv!=NULL)
+        {
+            while(fgets(line, sizeof line, csv))
+            {
+                if (firstline!=0)
+                {
+                    strcpy(linecp, line);
+                    char*day=strtok(linecp, "/");
+                    char* month=strtok(NULL, "/");
+                    char* year=strtok(NULL, "/");
+                    sprintf(date2, "%s/%s/%s", day,month,year);
+                    
+                    if(compareDate(date,date2)<1)
+                    {
+                        linenb++;
+                        if (p)
+                            strcat(history, line);
+                    } 
+                }
+                firstline++;
+            }
+        }
+    }
+    fclose(csv);
+    return(history);
 }
 
-int compareDate(date1,date2)
+int compareDate(char* date1,char* date2)
 {
     int day1;
     int day2;
@@ -304,5 +349,4 @@ int compareDate(date1,date2)
             }
         }
     }
-    return -2;
 }

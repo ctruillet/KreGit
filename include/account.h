@@ -139,11 +139,11 @@ char *twoDeci(char *d);
  * 
  * @param date de la forme "dd/mm/yyyy"
  */
-char* history(char* date);//ToDo
+char* history(Account acc, char* date);//ToDo
 /**
  * @brief renvoie -1,0,1 si la premiere date est <,=,> à la deuxième
  * 
  * @param date1  de la forme "dd/mm/yyyy"
  * @param date2  de la forme "dd/mm/yyyy"
  */
-int compareDate(date1,date2);
+int compareDate(char* date1,char* date2);
