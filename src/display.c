@@ -133,22 +133,12 @@ User_account connect(User_account ua, int * isConnect, int * isAdmin){
     }
 
     if(isEquals==2){
-      printf("\n\nName : -%s-\nFisrtname : -%s-\nPassword : -%s-\nJSON : -%s-\n",nameF, firstnameF, pwdF, jsonF);
       (*isConnect)=1;
       ua = charge_user_account(jsonF, isAdmin);
       return ua;
     }else{
       return ua;
     }
-    /*Demande user_name
-    * Demande pwd
-    * Verification pwd
-    *   passwordIsGood()
-    * Charger la structure
-    * Return 4 si le compte est admin
-    * return 5 si le compte existe
-    * return 0 sinon
-    */
 }
 
 //Deconnect
@@ -165,6 +155,8 @@ User_account newAccount_form(User_account ua){
     int choice;
     char accountID[48];
     char accountType[32];
+    char name[32];
+    char firstname[32];
     Account a = NULL;
 
     printf("Selectionnez le type de votre nouveau compte\n");
@@ -172,7 +164,7 @@ User_account newAccount_form(User_account ua){
     printf("\t2 - PEL\n");
     printf("\t3 - Compte Joint\n");
     scanf("%d",&choice);
-
+    CLEAR_STDIN
     switch(choice){
         case 1:
             strcpy(accountType,"LivretA");
@@ -185,10 +177,13 @@ User_account newAccount_form(User_account ua){
             a=createAccount(accountID,accountType);
             break;
         case 3:
+
             strcpy(accountType,"CompteJoint");
             strcpy(accountID,createAccountID(accountType));
             a=createAccount(accountID,accountType);
 
+            printf("Nom : ");
+            printf("Prenom : ");
 
             /* ToDo
              *  Demander a qui le compte est joint
@@ -270,11 +265,28 @@ User_account newUser_form(User_account ua, int * isConnect){
 
 //Nav_bar - Display all accounts of user with theirs types
 int displayListAccount(User_account ua, int FSM){
+    int i;
+    int choice;
     Account a = getAccount(ua);
-    for(int i=1;a!=NULL;i++){
-        printf("\t%d - %s\n",i,get_id(a));
+    printf("%s %s\n",get_firstname(ua),get_name(ua));
+    for(i=1;a!=NULL;i++){
+        printf("   |-%d %s\n",i,get_id(a));
         a=getNextAccount(a);
     }
+
+    scanf("%d",&choice);
+    CLEAR_STDIN
+    if(choice>=i){
+        printf("ERREUR - Vous avez selectionné un compte inexistant.\n");
+        return -1;
+    }
+
+    a = getAccount(ua);
+    for(i=1;i<choice;i++){
+        a=getNextAccount(a);
+    }
+    InfoAccount(a);
+    printf("%d",i);
     return 0;
 }
 

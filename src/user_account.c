@@ -75,13 +75,20 @@ Account getAccount(User_account uacc){
 }
 
 void InfoUser(User_account ua){
-    printf("--------------------------\n| Utilisateur %s\n| \tNom : %s\n| \tPrenom : %s\n| \tPassword : %s\n| \tAdmin ? %s\n| \tNombre de compte :  %d\n--------------------------\n",
-    get_u_ID(ua),
-    get_name(ua),
-    get_firstname(ua),
-    get_pwd(ua),
-    (is_admin(ua)==1?"Oui":"Non"),
-    nbrAccount((Account)getAccount(ua)));
+    if(is_admin(ua)==1){
+        printf("--------------------------\n| ADMINISTRATEUR %s\n| \tNom : %s\n| \tPrenom : %s\n--------------------------\n",
+        get_u_ID(ua),
+        get_name(ua),
+        get_firstname(ua));
+
+    }else{
+        printf("--------------------------\n| Utilisateur %s\n| \tNom : %s\n| \tPrenom : %s\n| \tNombre de compte :  %d\n--------------------------\n",
+        get_u_ID(ua),
+        get_name(ua),
+        get_firstname(ua),
+        nbrAccount((Account)getAccount(ua)));
+    }
+    
 }
 
 //Setters
@@ -322,31 +329,19 @@ User_account charge_user_account(char * file, int * isAdmin){
     root_value = json_parse_file(file);
     root_object = json_value_get_object(root_value);
 
-    printf("%s %s %s %s %s\n", "ID", "ADMIN", "Prenom", "Nom", "Password");
-        printf(">%s< >%d< >%s< >%s< >%s<\n",
-               json_object_dotget_string(root_object, "user_account.ID"),
-               (int)json_object_dotget_number(root_object, "user_account.admin"),
-               json_object_dotget_string(root_object, "user_account.firstname"),
-               json_object_dotget_string(root_object, "user_account.name"),
-               json_object_dotget_string(root_object, "user_account.pwd"));
-
     //Liste des accounts
     list = json_value_get_array(json_object_dotget_value(root_object,"user_account.List_account"));
-    printf("Il y a %d comptes\n",(int) json_array_get_count(list));
+    printf("Vous avez %d comptes\n",(int) json_array_get_count(list));
 
    for (int i = 0; i < json_array_get_count(list); i++) {
         strcpy(elt,json_array_get_string(list, i));    
         // Comptes
         if(i==0){
             first = setAccount(elt);
-            InfoAccount(first);
         }
         else{
-            ac = setAccount(elt);
-            InfoAccount(ac);
-            //printf("-> Ajout du compte %d\n",i);            
+            ac = setAccount(elt);        
             addNewAccount(first,ac);
-            //printf("<- Compte %d ajouté\n",i);
         }
     }
 
@@ -357,22 +352,12 @@ User_account charge_user_account(char * file, int * isAdmin){
             (char*)json_object_dotget_string(root_object, "user_account.firstname"),
             (char*)json_object_dotget_string(root_object, "user_account.pwd"));
 
-    //InfoUser(uacc);
-    //printf(">> COMPTES : %s\n",List_accountToString(first));
     if(first!=NULL){
         setAccountFirst(uacc,first);
     }
-
-    //printf(">> COMPTES : %s\n",List_accountToString(getAccount(uacc)));
-
-    /* cleanup code */
-    
-    /* Reste a faire
-    *       Remplir la structure
-    *       S'occuper de List_Account
-    *       La renvoyer
-    */
-
+    if(is_admin(uacc)==1){
+        (*isAdmin)=1;
+    }
 
     json_value_free(root_value);
 

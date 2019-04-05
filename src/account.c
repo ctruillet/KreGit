@@ -126,7 +126,7 @@ char * createAccountID(char * type){
 	time(&temps);
 	date=*localtime(&temps);
 
-	// Remplissage de la cha√Æne avec en date_heure
+	// Remplissage de la chaine avec en date_heure
 	strftime(timeS, 128, "%m%d%Y%H%M%S", &date);
 	sprintf(ID,"%s-%s",type,timeS);
 	
@@ -142,7 +142,7 @@ void createAccountCsv(char * ID){
     struct tm date;
     time(&temps);
     date = *localtime(&temps);
-    strftime(timeS, 128, "[%Y-%m-%d|%H:%M]", &date);
+    strftime(timeS, 128, "[%d-%m-%Y|%H:%M]", &date);
 
 
 	FILE * fileCSV = fopen(path, "a");
@@ -154,8 +154,8 @@ void createAccountCsv(char * ID){
 
 int newOperation(Account a, double operation, char * comment){
 	/* ToDo
-	*   Ouvrir le fichier CSV associ√©
-	*   Faire l'op√©ration
+	*   Ouvrir le fichier CSV associÈ
+	*   Faire l'opÈration
 	*   Mettre a jour le solde
 	*/
 	return 0;

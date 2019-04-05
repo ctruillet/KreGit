@@ -132,9 +132,10 @@ int main(int argc, char *argv[]){
                 w_log(logF,"CUSTOMER - FSM = 5");    
                 break;
 
-            case SHOW_LISTACCOUNT:  
-                printf(">> COMPTES : %s\n",List_accountToString(getAccount(ua)));         
-                displayListAccount(ua,FSM);       
+            case SHOW_LISTACCOUNT:        
+                while(displayListAccount(ua,FSM)==-1){
+                    displayListAccount(ua,FSM);
+                }
                 w_log(logF,"Show the list of accounts - FSM = 6");
                 break;
             
