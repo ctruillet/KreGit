@@ -159,7 +159,7 @@ void createAccountCsv(char * ID){
 
 	FILE * fileCSV = fopen(path, "a");
 	if (fileCSV != NULL){
-		fprintf(fileCSV, "date,operation,solde,comments\n%s,0.00,0.00, ",timeS);
+		fprintf(fileCSV, "date,operation,solde,comments,\n%s,0.00,0.00,, ",timeS);
 		fclose(fileCSV);
 	}
 }
@@ -178,14 +178,9 @@ int newOperation(Account a, float operation, char * comment){
 
 	FILE * fileCSV = fopen(path, "a");
 	if (fileCSV != NULL){
-		fprintf(fileCSV, "%s,%f,%f,%s\n",timeS,operation,getSolde(a)+operation,comment);
+		fprintf(fileCSV, "%s,%f,%f,%s,\n",timeS,operation,getSolde(a)+operation,comment);
 		fclose(fileCSV);
 	}
-	/* ToDo
-	*   Ouvrir le fichier CSV associé
-	*   Faire l'opération
-	*   Mettre a jour le solde
-	*/
 	return 0;
 }
 

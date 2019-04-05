@@ -77,9 +77,9 @@ User_account newUser_form(User_account ua, int * isConnect);
  * 
  * @param ua 
  * @param FSM 
- * @return int 
+ * @return Account 
  */
-int displayListAccount(User_account ua, int FSM);
+Account displayListAccount(User_account ua, int FSM);
 
 /**
  * @brief Gere la navigation entre les pages de KreGit la nouvelle banque amélioré par réseau de neurone 4G

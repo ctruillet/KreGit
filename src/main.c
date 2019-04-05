@@ -70,16 +70,16 @@ int main(int argc, char *argv[]){
     srand(time(NULL));
     char LOG[128]; 
     crea_log(LOG);
-    printf("log : %s\n",LOG);
+    //printf("log : %s\n",LOG);
       
     // Ouverture et création du fichier .log
-    //Ecriture dans log
 
     int FSM = 0;
     int isConnect = 0;
     int isAdmin = 0;
 
     User_account ua = NULL;    
+    Account a = NULL;
 
     title();
 
@@ -124,14 +124,16 @@ int main(int argc, char *argv[]){
                 w_log(LOG,"ADMIN - FSM = 4");
                 break;
 
-            case CUSTOMER:                    
+            case CUSTOMER: 
+                a=NULL;                   
                 w_log(LOG,"CUSTOMER - FSM = 5");    
                 break;
 
             case SHOW_LISTACCOUNT:        
-                while(displayListAccount(ua,FSM)==-1){
-                    displayListAccount(ua,FSM);
+                while(a==NULL){
+                    a=displayListAccount(ua,FSM);
                 }
+                InfoAccount(a);
                 w_log(LOG,"Show the list of accounts - FSM = 6");
                 break;
             

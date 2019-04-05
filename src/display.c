@@ -264,7 +264,7 @@ User_account newUser_form(User_account ua, int * isConnect){
 }
 
 //Nav_bar - Display all accounts of user with theirs types
-int displayListAccount(User_account ua, int FSM){
+Account displayListAccount(User_account ua, int FSM){
     int i;
     int choice;
     Account a = getAccount(ua);
@@ -276,9 +276,9 @@ int displayListAccount(User_account ua, int FSM){
 
     scanf("%d",&choice);
     CLEAR_STDIN
-    if(choice>=i){
+    if(choice>=i || choice<=0){
         printf("ERREUR - Vous avez selectionné un compte inexistant.\n");
-        return -1;
+        return NULL;
     }
 
     a = getAccount(ua);
@@ -286,8 +286,8 @@ int displayListAccount(User_account ua, int FSM){
         a=getNextAccount(a);
     }
     InfoAccount(a);
-    printf("%d",i);
-    return 0;
+    displayAccount(a);
+    return a;
 }
 
 //Nav bar
@@ -440,10 +440,44 @@ int nav(int FSM, int * isConnect, int * isAdmin){
 
 //Display Account
 void displayAccount(Account a){
-    /*
-    * Demande date à partir de laquelle afficher le compte
-    * Affichage
-    */
+    char path[64];
+	sprintf(path,"data/account/%s.csv",get_id(a));
+    FILE* fichier = NULL;
+    char chaine[256] = "";
+    char line[256] = "";
+    char * date = NULL;
+    char * operation = NULL;
+    char * comment = NULL;
+
+    fichier = fopen(path, "r");
+ 
+    if (fichier != NULL){
+        fgets(line, 256, fichier);
+        while (fgets(line, 256, fichier) != NULL) {
+            strcpy(chaine,line);
+            date = strtok(chaine,",");
+            operation = strtok(NULL,",");
+            strtok(NULL,",");
+            comment = strtok(NULL,",");
+            if(atof(operation)<0){
+                printf("%s   ",date);
+                color("31");
+                printf("%.2f€",atof(operation));
+                color("0");
+                printf(" \t %s",comment);
+                
+            }else{
+                printf("%s   ",date);
+                color("32");
+                printf("+%.2f€",atof(operation));
+                color("0");
+                printf(" \t %s",comment);
+            }
+            
+        } 
+        printf("\n");
+        fclose(fichier);
+    }
 
 }
 
