@@ -129,7 +129,7 @@ User_account connect(User_account ua, int * isConnect, int * isAdmin){
             }
         }
     }else{
-        printf("Impossible d'ouvrir le fichier\n");
+        error("Impossible d'ouvrir le fichier");
     }
 
     if(isEquals==2){
@@ -222,7 +222,7 @@ User_account newAccount_form(User_account ua){
                     }
                 }
             }else{
-                printf("Impossible d'ouvrir le fichier\n");
+                error("Impossible d'ouvrir le fichier.");
             }
             if(isEquals==2){
                 uaJoint = charge_user_account(jsonF,&isAdmin);
@@ -230,13 +230,13 @@ User_account newAccount_form(User_account ua){
                     a=addNewAccount(getAccount(uaJoint),a);
                     uaJoint = create_user_account(get_u_ID(uaJoint),is_admin(uaJoint),get_name(uaJoint),get_firstname(uaJoint),get_pwd(uaJoint),a);
                 }else{
-                    printf("[ERREUR] Vous ne pouvez pas avoir un compte joint avec un compte administrateur\n");
+                    error("Vous ne pouvez pas avoir un compte joint avec un compte administrateur.");
                     isError=1;
                 }
                 free(uaJoint);
             }else{
                 isError=1;
-                error();
+                error("Compte inexistant.");
             }
             
             break;
@@ -307,34 +307,38 @@ User_account newUser_form(User_account ua, int * isConnect){
 }
 
 //Nav_bar - Display all accounts of user with theirs types
-Account displayListAccount(User_account ua, int FSM){
-    int i;
-    int choice;
-    Account a = getAccount(ua);
-    if(nbrAccount(a)!=0){
-        printf("%s %s\n",get_firstname(ua),get_name(ua));
-        for(i=1;a!=NULL;i++){
-            printf("   |-%d %s\n",i,get_id(a));
-            a=getNextAccount(a);
-        }
-
-        scanf("%d",&choice);
-        CLEAR_STDIN
-        if(choice>=i || choice<=0){
-            printf("ERREUR - Vous avez selectionné un compte inexistant.\n");
-            return NULL;
-        }
-
-        a = getAccount(ua);
-        for(i=1;i<choice;i++){
-            a=getNextAccount(a);
-        }
-        InfoAccount(a);
-        displayAccount(a);
+Account  displayListAccount(User_account ua){
+    if(is_admin(ua)==1){
+        return getAccount(ua);
     }else{
-        printf("Vous n'avez aucun compte.\n");
+        int i;
+        int choice;
+        Account a = getAccount(ua);
+        if(nbrAccount(a)!=0){
+            printf("%s %s\n",get_firstname(ua),get_name(ua));
+            for(i=1;a!=NULL;i++){
+                printf("   |-%d %s\n",i,get_id(a));
+                a=getNextAccount(a);
+            }
+
+            scanf("%d",&choice);
+            CLEAR_STDIN
+            if(choice>=i || choice<=0){
+                error("Vous avez selectionné un compte inexistant.");
+                return NULL;
+            }
+
+            a = getAccount(ua);
+            for(i=1;i<choice;i++){
+                a=getNextAccount(a);
+            }
+            InfoAccount(a);
+            displayAccount(a);
+        }else{
+            printf("Vous n'avez aucun compte.\n");
+        }
+        return a;
     }
-    return a;
 }
 
 //Nav bar
@@ -528,11 +532,9 @@ void displayAccount(Account a){
 }
 
 //Display an error
-void error(){
+void error(char * msg){
     color("31");
-    printf("[ERREUR 410]\n\n");
-    printf("Nos serveurs DNS stockés sur la Lune ne sont actuellement pas en phase avec nos 15 satelites ultraperformants.\n");
-    printf("Nos équipes entrainées par deep-IP-learning sont en train de resoudre ce probleme.\n");
+    printf("[ERREUR] %s\n",msg);
     color("0");
 }
 

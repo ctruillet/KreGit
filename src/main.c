@@ -97,7 +97,7 @@ int main(int argc, char *argv[]){
                 w_log(LOG,"Connect Page - FSM = 1");
                 ua = connect(ua,&isConnect,&isAdmin);
                 if(isConnect == 0){
-                    printf("Echec de l'authentification\n");
+                    error("Echec de l'authentification.");
                     FSM =  0;
                 }else{
                     if(isAdmin==1){
@@ -131,7 +131,7 @@ int main(int argc, char *argv[]){
 
             case SHOW_LISTACCOUNT:  
                 if(a==NULL){
-                    a=displayListAccount(ua,FSM);
+                    a=displayListAccount(ua);
                 }
                 //InfoAccount(a);
                 w_log(LOG,"Show the list of accounts - FSM = 6");
@@ -166,7 +166,7 @@ int main(int argc, char *argv[]){
                 break;  
 
             default:
-                error();
+                error("All your base are belong to us.");
                 break;
         }
     }

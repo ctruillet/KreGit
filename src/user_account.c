@@ -19,6 +19,7 @@
 #include "../include/user_account.h"
 #include "../include/encrypt.h"
 #include "../include/parson.h"
+#include "../include/display.h"
 
 #ifndef CLEAR_STDIN
     #define CLEAR_STDIN { int c; while((c = getchar()) != '\n' && c != EOF); }
@@ -231,7 +232,7 @@ User_account changePwd(User_account ua){
         }
 
     }else{
-        fprintf(stderr,"Impossible d'ouvrir le fichier");
+        error("Impossible d'ouvrir le fichier.");
     }
     fclose(fileIN);
     fclose(fileOUT);

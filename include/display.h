@@ -79,7 +79,7 @@ User_account newUser_form(User_account ua, int * isConnect);
  * @param FSM 
  * @return Account 
  */
-Account displayListAccount(User_account ua, int FSM);
+Account displayListAccount(User_account ua);
 
 /**
  * @brief Gere la navigation entre les pages de KreGit la nouvelle banque amélioré par réseau de neurone 4G
@@ -102,7 +102,7 @@ void displayAccount(Account a);
  * @brief Affiche une erreur
  * 
  */
-void error();
+void error(char * msg);
 
 /**
  * @brief Genere et affiche une citation de Kaamelott

@@ -218,3 +218,21 @@ float getSolde(Account a){
 		return 0;
 	}
 }
+
+Account removeAccount(Account a, Account aRmv){
+	Account ac = a;
+	int isRemoved = 0;
+
+	if(get_id(a)==get_id(aRmv)){ //Si le compte aRmv supprimer est le premier
+		return (a->next);
+	}else{
+		while(ac->next!=NULL && isRemoved == 0){
+			if(get_id(ac->next)==get_id(aRmv)){
+				ac->next = getNextAccount(aRmv);
+				isRemoved++;
+			}
+			ac = ac->next;
+		}
+		return a;
+	}
+}
