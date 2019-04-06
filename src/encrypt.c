@@ -15,6 +15,7 @@
 #include <unistd.h>
 #include <crypt.h>
 #include "../include/user_account.h"
+#include "../include/account.h"
 #include "../include/encrypt.h"
 
 

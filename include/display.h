@@ -14,6 +14,10 @@
 	#include "../include/user_account.h"
 #endif
 
+#ifndef __ACCOUNT_H__
+	#include "../include/account.h"
+#endif
+
 /**
  * @brief Ecrit "KreGit" (en ascii-art)
  * 

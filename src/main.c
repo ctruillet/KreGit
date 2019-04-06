@@ -61,7 +61,8 @@ enum{
     CHANGE_PWD,         //9 - Change password of one user
     INFO,               //10 - Informations
     END,                //11 - Goodbye !
-    KAAMELOT = 42       //42 - Kaamelot    
+    KAAMELOT = 42,       //42 - Kaamelot  
+    REMOVE_ACCOUNT = 66 //66 - Remove one account  
 }FSM;
 
 
@@ -120,6 +121,11 @@ int main(int argc, char *argv[]){
                 w_log(LOG,"Create a new Account - FSM = 3");
                 break;
 
+            case REMOVE_ACCOUNT:
+                a = removeAccount(getAccount(ua),a);
+                ua = create_user_account(get_u_ID(ua),is_admin(ua),get_name(ua),get_firstname(ua),get_pwd(ua),a);
+                w_log(LOG,"Remove an Account - FSM = 66");
+                break;
             case ADMIN:                             
                 w_log(LOG,"ADMIN - FSM = 4");
                 break;

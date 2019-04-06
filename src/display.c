@@ -344,6 +344,7 @@ Account  displayListAccount(User_account ua){
 //Nav bar
 int nav(int FSM, int * isConnect, int * isAdmin){
     int i;
+    char choice[4];
 
     switch (FSM){
         case 0: //Welcome
@@ -444,11 +445,12 @@ int nav(int FSM, int * isConnect, int * isAdmin){
         case 6: //ACCOUNT
             printf("\n1\\Revenir au menu\t");
             printf("\t2\\Nouvelle opération\t");
-            printf("\t3\\Quitter KreGit\n");
+            printf("\t3\\Supprimer ce compte\t");
+            printf("\t4\\Quitter KreGit\n");
 
             scanf("%d",&i);
             CLEAR_STDIN 
-            if(i==1 || i==2 || i==3){
+            if(i==1 || i==2 || i==3 || i==4){
                 switch(i){
                     case 1:
                         return 5;
@@ -457,6 +459,16 @@ int nav(int FSM, int * isConnect, int * isAdmin){
                         return 8;
                         break;
                     case 3:
+                        printf("Êtes-vous sur ?\n[Y/n] ");
+                        scanf("%s",choice);
+                        if(strcmp(choice,"Y")==0 || strcmp(choice,"y")==0){
+                            return 66;
+                        }else{
+                            return 6;
+                        }
+
+                        break;
+                    case 4:
                         return 11;
                         break;
                 }
@@ -481,6 +493,9 @@ int nav(int FSM, int * isConnect, int * isAdmin){
             break;
         case 42:
             return 0;
+            break;
+        case 66:
+            return (5-(*isAdmin));
             break;
         default:
             break;

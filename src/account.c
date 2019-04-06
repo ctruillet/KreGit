@@ -14,6 +14,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include "../include/account.h"
+#include "../include/user_account.h"
 
 #ifndef COLOR
     #define color(param) printf("\033[%sm",param)

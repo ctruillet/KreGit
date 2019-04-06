@@ -116,6 +116,15 @@ Account createAccount(char * ID, char * type_account);
  */
 Account addNewAccount(Account a, Account aAdd);
 
+/**
+ * @brief Supprime un compte
+ * 
+ * @param a 
+ * @param aRmv 
+ * @return User_account 
+ */
+Account removeAccount(Account a, Account aRmv);
+
 //file management
 /**
  * @brief Créer un identifiant de compte
