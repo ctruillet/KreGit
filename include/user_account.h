@@ -160,8 +160,14 @@ User_account create_user_account(char * ID, int admin, char *name, char *firstna
  * @return User_account 
  */
 User_account charge_user_account(char * file, int * isAdmin);
-
+/**
+ * @brief ajoute un utilisateur dans le fichier .dat
+ */
 void addUserInList(char * name, char * firstname, char * ID, char * pwd);
+/**
+ * @brief enleve un utilisateur dans le fichier .dat
+ */
+void remooveUserInList(User_account ua);
 /**
  * @brief remove an account to the user
  * 
@@ -176,7 +182,12 @@ void remove_Ulist(User_account uacc, Account acc);
  * @param acc
  */
 void deleteAcc(User_account uacc, Account acc);
-/*
+
+/**
+ * @brief supprime le compte user et touts les comptes associés
+ * 
+ * @param uacc
+ */
 void delete_user_account(User_account uacc);
 
-*/
+

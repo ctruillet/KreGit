@@ -93,9 +93,7 @@ void addNewAccount(Account a, Account aAdd)
     }
     ac->next = aAdd;
 
-    /* ToDo & BUG
-    *   Ajouter l'ID à UserAccount
-    */
+    
 }
 
 int nbrAccount(Account a)

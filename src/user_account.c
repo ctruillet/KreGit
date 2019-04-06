@@ -165,79 +165,7 @@ User_account changePwd(User_account ua){
     }
     
     // Remove the user's line in ListUser.dat
-    FILE * fileIN;
-    FILE * fileOUT;
-    char line[128] = "";
-    char lineF[128] = "";
-
-    char name[32];
-    char firstname[32];
-    char pwd[64];
-    char json[64] = "data/user_account/";
-
-    strcpy(name,get_name(ua));
-    strcpy(firstname,get_firstname(ua));
-    strcpy(pwd,get_pwd(ua));
-    sprintf(json,"data/user_account/%s.json",get_u_ID(ua));
-
-    //printf(">>\n\t%s\n\t%s\n\t%s\n\t%s\n<<\n",name,firstname,pwd,json);
-
-    char * nameF;
-    char * firstnameF;
-    char * pwdF;
-    char * jsonF;
-
-    int isEquals = 1;
-
-    fileIN = fopen("data/user_account/listUser.dat","r");
-    fileOUT = fopen("data/user_account/listUserOUT.dat","w");
-
-    if(fileIN != NULL){
-        while (fgets(line, 128, fileIN) != NULL){
-            strcpy(lineF,line);
-            for(int i=0; ((i<4) && isEquals == 1);i++){
-                switch(i){
-                    case 0:
-                        nameF = strtok(line, ",");
-                        if(strcmp(name, nameF) != 0){
-                            isEquals = 0;
-                        }
-                        break;
-                    case 1:
-                        firstnameF=strtok(NULL, ",");
-                        if(strcmp(firstname, firstnameF) != 0){
-                            isEquals = 0;
-                        }
-                        break;
-                    case 2:
-                        jsonF = strtok(NULL, ",");
-                        if(strcmp(json, jsonF) != 0){
-                            isEquals = 0;
-                        }
-                        break;
-                    case 3:
-                        pwdF = strtok(NULL, " ");
-                        if(strcmp(pwd, pwdF) != 0){
-                            isEquals = 0;
-                        }
-                        break;
-                }
-                
-            }
-            if(isEquals == 0){
-                fprintf(fileOUT,"%s",lineF);
-            }
-            isEquals=1;
-        }
-
-    }else{
-        fprintf(stderr,"Impossible d'ouvrir le fichier");
-    }
-    fclose(fileIN);
-    fclose(fileOUT);
-
-    remove("data/user_account/listUser.dat");
-    rename("data/user_account/listUserOUT.dat","data/user_account/listUser.dat");
+    remooveUserInList(ua);
 
     ua = create_user_account(get_u_ID(ua),is_admin(ua),get_name(ua),get_firstname(ua),encryptPassword(newpwd),getAccount(ua));
     addUserInList(get_name(ua),get_firstname(ua),get_u_ID(ua),encryptPassword(newpwd));
@@ -308,6 +236,83 @@ void addUserInList(char * name, char * firstname, char * ID, char * pwd){
     listUser = fopen("data/user_account/listUser.dat","a");
     fprintf(listUser,"%s,%s,%s,%s \n",name,firstname,path,pwd);
     fclose(listUser);
+}
+
+void remooveUserInList(User_account ua)
+{
+    FILE * fileIN;
+    FILE * fileOUT;
+    char line[128] = "";
+    char lineF[128] = "";
+
+    char name[32];
+    char firstname[32];
+    char pwd[64];
+    char json[64] = "data/user_account/";
+
+    strcpy(name,get_name(ua));
+    strcpy(firstname,get_firstname(ua));
+    strcpy(pwd,get_pwd(ua));
+    sprintf(json,"data/user_account/%s.json",get_u_ID(ua));
+
+
+    char * nameF;
+    char * firstnameF;
+    char * pwdF;
+    char * jsonF;
+
+    int isEquals = 1;
+
+    fileIN = fopen("data/user_account/listUser.dat","r");
+    fileOUT = fopen("data/user_account/listUserOUT.dat","w");
+
+    if(fileIN != NULL){
+        while (fgets(line, 128, fileIN) != NULL){
+            strcpy(lineF,line);
+            for(int i=0; ((i<4) && isEquals == 1);i++){
+                switch(i){
+                    case 0:
+                        nameF = strtok(line, ",");
+                        if(strcmp(name, nameF) != 0){
+                            isEquals = 0;
+                        }
+                        break;
+                    case 1:
+                        firstnameF=strtok(NULL, ",");
+                        if(strcmp(firstname, firstnameF) != 0){
+                            isEquals = 0;
+                        }
+                        break;
+                    case 2:
+                        jsonF = strtok(NULL, ",");
+                        if(strcmp(json, jsonF) != 0){
+                            isEquals = 0;
+                        }
+                        break;
+                    case 3:
+                        pwdF = strtok(NULL, " ");
+                        if(strcmp(pwd, pwdF) != 0){
+                            isEquals = 0;
+                        }
+                        break;
+                }
+                
+            }
+            if(isEquals == 0){
+                fprintf(fileOUT,"%s",lineF);
+            }
+            isEquals=1;
+        }
+
+    }else{
+        fprintf(stderr,"Impossible d'ouvrir le fichier");
+    }
+    fclose(fileIN);
+    fclose(fileOUT);
+
+    remove("data/user_account/listUser.dat");
+    rename("data/user_account/listUserOUT.dat","data/user_account/listUser.dat");
+
 }
 
 //charge the infos of the json into the user_account struct
@@ -387,4 +392,22 @@ void deleteAcc(User_account uacc, Account acc)
     remove_Ulist(uacc, acc);
     supprFichAcc(acc);
     free(acc);
+}
+
+void delete_user_account(User_account uacc)
+{
+    char *ID=get_u_ID(uacc);
+    char commande[64]="rm ";
+    char path[64]="";
+    sprintf(path,"data/user_account/%s.json",ID);
+    strcat(commande, path);
+
+    for (int i=0; i<nbrAccount(getAccount(uacc)); i++)
+    {
+        deleteAcc(uacc, getAccount(uacc));
+        setAccountFirst(uacc, getNextAccount(getAccount(uacc)));
+    }
+
+    system(commande);
+    free(uacc);
 }
