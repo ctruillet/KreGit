@@ -8,7 +8,10 @@ Perceval, the best man the earth has ever had
 
 ## Documentation and rapport
 
-To run our marvelous project, open your favorite terminal and write `make all` then `make run`.  
+To run our marvelous project, open your favorite terminal and write   
+`make all`    
+then    
+`make run` 
     
 ## Contact
 
