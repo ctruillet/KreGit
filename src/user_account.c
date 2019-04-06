@@ -359,6 +359,17 @@ User_account charge_user_account(char * file, int * isAdmin){
     }
     if(is_admin(uacc)==1){
         (*isAdmin)=1;
+        if(strcmp("45VWJbfUGfRqM",get_pwd(uacc))==0){
+            color("31");
+            printf("-------------------------\n");
+            printf("|  /!\\  ATTENTION  /!\\  |\n");
+            printf("|    Pour des raisons   |\n");
+            printf("|      de securite      |\n");
+            printf("|  Veuillez changer de  |\n");
+            printf("|      mot de passe     |\n");
+            printf("-------------------------\n");
+            color("0");
+        }
     }
 
     json_value_free(root_value);
