@@ -543,7 +543,7 @@ void displayAccount(Account a){
             }   
         } 
         if(isEmpty==0){
-            printf("Aucune opération n'a été effectuée sur ce compte !");
+            printf("Aucune opération n'a été effectuée sur ce compte !\n");
         }
         fclose(fichier);
     }

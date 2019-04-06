@@ -148,4 +148,4 @@ void createAccountCsv(char * ID);
  * @param comment 
  * @return int 
  */
-int newOperation(Account a, float operation, char * comment);
+int newOperation(Account a);

@@ -39,7 +39,7 @@
 
 
 /* Paramètre  Couleur
-30 Noir |31 Rouge | 32 Vert | 33 Jaune | 34 Bleu| 35 Magenta | 36 Cyan | 37 Blanc
+30 Noir |31 Rouge | 32 Vert | 33 Jaune | 34 Bleu | 35 Magenta | 36 Cyan | 37 Blanc
  
 "1" active la haute intensité des caractères.
 */
@@ -131,7 +131,8 @@ int main(int argc, char *argv[]){
                 break;
 
             case CUSTOMER: 
-                a=NULL;                   
+                a=NULL;
+                InfoUser(ua);                   
                 w_log(LOG,"CUSTOMER - FSM = 5");    
                 break;
 
@@ -148,6 +149,7 @@ int main(int argc, char *argv[]){
                 break;
             
             case TRANSFER:
+                newOperation(a);
                 w_log(LOG,"Transfer - FSM = 8");
                 break;
 

@@ -15,6 +15,7 @@
 #include <time.h>
 #include "../include/account.h"
 #include "../include/user_account.h"
+#include "../include/display.h"
 
 #ifndef COLOR
     #define color(param) printf("\033[%sm",param)
@@ -64,7 +65,7 @@ void InfoAccount(Account a){
 		}else{
 			color("32");
 		}
-		printf("%.2f €",getSolde(a));
+		printf("%.2f€",getSolde(a));
 		color("0");
 		printf("\n--------------------------\n");
 	}
@@ -161,14 +162,20 @@ void createAccountCsv(char * ID){
 
 	FILE * fileCSV = fopen(path, "a");
 	if (fileCSV != NULL){
-		fprintf(fileCSV, "date,operation,solde,comments,\n%s,0.00,0.00,, ",timeS);
+		fprintf(fileCSV, "date,operation,solde,comments,\n%s,0.00,0.00,, \n",timeS);
 		fclose(fileCSV);
 	}
 }
 
-int newOperation(Account a, float operation, char * comment){
-	char path[64];
-	sprintf(path,"data/account/%s.csv",get_id(a));
+int newOperation(Account a){
+	int choice;
+	float operation=0;
+	char comment[256];
+	char compte[32];
+	char pathVir[64];
+	FILE * compteVir = NULL;
+	Account accVir = NULL;
+
 	//récupère la date et l'heure
     char *timeS = (char *)malloc(32);
     time_t temps;
@@ -178,11 +185,76 @@ int newOperation(Account a, float operation, char * comment){
     strftime(timeS, 128, "[%d-%m-%Y|%H:%M]", &date);
 
 
+	printf("1\\Faire un virement\t2\\Faire un Depot\n");
+	scanf("%d",&choice);
+
+	switch(choice){
+		case 1:	//Virement
+			printf("Liste des comptes : \n");
+			color("34");
+			system("ls data/account -1 | cut -d \".\" -f1");
+			color("0");
+			printf("\nChoisissez le compte : \n");
+			scanf("%s",compte);
+
+			sprintf(pathVir,"data/account/%s.csv",compte);
+			compteVir = fopen(pathVir,"r+");
+
+			if(compteVir!=NULL){
+				fclose(compteVir);
+				compteVir = fopen(pathVir,"a");
+				printf("Entrez le montant : ");
+				scanf("%f",&operation);
+				if(operation<=0){
+					error("Vous ne pouvez pas faire de virement négatif ou nul !");
+					return 0;
+				}
+				if(operation>getSolde(a)){
+					error("Vous ne pouvez pas faire un virement superieur à votre solde !");
+					return 0;
+				}
+
+				printf("Entrez un commentaire : ");
+				scanf("%s",comment);
+				accVir=setAccount(compte);
+				fprintf(compteVir, "%s,%.2f,%.2f,%s,\n",timeS,operation,getSolde(accVir)+operation,comment);
+				fclose(compteVir);
+				operation*=-1;
+				sprintf(comment,"Virement %s",compte);
+			}else{
+				error("Compte inexistant");
+				return 0;
+			}
+
+			break;
+		case 2:	//Dépôt
+			printf("Entrez le montant : ");
+			scanf("%f",&operation);
+			if(operation<=0){
+				error("Vous ne pouvez pas faire de dépôt négatif ou nul !");
+				return 0;
+			}
+			printf("Entrez un commentaire : ");
+			scanf("%s",comment);
+			break;
+		default:
+			error("Choix inexistant");
+			return 0;
+			break;
+	}
+	/*ToDo
+	* 	Choisir entre Virement et Dépôt
+	*		Virement -> choix du compte
+	*/
+	char path[64];
+	sprintf(path,"data/account/%s.csv",get_id(a));
+	
 	FILE * fileCSV = fopen(path, "a");
 	if (fileCSV != NULL){
-		fprintf(fileCSV, "%s,%f,%f,%s,\n",timeS,operation,getSolde(a)+operation,comment);
+		fprintf(fileCSV, "%s,%.2f,%.2f,%s,\n",timeS,operation,getSolde(a)+operation,comment);
 		fclose(fileCSV);
 	}
+	InfoAccount(a);
 	return 0;
 }
 
@@ -223,17 +295,20 @@ float getSolde(Account a){
 Account removeAccount(Account a, Account aRmv){
 	Account ac = a;
 	int isRemoved = 0;
-
+	char path[128];
+	sprintf(path,"data/account/%s.csv",get_id(aRmv));
 	if(get_id(a)==get_id(aRmv)){ //Si le compte aRmv supprimer est le premier
+		remove(path);
 		return (a->next);
 	}else{
-		while(ac->next!=NULL && isRemoved == 0){
+		while(isRemoved == 0 && ac->next!=NULL){
 			if(get_id(ac->next)==get_id(aRmv)){
-				ac->next = getNextAccount(aRmv);
+				ac->next = getNextAccount(aRmv);				
 				isRemoved++;
 			}
 			ac = ac->next;
 		}
+		remove(path);
 		return a;
 	}
 }
