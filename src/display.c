@@ -162,7 +162,15 @@ User_account newAccount_form(User_account ua){
     char ligne[256];
     FILE * listUser;
     Account a = NULL;
+    char path[64];
+    char *timeS = (char *)malloc(32);
+    time_t temps;
+    struct tm date;
+    time(&temps);
+    date = *localtime(&temps);
+    strftime(timeS, 128, "[%d-%m-%Y|%H:%M]", &date);
 
+    promo();
     printf("Selectionnez le type de votre nouveau compte\n");
     printf("\t1 - Livret A\n");
     printf("\t2 - PEL\n");
@@ -245,13 +253,26 @@ User_account newAccount_form(User_account ua){
     }   
     if(isError==0){
         a=createAccount(accountID,accountType);
-        InfoAccount(a);     
-        a=addNewAccount(getAccount(ua),a);
         createAccountCsv(accountID);
-        ua = create_user_account(get_u_ID(ua),is_admin(ua),get_name(ua),get_firstname(ua),get_pwd(ua),a);
-    }  
-    InfoUser(ua);
+        if(choice==1){            //PROMO
+            sprintf(path,"data/account/%s.csv",accountID);
+            printf(">>%s<<\n",path);
+            FILE * fileCSV = fopen(path, "a");
+	        if (fileCSV != NULL){
+		        fprintf(fileCSV, "%s,%.2f,%.2f,%s,\n",timeS,100.00,getSolde(a)+100.00,"Promotion Exclusive KreGit");
+                fclose(fileCSV);
+            }
+        }
 
+        
+        InfoAccount(a);  
+        a=addNewAccount(getAccount(ua),a);
+        
+        ua = create_user_account(get_u_ID(ua),is_admin(ua),get_name(ua),get_firstname(ua),get_pwd(ua),a);
+
+        
+           
+    }  
     return ua;
 }
 
@@ -585,5 +606,16 @@ void kaamelott(){
     strcat(command,n_s);
     strcat(command," | tail -n 2");
     system(command);
+    color("0");
+}
+
+void promo(){
+    color("36");
+    printf("\n\n-------------------------\n");
+    printf("|       PROMOTION       |\n");
+    printf("|     100€ Offerts      |\n");
+    printf("| sur l'ouverture d'un  |\n");
+    printf("|       Livret A !      |\n");
+    printf("------------------------\n\n\n");
     color("0");
 }

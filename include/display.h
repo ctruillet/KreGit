@@ -113,3 +113,9 @@ void error(char * msg);
  * 
  */
 void kaamelott();
+
+/**
+ * @brief Fait une promo
+ * 
+ */
+void promo();

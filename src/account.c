@@ -185,7 +185,7 @@ int newOperation(Account a){
     strftime(timeS, 128, "[%d-%m-%Y|%H:%M]", &date);
 
 
-	printf("1\\Faire un virement\t2\\Faire un Depot\n");
+	printf("1\\Faire un virement\t2\\Faire un depot/retrait\n");
 	scanf("%d",&choice);
 
 	switch(choice){
@@ -230,10 +230,6 @@ int newOperation(Account a){
 		case 2:	//Dépôt
 			printf("Entrez le montant : ");
 			scanf("%f",&operation);
-			if(operation<=0){
-				error("Vous ne pouvez pas faire de dépôt négatif ou nul !");
-				return 0;
-			}
 			printf("Entrez un commentaire : ");
 			scanf("%s",comment);
 			break;
