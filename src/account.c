@@ -62,6 +62,11 @@ void InfoAccount(Account a)
     printf("--------------------------\n| Compte %s\n| \tType : %s\n| \tSuivant ? %s\n--------------------------\n", get_id(a), get_type_account(a), (getNextAccount(a) != NULL) ? "Oui" : "Non");
 }
 
+void setNextAccount(Account acc, Account next)
+{
+    acc->next=next;
+}
+
 Account setAccount(char *ID)
 {
     Account ac = (Account)malloc(sizeof(struct account_s));
@@ -350,3 +355,16 @@ int compareDate(char* date1,char* date2)
         }
     }
 }
+
+void supprFichAcc(Account acc)
+{
+    char *ID = get_id(acc);
+    char path[48] = "data/account/";
+    strcat(path, ID);
+    strcat(path, ".csv");
+    
+    char commande[64] = "rm ";
+    strcat(commande, path);
+    system(commande); 
+}
+

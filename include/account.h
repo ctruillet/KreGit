@@ -81,7 +81,13 @@ void set_ID(Account acc, char * ID);
  * @param type 
  */
 void set_type_account(Account acc, char * type);
-
+/**
+ * @brief Definier le prochain compte d'une chaine de compte
+ * 
+ * @param acc 
+ * @param next 
+ */
+void setNextAccount(Account acc, Account next);
 /**
  * @brief Defini un compte à partir de son ID
  * 
@@ -147,3 +153,9 @@ char* history(Account acc, char* date);//ToDo
  * @param date2  de la forme "dd/mm/yyyy"
  */
 int compareDate(char* date1,char* date2);
+/**
+ * @brief supprime les fichiers du compte
+ * 
+ * @param acc
+ */
+void supprFichAcc(Account acc);

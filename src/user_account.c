@@ -364,3 +364,27 @@ User_account charge_user_account(char * file, int * isAdmin){
 
     return uacc;
 }
+
+void remove_Ulist(User_account uacc, Account acc)
+{
+    Account first =  getAccount(uacc);
+    if(first!=NULL && first==acc)
+    {
+        setAccountFirst(uacc, NULL);
+    }
+    else if (first != NULL)
+    {
+        while(getNextAccount(first)!=acc)
+        {
+            first=getNextAccount(first);
+        }
+        setNextAccount(first, getNextAccount(acc));
+    }
+}
+
+void deleteAcc(User_account uacc, Account acc)
+{
+    remove_Ulist(uacc, acc);
+    supprFichAcc(acc);
+    free(acc);
+}

@@ -161,7 +161,22 @@ User_account create_user_account(char * ID, int admin, char *name, char *firstna
  */
 User_account charge_user_account(char * file, int * isAdmin);
 
+void addUserInList(char * name, char * firstname, char * ID, char * pwd);
+/**
+ * @brief remove an account to the user
+ * 
+ * @param uacc
+ * @param acc
+ */
+void remove_Ulist(User_account uacc, Account acc);      
+/**
+ * @brief supprime les fichiers du compte et son lien avec le User
+ * 
+ * @param uacc
+ * @param acc
+ */
+void deleteAcc(User_account uacc, Account acc);
 /*
 void delete_user_account(User_account uacc);
-void remove_Ulist(User_account uacc, Account acc);      //remove an account to the user
+
 */
