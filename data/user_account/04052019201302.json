@@ -5,6 +5,9 @@
         "firstname": "test",
         "name": "test",
         "pwd": "45ZZFEzMOH5b6",
-        "List_account": []
+        "List_account": [
+            "LivretA-04062019183916",
+            "CompteJoint-04062019184311"
+        ]
     }
 }

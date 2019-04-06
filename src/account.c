@@ -177,11 +177,13 @@ void createAccountCsv(char * ID){
 int newOperation(Account a){
 	int choice;
 	float operation=0;
-	char comment[256];
+	char comment[512];
 	char compte[32];
 	char pathVir[64];
 	FILE * compteVir = NULL;
+	FILE * listAccount = NULL;
 	Account accVir = NULL;
+	char line[128];
 
 	//récupère la date et l'heure
     char *timeS = (char *)malloc(32);
@@ -198,10 +200,17 @@ int newOperation(Account a){
 	switch(choice){
 		case 1:	//Virement
 			printf("Liste des comptes : \n");
-			color("34");
-			system("ls data/account -1 | cut -d \".\" -f1");
+			color("37");
+			listAccount = fopen("data/account/listAccount.dat","r");
+        	if(listAccount != NULL){ //Lecture de listAccount.dat
+            	while (fgets(line, 128, listAccount) != NULL){
+                	printf("\t%s",line);
+            	}
+			}else{
+				error("Impossible d'ouvrir le fichier listAccount.dat.");
+			}
 			color("0");
-			printf("\nChoisissez le compte : \n");
+			printf("\nChoisissez le compte : ");
 			scanf("%s",compte);
 
 			sprintf(pathVir,"data/account/%s.csv",compte);

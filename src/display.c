@@ -328,11 +328,53 @@ User_account newUser_form(User_account ua, int * isConnect){
 
 //Nav_bar - Display all accounts of user with theirs types
 Account  displayListAccount(User_account ua){
+    int i;
+    int choice;
+    Account aAdmin;
+
     if(is_admin(ua)==1){
-        return getAccount(ua);
+        FILE * listAccount = fopen("data/account/listAccount.dat","r");
+        char line[128];
+        char * idF; //Pour stocker l'ID de chaque compte
+        i=0;
+
+        if(listAccount != NULL){ //Lecture de listAccount.dat
+            while (fgets(line, 128, listAccount) != NULL){
+                i++;
+                printf("\t %d\\\t%s",i,line);
+            }
+            
+        }else{
+            error("Impossible d'ouvrir le fichier listAccount.dat.");
+        }
+
+        //Selection du compte
+        printf("Choisissez un compte\n");
+        scanf("%d",&choice);
+
+        if(choice>i || choice<=0){
+            error("Vous avez selectionné un compte inexistant.");
+            return NULL;
+        }
+
+
+        rewind(listAccount); //Revenir au début du fichier
+
+        for(int k=1; k<=choice; k++){ //Recuperer la bonne ligne
+            fgets(line, 128, listAccount);
+        }
+        idF = strtok(line," ");
+
+        aAdmin = setAccount(idF);
+
+        InfoAccount(aAdmin);
+        displayAccount(aAdmin);
+
+        fclose(listAccount);
+
+        return aAdmin;
     }else{
-        int i;
-        int choice;
+        i=0;
         Account a = getAccount(ua);
         if(nbrAccount(a)!=0){
             printf("%s %s\n",get_firstname(ua),get_name(ua));
@@ -473,7 +515,7 @@ int nav(int FSM, int * isConnect, int * isAdmin){
             if(i==1 || i==2 || i==3 || i==4){
                 switch(i){
                     case 1:
-                        return 5;
+                        return (5-(*isAdmin));
                         break;
                     case 2:
                         return 8;

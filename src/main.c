@@ -71,14 +71,13 @@ int main(int argc, char *argv[]){
     srand(time(NULL));
     char LOG[128]; 
     crea_log(LOG);
-    //printf("log : %s\n",LOG);
       
     // Ouverture et création du fichier .log
 
     int FSM = 0;
     int isConnect = 0;
     int isAdmin = 0;
-
+    char path[64];
     User_account ua = NULL;    
     Account a = NULL;
 
@@ -122,6 +121,12 @@ int main(int argc, char *argv[]){
                 break;
 
             case REMOVE_ACCOUNT:
+                if(isAdmin==1){
+                    sprintf(path,"data/account/%s.csv",get_id(a));
+                    removeAccountInList(a);
+                    remove(path);
+                    w_log(LOG,"Remove an Account - FSM = 66");
+                }
                 if(nbrAccount(getAccount(ua))!=0){
                     removeAccountInList(a);
                     a = removeAccount(getAccount(ua),a);
@@ -181,7 +186,6 @@ int main(int argc, char *argv[]){
                 break;
         }
     }
-
     w_log(LOG,"La fonction main s'est bien executée.");
 
     return 0;
