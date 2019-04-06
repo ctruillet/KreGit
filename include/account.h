@@ -125,6 +125,13 @@ Account addNewAccount(Account a, Account aAdd);
  */
 Account removeAccount(Account a, Account aRmv);
 
+/**
+ * @brief Supprime le compte dans listAccount.dat
+ * 
+ * @param a 
+ */
+void removeAccountInList(Account a);
+
 //file management
 /**
  * @brief Créer un identifiant de compte

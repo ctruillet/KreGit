@@ -165,6 +165,13 @@ void createAccountCsv(char * ID){
 		fprintf(fileCSV, "date,operation,solde,comments,\n%s,0.00,0.00,, \n",timeS);
 		fclose(fileCSV);
 	}
+
+	FILE * listAccount = fopen("data/account/listAccount.dat","a");
+	if (listAccount != NULL){
+		fprintf(listAccount, "%s \n",ID);
+		fclose(listAccount);
+	}
+	
 }
 
 int newOperation(Account a){
@@ -307,4 +314,29 @@ Account removeAccount(Account a, Account aRmv){
 		remove(path);
 		return a;
 	}
+}
+
+void removeAccountInList(Account a){
+	char line[128];
+	char * idF;
+
+	FILE * fileIN = fopen("data/account/listAccount.dat","r");
+    FILE * fileOUT = fopen("data/account/listAccountOUT.dat","w");
+
+    if(fileIN != NULL){
+        while (fgets(line, 128, fileIN) != NULL){
+			idF = strtok(line," ");
+			//printf(">>%s<< >< >>%s<<\n",idF,get_id(a));
+            if(strcmp(idF,get_id(a))!=0){
+				fprintf(fileOUT,"%s \n",idF);
+			}
+        }
+    }else{
+        error("Impossible d'ouvrir le fichier.");
+    }
+    fclose(fileIN);
+    fclose(fileOUT);
+
+    remove("data/account/listAccount.dat");
+    rename("data/account/listAccountOUT.dat","data/account/listAccount.dat");
 }

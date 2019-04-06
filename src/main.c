@@ -122,11 +122,12 @@ int main(int argc, char *argv[]){
                 break;
 
             case REMOVE_ACCOUNT:
-            if(nbrAccount(getAccount(ua))!=0){
-                a = removeAccount(getAccount(ua),a);
-                ua = create_user_account(get_u_ID(ua),is_admin(ua),get_name(ua),get_firstname(ua),get_pwd(ua),a);
-                w_log(LOG,"Remove an Account - FSM = 66");
-            }
+                if(nbrAccount(getAccount(ua))!=0){
+                    removeAccountInList(a);
+                    a = removeAccount(getAccount(ua),a);
+                    ua = create_user_account(get_u_ID(ua),is_admin(ua),get_name(ua),get_firstname(ua),get_pwd(ua),a);
+                    w_log(LOG,"Remove an Account - FSM = 66");
+                }
                 break;
             case ADMIN:                             
                 w_log(LOG,"ADMIN - FSM = 4");

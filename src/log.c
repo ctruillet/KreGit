@@ -35,7 +35,7 @@ void crea_log(char * FICHIER){
 }
 
 int w_log(char * FICHIER, char * str){  
-FILE* fichier = NULL;
+  FILE* fichier = NULL;
   char heure[128];
   time_t temps;
   struct tm date;
