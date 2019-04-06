@@ -13,7 +13,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-#include <stdbool.h>
 
 #include "../include/user_account.h"
 #include "../include/account.h"
@@ -514,36 +513,40 @@ void displayAccount(Account a){
     char * date = NULL;
     char * operation = NULL;
     char * comment = NULL;
+    int isEmpty = 0;
 
     fichier = fopen(path, "r");
  
     if (fichier != NULL){
         fgets(line, 256, fichier);
+        fgets(line, 256, fichier);
         while (fgets(line, 256, fichier) != NULL) {
+            isEmpty = 1;
             strcpy(chaine,line);
             date = strtok(chaine,",");
             operation = strtok(NULL,",");
             strtok(NULL,",");
             comment = strtok(NULL,",");
-            if(atof(operation)<0){
+            if(atof(operation)<0){ 
                 printf("%s   ",date);
                 color("31");
-                printf("%.2f€",atof(operation));
+                printf("-%6.2f€",-(atof(operation)));
                 color("0");
-                printf(" \t %s",comment);
+                printf(" \t %s\n",comment);
                 
             }else{
                 printf("%s   ",date);
                 color("32");
-                printf("+%.2f€",atof(operation));
+                printf("+%6.2f€",atof(operation));
                 color("0");
-                printf(" \t %s",comment);
+                printf(" \t %s\n",comment);
             }   
         } 
-        printf("\n");
+        if(isEmpty==0){
+            printf("Aucune opération n'a été effectuée sur ce compte !");
+        }
         fclose(fichier);
     }
-
 }
 
 //Display an error

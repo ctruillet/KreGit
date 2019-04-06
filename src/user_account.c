@@ -12,9 +12,9 @@
 #include <time.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
 #include <string.h>
 #include <time.h>
+
 #include "../include/account.h"
 #include "../include/user_account.h"
 #include "../include/encrypt.h"
