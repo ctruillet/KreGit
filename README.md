@@ -10,6 +10,9 @@ Perceval, the best man the earth has ever had
 
 To run our marvelous project, open your favorite terminal and write   
 `make all`    
+
+You can read our rapport <a href="https://github.com/ctruillet/KreGit/tree/master/doc/rapport.pdf" target="_blank">here</a>
+
     
 ## Contact
 

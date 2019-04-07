@@ -327,7 +327,7 @@ User_account newUser_form(User_account ua, int * isConnect){
 }
 
 //Nav_bar - Display all accounts of user with theirs types
-Account  displayListAccount(User_account ua){
+Account displayListAccount(User_account ua){
     int i;
     int choice;
     Account aAdmin;

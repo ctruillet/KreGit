@@ -180,9 +180,7 @@ User_account changePwd(User_account ua){
     strcpy(firstname,get_firstname(ua));
     strcpy(pwd,get_pwd(ua));
     sprintf(json,"data/user_account/%s.json",get_u_ID(ua));
-
-    //printf(">>\n\t%s\n\t%s\n\t%s\n\t%s\n<<\n",name,firstname,pwd,json);
-
+    
     char * nameF;
     char * firstnameF;
     char * pwdF;

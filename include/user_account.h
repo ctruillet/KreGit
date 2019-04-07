@@ -11,7 +11,6 @@
 
 #define __USER_ACCOUNT_H__
 
-#include <stdbool.h>
 #include "../include/account.h"
 
 /**
@@ -64,6 +63,11 @@ char * get_pwd(User_account uacc);
  */
 Account getAccount(User_account uacc);
 
+/**
+ * @brief Affiche les informations sur l'utilisateur
+ * 
+ * @param ua 
+ */
 void InfoUser(User_account ua);
 
 
@@ -170,8 +174,3 @@ void addUserInList(char * name, char * firstname, char * ID, char * pwd);
  * @return User_account 
  */
 User_account charge_user_account(char * file, int * isAdmin);
-
-/*
-void delete_user_account(User_account uacc);
-void remove_Ulist(User_account uacc, Account acc);      //remove an account to the user
-*/

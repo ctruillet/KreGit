@@ -21,6 +21,10 @@
     #define color(param) printf("\033[%sm",param)
 #endif
 
+#ifndef CLEAR_STDIN
+    #define CLEAR_STDIN { int c; while((c = getchar()) != '\n' && c != EOF); }
+#endif
+
 /**
  * @brief Structure account_s
  * 
@@ -206,6 +210,7 @@ int newOperation(Account a){
 
 	printf("1\\Faire un virement\t2\\Faire un depot/retrait\n");
 	scanf("%d",&choice);
+	CLEAR_STDIN
 
 	switch(choice){
 		case 1:	//Virement
@@ -222,6 +227,7 @@ int newOperation(Account a){
 			}
 			printf("Choisissez un compte\n");
         	scanf("%d",&choiceVir);
+			CLEAR_STDIN
 
 			if(choiceVir>i || choiceVir<=0){
             	error("Vous avez selectionné un compte inexistant.");
@@ -244,6 +250,7 @@ int newOperation(Account a){
 				compteVir = fopen(pathVir,"a");
 				printf("Entrez le montant : ");
 				scanf("%f",&operation);
+				CLEAR_STDIN
 				if(operation<=0){
 					error("Vous ne pouvez pas faire de virement négatif ou nul !");
 					return 0;
@@ -268,8 +275,10 @@ int newOperation(Account a){
 		case 2:	//Dépôt
 			printf("Entrez le montant : ");
 			scanf("%f",&operation);
+			CLEAR_STDIN
 			printf("Entrez un commentaire : ");
 			scanf("%s",comment);
+			CLEAR_STDIN
 			break;
 		default:
 			error("Choix inexistant");
