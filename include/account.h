@@ -100,6 +100,16 @@ void set_type_account(Account acc, char * type);
 Account setAccount(char * ID);
 
 /**
+ * @brief Verifie si un compte a été supprimé
+ * 
+ * @param a 
+ * @param isSuppr 
+ * @return Account 
+ */
+Account verifSuppr(Account a, int *isSuppr);
+
+
+/**
  * @brief Créer un nouveau compte
  * 
  * @param ID

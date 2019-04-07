@@ -315,7 +315,8 @@ User_account charge_user_account(char * file, int * isAdmin){
     Account first = NULL;
     User_account uacc = NULL;
     uacc = (User_account)malloc(sizeof(struct user_account_s)); 
-    //uacc->first=(Account)malloc(sizeof(Account));
+    int isSuppr = 0;
+
     
 
     JSON_Value *root_value;
@@ -349,11 +350,15 @@ User_account charge_user_account(char * file, int * isAdmin){
         }
     }
 
-    
+    first = verifSuppr(first, &isSuppr); //Si un compte a été supprimé
+    if(isSuppr==1){
+        uacc = create_user_account(get_u_ID(uacc),is_admin(uacc),get_name(uacc),get_firstname(uacc),get_pwd(uacc),first);
+    }
 
     if(first!=NULL){
         setAccountFirst(uacc,first);
     }
+
     if(is_admin(uacc)==1){
         (*isAdmin)=1;
         if(strcmp("45VWJbfUGfRqM",get_pwd(uacc))==0){

@@ -75,15 +75,30 @@ void InfoAccount(Account a){
 	}
 }
 
+Account verifSuppr(Account a, int *isSuppr){
+    char path[64];
+	FILE * fichier = NULL;
+	Account aSuppr = a;
+	if(aSuppr==NULL){
+		return NULL;
+	}
+	while (aSuppr->next != NULL){
+		sprintf(path,"data/account/%s.csv",get_id(aSuppr));
+		fichier = fopen(path,"r");
+
+		if(fichier==NULL){
+			removeAccount(a,aSuppr);
+			(*isSuppr)=1;
+		}
+		aSuppr=aSuppr->next;
+	}
+	return a;
+}
+
 Account setAccount(char * ID){
 	Account ac = (Account) malloc(sizeof(struct account_s));
 	char path[64];
 	sprintf(path,"data/account/%s.csv",ID);
-
-	FILE * fichier = fopen(path,"r");
-	if(fichier==NULL){
-		createAccountCsv(ID);
-	}
 
 	set_ID(ac,ID);
 	char temp[32]= "\0";
@@ -108,7 +123,6 @@ Account addNewAccount(Account a, Account aAdd){
 	}
 	return a;
 }
-
 
 int nbrAccount(Account a){
 	if(a == NULL){
