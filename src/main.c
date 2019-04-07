@@ -134,7 +134,8 @@ int main(int argc, char *argv[]){
                     w_log(LOG,"Remove an Account - FSM = 66");
                 }
                 break;
-            case ADMIN:                             
+            case ADMIN:              
+                a=NULL;               
                 w_log(LOG,"ADMIN - FSM = 4");
                 break;
 

@@ -334,6 +334,7 @@ Account  displayListAccount(User_account ua){
 
     if(is_admin(ua)==1){
         FILE * listAccount = fopen("data/account/listAccount.dat","r");
+        rewind(listAccount);
         char line[128];
         char * idF; //Pour stocker l'ID de chaque compte
         i=0;
@@ -460,7 +461,7 @@ int nav(int FSM, int * isConnect, int * isAdmin){
                         return 0;
                         break;
                     case 2:
-                        return 8;
+                        return 9;
                         break;
                     case 3:
                         return 6;

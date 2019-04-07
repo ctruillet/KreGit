@@ -73,6 +73,14 @@ void InfoAccount(Account a){
 
 Account setAccount(char * ID){
 	Account ac = (Account) malloc(sizeof(struct account_s));
+	char path[64];
+	sprintf(path,"data/account/%s.csv",ID);
+
+	FILE * fichier = fopen(path,"r");
+	if(fichier==NULL){
+		createAccountCsv(ID);
+	}
+
 	set_ID(ac,ID);
 	char temp[32]= "\0";
 

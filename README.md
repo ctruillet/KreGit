@@ -10,8 +10,6 @@ Perceval, the best man the earth has ever had
 
 To run our marvelous project, open your favorite terminal and write   
 `make all`    
-then    
-`make run` 
     
 ## Contact
 
