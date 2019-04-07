@@ -242,9 +242,8 @@ User_account changePwd(User_account ua){
 
     ua = create_user_account(get_u_ID(ua),is_admin(ua),get_name(ua),get_firstname(ua),encryptPassword(newpwd),getAccount(ua));
     addUserInList(get_name(ua),get_firstname(ua),get_u_ID(ua),encryptPassword(newpwd));
-    InfoUser(ua);
 
-   return ua;
+    return ua;
 }
 
 //file management

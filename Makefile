@@ -1,5 +1,6 @@
 MAKE = make
 GCC = gcc
+ECHO = echo
 LIBFLAGS = -lm -lcrypt
 CFLAGS = -Wall -g -ggdb
 INCLUDE = include/
@@ -16,6 +17,9 @@ READ = @read -p
 BIN = bin/*
 LOG = log/*
 
+.SILENT: all
+.SILENT: run
+.SILENT: compile
 
 all : 
 	mkdir -p bin
@@ -24,6 +28,7 @@ all :
 	mkdir -p log
 	mkdir -p data/account; mkdir -p data/user_account
 	$(MAKE) compile -s
+	$(MAKE) run
 	
 compile :
 	$(GCC) $(CFLAGS) -I $(INCLUDE) -c $(SRC) $(LIBFLAGS)
@@ -31,6 +36,9 @@ compile :
 	$(GCC) $(CFLAGS) -o $(EXC) $(LIB)*.o $(LIBFLAGS)
 
 run :
+	$(ECHO) '\n\n'------------------DOCUMENTATION------------------;
+	$(ECHO) '\n'La documentation est disponible dans le dossier doc/documentation en ouvrant le fichier index.html;
+	$(ECHO) '\n'----------------------KreGit---------------------;
 	$(EXC)
 
 git :
@@ -41,9 +49,7 @@ git :
 
 clean :
 	rm $(BIN) $(LIB)*
+	$(MAKE) cleanlog
 
 cleanlog :
 	rm $(LOG)
-
-doc :
-	xdg-open doc/documentation/html/index.html

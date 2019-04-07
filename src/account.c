@@ -175,15 +175,17 @@ void createAccountCsv(char * ID){
 }
 
 int newOperation(Account a){
-	int choice;
+	int choice, choiceVir;
+	int i=0;
 	float operation=0;
 	char comment[512];
-	char compte[32];
 	char pathVir[64];
+	char * idF; //Pour stocker l'ID de chaque compte
 	FILE * compteVir = NULL;
 	FILE * listAccount = NULL;
 	Account accVir = NULL;
 	char line[128];
+	char lineVir[128];
 
 	//récupère la date et l'heure
     char *timeS = (char *)malloc(32);
@@ -200,20 +202,33 @@ int newOperation(Account a){
 	switch(choice){
 		case 1:	//Virement
 			printf("Liste des comptes : \n");
-			color("37");
+
 			listAccount = fopen("data/account/listAccount.dat","r");
-        	if(listAccount != NULL){ //Lecture de listAccount.dat
-            	while (fgets(line, 128, listAccount) != NULL){
-                	printf("\t%s",line);
-            	}
+			if(listAccount != NULL){ //Lecture de listAccount.dat
+				while (fgets(lineVir, 128, listAccount) != NULL){
+					i++;
+					printf("\t %d\\\t%s",i,lineVir);
+				}
 			}else{
 				error("Impossible d'ouvrir le fichier listAccount.dat.");
 			}
-			color("0");
-			printf("\nChoisissez le compte : ");
-			scanf("%s",compte);
+			printf("Choisissez un compte\n");
+        	scanf("%d",&choiceVir);
 
-			sprintf(pathVir,"data/account/%s.csv",compte);
+			if(choiceVir>i || choiceVir<=0){
+            	error("Vous avez selectionné un compte inexistant.");
+            	return 0;
+        	}
+
+			rewind(listAccount); //Revenir au début du fichier
+
+			for(int k=1; k<=choiceVir; k++){ //Recuperer la bonne ligne
+            	fgets(line, 128, listAccount);
+        	}
+        	idF = strtok(line," ");
+
+
+			sprintf(pathVir,"data/account/%s.csv",idF);
 			compteVir = fopen(pathVir,"r+");
 
 			if(compteVir!=NULL){
@@ -230,13 +245,12 @@ int newOperation(Account a){
 					return 0;
 				}
 
-				printf("Entrez un commentaire : ");
-				scanf("%s",comment);
-				accVir=setAccount(compte);
+				sprintf(comment,"Virement %s",get_id(a));
+				accVir=setAccount(idF);
 				fprintf(compteVir, "%s,%.2f,%.2f,%s,\n",timeS,operation,getSolde(accVir)+operation,comment);
 				fclose(compteVir);
 				operation*=-1;
-				sprintf(comment,"Virement %s",compte);
+				sprintf(comment,"Virement %s",idF);
 			}else{
 				error("Compte inexistant");
 				return 0;
@@ -254,10 +268,6 @@ int newOperation(Account a){
 			return 0;
 			break;
 	}
-	/*ToDo
-	* 	Choisir entre Virement et Dépôt
-	*		Virement -> choix du compte
-	*/
 	char path[64];
 	sprintf(path,"data/account/%s.csv",get_id(a));
 	
