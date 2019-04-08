@@ -17,29 +17,24 @@ READ = @read -p
 BIN = bin/*
 LOG = log/*
 
-.SILENT: all
-.SILENT: run
-.SILENT: compile
-
-all : 
-	mkdir -p bin
-	mkdir -p lib
-	mkdir -p data
-	mkdir -p log
-	mkdir -p data/account; mkdir -p data/user_account
+all :
+	@mkdir -p bin
+	@mkdir -p lib
+	@mkdir -p data
+	@mkdir -p log
+	@mkdir -p data/account; mkdir -p data/user_account
 	$(MAKE) compile -s
-	$(MAKE) run
-	
+	$(MAKE) run -s
 compile :
-	$(GCC) $(CFLAGS) -I $(INCLUDE) -c $(SRC) $(LIBFLAGS)
-	$(MOVE) *.o $(LIB)
-	$(GCC) $(CFLAGS) -o $(EXC) $(LIB)*.o $(LIBFLAGS)
+	@$(GCC) $(CFLAGS) -I $(INCLUDE) -c $(SRC) $(LIBFLAGS)
+	@$(MOVE) *.o $(LIB)
+	@$(GCC) $(CFLAGS) -o $(EXC) $(LIB)*.o $(LIBFLAGS)
 
 run :
-	$(ECHO) '\n\n'------------------DOCUMENTATION------------------;
-	$(ECHO) '\n'La documentation est disponible dans le dossier doc/documentation en ouvrant le fichier index.html;
-	$(ECHO) '\n'----------------------KreGit---------------------;
-	$(EXC)
+	@$(ECHO) '\n\n'------------------DOCUMENTATION------------------;
+	@$(ECHO) '\n'La documentation est disponible dans le dossier doc/documentation en ouvrant le fichier index.html;
+	@$(ECHO) '\n'----------------------KreGit---------------------;
+	@$(EXC)
 
 git :
 	chmod 755 *
