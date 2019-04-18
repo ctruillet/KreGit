@@ -46,7 +46,7 @@ typedef struct user_account_s{
     int admin;             //account with admin rights
     char name[32];         //name of user
     char firstname[32];    //first name of user
-    char pwd[64];          //password link to the account
+    char pwd[64];                       //password link to the account
     struct account_s* first;         //list of account own by user
 } user_account ;
 
