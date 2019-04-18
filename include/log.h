@@ -27,4 +27,6 @@ void crea_log(char * FICHIER);
  * @param str 
  * @return int 
  */
-int w_log(FILE * fichier, char * str);
+int w_log(char * FICHIER, char * str);
+
+
